@@ -1,0 +1,12 @@
+<h1><%= @activity.name %></h1>
+
+<p>Description: <%= @activity.description %></p>
+<p>Price: <%= @activity.price %></p>
+<p>Location: <%= @activity.location %></p>
+<p>Suitable For Ages: <%= @activity.age_group %></p>
+<p>Rating: <%= @activity.rating %></p>
+
+<!-- button -->
+<%= simple_form_for [@activity, @bookmark] do |f| %>
+  <%= f.submit %>
+<% end %>
