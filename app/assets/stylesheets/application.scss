@@ -9,4 +9,15 @@
 
 // Your CSS partials
 @import "components/index";
+@import "components/banner";
+@import "components/card";
 @import "pages/index";
+@import "pages/home";
+
+p {
+  margin-bottom: 0;
+}
+
+a {
+  text-decoration: none;
+}
