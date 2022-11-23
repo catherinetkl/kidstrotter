@@ -44,6 +44,7 @@ pp "==================="
 
   organizer = Organizer.create!(user: organizing_user)
   puts "Organizer with id: #{organizer.id} has been created"
+
 end
 
 pp "==================="
