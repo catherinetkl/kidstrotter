@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Booking < ApplicationRecord
-  has_many :activities
+  belongs_to :activity
   has_many :reviews
   belongs_to :user
 
