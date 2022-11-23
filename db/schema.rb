@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_22_044754) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_23_034931) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -20,17 +20,20 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_22_044754) do
     t.string "location", null: false
     t.float "price", null: false
     t.string "age_group", null: false
-    t.float "rating"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "bookings", force: :cascade do |t|
-    t.string "status"
+    t.string "status", default: "pending"
     t.bigint "activities_id"
     t.bigint "users_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "adult_qty", default: 0, null: false
+    t.integer "child_qty", default: 0, null: false
+    t.float "adult_price", default: 0.0, null: false
+    t.float "child_price", default: 0.0, null: false
     t.index ["activities_id"], name: "index_bookings_on_activities_id"
     t.index ["users_id"], name: "index_bookings_on_users_id"
   end
@@ -42,6 +45,30 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_22_044754) do
     t.datetime "updated_at", null: false
     t.index ["activity_id"], name: "index_bookmarks_on_activity_id"
     t.index ["user_id"], name: "index_bookmarks_on_user_id"
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "organizers", force: :cascade do |t|
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_organizers_on_user_id"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.integer "rating"
+    t.string "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "booking_id"
+    t.bigint "user_id"
+    t.index ["booking_id"], name: "index_reviews_on_booking_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -62,4 +89,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_22_044754) do
   add_foreign_key "bookings", "users", column: "users_id"
   add_foreign_key "bookmarks", "activities"
   add_foreign_key "bookmarks", "users"
+  add_foreign_key "organizers", "users"
+  add_foreign_key "reviews", "bookings"
+  add_foreign_key "reviews", "users"
 end
