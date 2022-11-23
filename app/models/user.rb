@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
   has_many :bookmarks, dependent: :destroy
   has_many :activities, through: :bookings
   has_many :activities, through: :bookmarks
-  # has_many :activities, through: :reviews
-  # has_many :reviews
+  has_many :reviews
   has_many :bookings
+  has_one :organizer
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
