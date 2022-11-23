@@ -17,6 +17,7 @@ Activity.destroy_all
 Organizer.destroy_all
 Category.destroy_all
 User.destroy_all
+AgeGroup.destroy_all
 
 puts %(Database cleaned!)
 
@@ -46,6 +47,17 @@ pp "==================="
 end
 
 pp "==================="
+pp "POPULATING AGE GROUPS"
+pp "==================="
+
+
+["Toddlers", "Children", "Teenagers"].each do |group|
+  AgeGroup.create!(name: group)
+  pp "Created age group (#{group})"
+end
+
+
+pp "==================="
 pp "POPULATING CATEGORIES AND ACTIVITIES"
 pp "==================="
 
@@ -61,8 +73,9 @@ event_names.keys.each do |category_name|
       price: 50,
       age_group: '6-9',
       organizer: Organizer.all.sample,
-      category: category
+      category: category,
     )
+    activity.age_groups << AgeGroup.all.sample
 
     puts "Activity with id: #{activity.id} has been created"
   end
