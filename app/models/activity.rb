@@ -3,7 +3,7 @@
 class Activity < ApplicationRecord
   has_many :bookmarks
   has_many :users, through: :bookmarks
-  belongs_to :booking
+  has_many :bookings
   belongs_to :organizer
   belongs_to :category
 

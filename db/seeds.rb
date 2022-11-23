@@ -16,22 +16,42 @@ User.destroy_all
 puts %(Database cleaned!)
 
 3.times do
-  new_user = User.create!(
+  attending_user = User.create!(
     first_name: Faker::Name.name,
     last_name: Faker::Name.name,
     email: Faker::Internet.email,
     password: 123_456
   )
-  puts "User with id: #{new_user.id} has been created"
+  puts "User with id: #{attending_user.id} has been created"
 
-  3.times do
-    activity = Activity.create!(
-      name: ['Beating up kids', 'Smashing Vases', 'Riding a tank', 'Live Firing at the Range', 'Bungee Jumping'].sample,
-      description: ['Lorem Ipsum'],
-      location: ['Northpoint'],
-      price: 50,
-      age_group: ['4']
-    )
-    puts "Activity with id: #{activity.id} has been created"
-  end
+  organizing_user = User.create!(
+    first_name: Faker::Name.name,
+    last_name: Faker::Name.name,
+    email: Faker::Internet.email,
+    password: 123_456
+  )
+  puts "User with id: #{organizing_user.id} has been created"
+
+  organizer = Organizer.create!(user: organizing_user)
+  puts "Organizer with id: #{organizer.id} has been created"
+
+  category = Category.create!(name: 'fun')
+  puts "Category with id: #{category.id} has been created"
+
+  activity = Activity.create!(
+    name: ['Beating up kids', 'Smashing Vases', 'Riding a tank', 'Live Firing at the Range', 'Bungee Jumping'].sample,
+    description: ['Lorem Ipsum'],
+    location: ['Northpoint'],
+    price: 50,
+    age_group: '6-9',
+    organizer: organizer,
+    category: category
+  )
+  puts "Activity with id: #{activity.id} has been created"
+
+  booking = Booking.create(
+    user: attending_user,
+    activity: activity
+  )
+  puts "Booking with id: #{booking.id} has been created"
 end
