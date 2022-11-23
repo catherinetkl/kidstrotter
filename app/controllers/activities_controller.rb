@@ -3,7 +3,7 @@ class ActivitiesController < ApplicationController
     @activities = Activity.all
     @categories = Category.all
     if params[:query].present?
-      @activities = Activity.search_by_activity(params[:query])
+      yield @activities = Activity.search_by_activity(params[:query])
     else
       @activities = Activity.all
     end
