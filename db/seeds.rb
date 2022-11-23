@@ -7,10 +7,10 @@
 #   Character.create(name: "Luke", movie: movies.first)
 
 puts %(Cleaning up database...)
-Activity.destroy_all
-Organizer.destroy_all
-Category.destroy_all
 Booking.destroy_all
+Activity.destroy_all
+Category.destroy_all
+Organizer.destroy_all
 User.destroy_all
 
 puts %(Database cleaned!)
@@ -40,8 +40,8 @@ puts %(Database cleaned!)
 
   activity = Activity.create!(
     name: ['Beating up kids', 'Smashing Vases', 'Riding a tank', 'Live Firing at the Range', 'Bungee Jumping'].sample,
-    description: ['Lorem Ipsum'],
-    location: ['Northpoint'],
+    description: 'Lorem Ipsum',
+    location: 'Northpoint',
     price: 50,
     age_group: '6-9',
     organizer: organizer,
