@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_23_034931) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_23_040328) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -22,6 +22,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_23_034931) do
     t.string "age_group", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "require_booking", default: false
+    t.boolean "require_payment", default: false
+    t.bigint "category_id"
+    t.bigint "organizer_id"
+    t.index ["category_id"], name: "index_activities_on_category_id"
+    t.index ["organizer_id"], name: "index_activities_on_organizer_id"
   end
 
   create_table "bookings", force: :cascade do |t|
@@ -85,6 +91,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_23_034931) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "activities", "categories"
+  add_foreign_key "activities", "organizers"
   add_foreign_key "bookings", "activities", column: "activities_id"
   add_foreign_key "bookings", "users", column: "users_id"
   add_foreign_key "bookmarks", "activities"
