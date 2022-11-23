@@ -18,6 +18,4 @@ class Activity < ApplicationRecord
                   against: %i[name],
                   # associated_against: { category: %i[name] },
                   using: { tsearch: { prefix: true } }
-
-
 end

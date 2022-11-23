@@ -3,9 +3,18 @@ Rails.application.routes.draw do
 
   root to: 'activities#index'
 
-  resources :activities
-
   resources :categories do
-    resources :products
+    resources :activities
   end
+
+  resources :activities do
+    resources :bookings, only: %i[create]
+  end
+
+  resources :bookmarks do
+    resources :reviews, only: %i[create]
+  end
+
+  resources :bookings, only: %i[index show destroy]
+  resources :activities
 end
