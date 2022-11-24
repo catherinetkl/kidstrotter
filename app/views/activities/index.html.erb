@@ -11,7 +11,7 @@
             <div class="card-trip-infos">
                 <div>
                   <h2><%= activity.name %></h2>
-                  <p class="mb-1"><%= activity.location %></p>
+                  <p class="mb-1"><%= activity.address %></p>
                   <p><%= activity.description %></p>
                   <p>Suitable For Ages: <%= activity.age_group %></p>
                 </div>
@@ -32,3 +32,6 @@
   </div>
   <br>
 </div>
+
+
+<div style="width: 100%; height: 600px;"data-controller="map" data-map-markers-value="<%= @markers.to_json %>" data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>

@@ -7,10 +7,25 @@ class ActivitiesController < ApplicationController
   end
 
   def index
-    @categories = Category.all
-
     @activities = Activity.all
-    @activities = Activity.search_by_activity(params[:query]) if params[:query].present?
+    @categories = Category.all
+    
+
+    @markers = @activities.geocoded.map do |act|
+      {
+        lat: act.latitude,
+        lng: act.longitude
+      }
+    end
+
+    if params[:query].present?
+      yield @activities = Activity.search_by_activity(params[:query])
+    else
+      @activities = Activity.all
+    end
+    
+    # @activities = Activity.search_by_activity(params[:query]) if params[:query].present?
+
   end
 
   def show

@@ -3,6 +3,9 @@
 class Activity < ApplicationRecord
   include PgSearch::Model
 
+  geocoded_by :address
+  after_validation :geocode, if: :will_save_change_to_address?
+
   has_many :bookmarks
   has_many :users, through: :bookmarks
   has_many :bookings
@@ -10,7 +13,7 @@ class Activity < ApplicationRecord
   belongs_to :category
   has_and_belongs_to_many :age_groups
 
-  validates :name, :location, presence: true
+  validates :name, :address, presence: true
   validates :adult_price, numericality: { greater_than_or_equal_to: 0 }, presence: true
   validates :child_price, numericality: { greater_than_or_equal_to: 0 }, presence: true
   validates :age_group, inclusion: { in: %w[0-2 3-5 6-9 10-12 13-17] }
