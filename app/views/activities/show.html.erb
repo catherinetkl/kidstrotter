@@ -15,8 +15,6 @@
             <input type="date" class="form-control" />
           </div>
 
-
-
           <div class="row mb-4">
             <div class="col vstack">
               <div class="row">
@@ -93,10 +91,12 @@
 
 <p>Description: <%= @activity.description %></p>
 <p>Adult Price: <%= number_to_currency(@activity.adult_price) %></p>
-<p>Location: <%= @activity.location %></p>
+<p>Location: <%= @activity.address %></p>
 <p>Suitable For Ages: <%= @activity.age_group %></p>
 
 <!-- button -->
 <%= simple_form_for [@activity] do |f| %>
   <%= f.submit %>
 <% end %>
+
+<div style="width: 400px; height: 400px;" data-controller="map" data-map-markers-value="<%= @markers.to_json %>" data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
