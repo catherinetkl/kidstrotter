@@ -1,0 +1,18 @@
+  <div class="container">
+    <div class="row">
+      <div class="col-6 mx-auto">
+
+        <%= simple_form_for(@booking) do |f| %>
+          <%= f.association :activity %>
+          <%= f.input :adult_qty %>
+          <%= f.input :child_qty %>
+          <%= f.input :adult_price %>
+          <%= f.input :child_price %>
+          <%= f.submit %>
+        <% end %>
+
+
+        <h6><%= link_to "Back", activity_path, class: "btn btn-primary" %></h6>
+      </div>
+    </div>
+  </div>
