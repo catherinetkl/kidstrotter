@@ -12,30 +12,30 @@ class BookingsController < ApplicationController
   end
 
   def new
-    @category = Category.all
     @activity = Activity.find(params[:activity_id])
-
     @booking = Booking.new
   end
 
   def create
-    @category = Category.find(params[:category_id])
     @activity = Activity.find(params[:activity_id])
 
     @booking = Booking.create(booking_params)
 
-    if @booking.save
+    @booking.user = User.last
+    @booking.activity = @activity
+
+    if @booking.save!
       redirect_to root_path
-      flash[:alert] = "Booking made succesfully. Please wait for the seller's reply."
+      flash[:alert] = 'Booking made successfully!'
     else
-      render 'activity/show', status: :unprocessable_entity
+      render 'activities/show', status: :unprocessable_entity
     end
   end
 
   private
 
   def booking_params
-    params.require(:booking).permit(:adult_qty, :child_qty, :adult_price, :child_price, :activity_id, :category_id)
+    params.require(:booking).permit(:adult_qty, :child_qty, :status)
   end
 
   def authenticate
