@@ -70,9 +70,11 @@ event_names.keys.each do |category_name|
     activity = Activity.create!(
       name: event_name,
       description: ['Lorem Ipsum'].sample,
-      location: ['Northpoint'].sample,
+      address: ['Northpoint'].sample,
       adult_price: 50,
       child_price: 20,
+      latitude: [48, 45, 35].sample,
+      longitude: [20, 15, 13].sample,
       age_group: '6-9',
       organizer: Organizer.all.sample,
       category: category,
