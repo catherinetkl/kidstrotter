@@ -2,11 +2,40 @@
   <div class="card">
     <div class="row g-0">
       <div class="col-md-3">
-        <img
-          src="https://via.placeholder.com/1400x900"
-          alt="Placeholder Image"
-          class="img-fluid"
-        />
+
+        <form class="form-purple p-3">
+          <!-- Email input -->
+          <div class="form-outline mb-4">
+            <label class="form-label" for="form1Example1">Email address</label>
+            <input type="email" id="form1Example1" class="form-control" />
+          </div>
+
+          <!-- Password input -->
+          <div class="form-outline mb-4">
+            <label class="form-label" for="form1Example2">Password</label>
+            <input type="password" id="form1Example2" class="form-control" />
+          </div>
+
+          <!-- 2 column grid layout for inline styling -->
+          <div class="row mb-4">
+            <div class="col d-flex justify-content-center">
+              <!-- Checkbox -->
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="form1Example3" checked />
+                <label class="form-check-label" for="form1Example3"> Remember me </label>
+              </div>
+            </div>
+
+            <div class="col">
+              <!-- Simple link -->
+              <a href="#!">Forgot password?</a>
+            </div>
+          </div>
+
+          <!-- Submit button -->
+          <button type="submit" class="btn btn-primary btn-block">Sign in</button>
+        </form>
+
       </div>
       <div class="col-md-9 d-flex align-items-between flex-column">
 
@@ -15,15 +44,15 @@
           <p class="mb-2">How many reviews | Bookings | Address</p>
 
           <div class="row">
-            <div class="col-lg-6 col-md-12 mb-lg-0">
+            <div class="col-lg-6 col-md-12 mb-4 mb-lg-0">
               <img
-                src="https://via.placeholder.com/1400x2000"
-                class="w-100 shadow-1-strong rounded"
+                src="https://via.placeholder.com/1400x2016"
+                class="w-100 shadow-1-strong rounded mb-4"
                 alt="Wintry Mountain Landscape"
               />
             </div>
 
-            <div class="col-lg-6 mb-lg-0">
+            <div class="col-lg-6 mb-4 mb-lg-0">
               <img
                 src="https://via.placeholder.com/1000x700"
                 class="w-100 shadow-1-strong rounded mb-4"
@@ -45,11 +74,12 @@
         </div>
 
         <div class="card-footer d-flex flex-wrap align-content-between justify-content-between">
+
           <div class="h2 align-middle m-0">Price: <%= @activity.adult_price %></div>
+
           <div class="d-grid gap-2 d-md-flex justify-content-md-end align-middle">
-            <button class="btn btn-primary me-md-2" type="button">Bookmark</button>
-            <button class="btn btn-primary" type="button">Book Now</button>
-            <p><%= link_to "Book Now",  new_activity_booking_path(@activity), class: 'btn' %></p>
+            <%= link_to "Bookmark (No link yet)",  "", class: %(btn btn-primary) %>
+            <%= link_to "Book Now",  new_activity_booking_path(@activity), class: %(btn btn-primary) %>
           </div>
         </div>
 
