@@ -4,30 +4,39 @@
       <div class="col-md-3">
 
         <form class="form-purple p-4 m-4">
-          <!-- Email input -->
           <div class="form-outline mb-4">
             <h3 class="fw-bold">Search</h3>
             <label class="form-label">Name of Attraction</label>
-            <input type="email" id="form1Example1" class="form-control" />
+            <input type="text" placeholder="Universal Studios" class="form-control" />
           </div>
 
-          <!-- Password input -->
           <div class="form-outline mb-4">
             <label class="form-label">Visit Date</label>
-            <input type="password" class="form-control" />
+            <input type="date" class="form-control" />
           </div>
 
-          <!-- 2 column grid layout for inline styling -->
+
+
           <div class="row mb-4">
             <div class="col vstack">
+              <div class="row">
+                <div class="col form-outline mb-4">
+                  <label class="form-label">Adults</label>
+                  <input type="number" min="0" placeholder="0" class="form-control" />
+                </div>
+                <div class="col form-outline mb-4">
+                  <label class="form-label">Children</label>
+                  <input type="number" min="0" placeholder="0" class="form-control" />
+                </div>
+              </div>
               <!-- Checkbox -->
               <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="">
-                <label class="form-check-label"> Indoors </label>
+                <input id="indoors" class="form-check-input" type="checkbox">
+                <label for="indoors" class="form-check-label"> Indoors </label>
               </div>
               <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="">
-                <label class="form-check-label"> Outdoors </label>
+                <input id="outdoors" class="form-check-input" type="checkbox">
+                <label for="outdoors" class="form-check-label"> Outdoors </label>
               </div>
             </div>
           </div>
@@ -46,26 +55,14 @@
           <p class="mb-2">How many reviews | Bookings | Address</p>
 
           <div class="row">
-            <div class="col-lg-6 col-md-12 mb-4 mb-lg-0">
-              <img
-                src="https://via.placeholder.com/1000x1016"
-                class="w-100 shadow-1-strong rounded mb-4"
-                alt="Wintry Mountain Landscape"
-              />
+            <div class="col-lg-8 col-md-12 mb-lg-0">
+              <div class="img-preview bg-image" style="height: 600px; background-image: url(<%="#{@activity.image_url}"%>);"></div>
             </div>
 
-            <div class="col-lg-6 mb-4 mb-lg-0">
-              <img
-                src="https://via.placeholder.com/1000x500"
-                class="w-100 shadow-1-strong rounded mb-4"
-                alt="Mountains in the Clouds"
-              />
+            <div class="col-lg-4 mb-lg-0">
+              <div class="img-preview bg-primary" style="height: 300px;"></div>
 
-              <img
-                src="https://via.placeholder.com/1000x500"
-                class="w-100 shadow-1-strong rounded mb-4"
-                alt="Boat on Calm Water"
-              />
+              <div class="img-preview bg-danger" style="height: 300px;"></div>
             </div>
 
           </div>
@@ -95,7 +92,7 @@
 <h1><%= @activity.name %></h1>
 
 <p>Description: <%= @activity.description %></p>
-<p>Adult Price: <%= @activity.adult_price %></p>
+<p>Adult Price: <%= number_to_currency(@activity.adult_price) %></p>
 <p>Location: <%= @activity.location %></p>
 <p>Suitable For Ages: <%= @activity.age_group %></p>
 
