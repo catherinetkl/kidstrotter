@@ -3,7 +3,7 @@
 <p>Activity Name: <%= @activity.name %></p>
 <p>Activity ID: <%= @activity.id %></p>
 <p>Activity Description: <%= @activity.description %></p>
-<p>Activity Price: <%= @activity.price %></p>
+<p>Activity Price: <%= number_to_currency(@activity.price) %></p>
 <p>Activity Location: <%= @activity.location %></p>
 <p>Activity Age Group: <%= @activity.age_group %></p>
 <br>
