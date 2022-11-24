@@ -72,7 +72,7 @@
       <div class="col">
         <%= link_to activity_path(activity) do %>
           <div class="card-trip">
-            <img src="https://images.unsplash.com/photo-1508597370841-836e72ef6f54?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=869&q=80" alt="">
+          <img src=<%="#{activity.image_url}"%> alt="">
             <div class="card-trip-infos">
                 <div>
                   <h2><%= activity.name %></h2>
@@ -81,7 +81,9 @@
                   <p>Suitable For Ages: <%= activity.age_group %></p>
                 </div>
                 <h2 class="card-trip-pricing">
+
                   <% if activity.adult_price == 0%>
+                  
                     Free
                   <% else %>
                     $<%= sprintf('%.2f', activity.adult_price) %>

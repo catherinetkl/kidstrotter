@@ -27,7 +27,7 @@
               <td colspan="10"><%= booking.adult_qty %></td>
               <td colspan="10"><%= booking.child_qty %></td>
               <td colspan="10"><%= booking.status %></td>
-              <td colspan="10">S$ <%= sprintf('%.2f', booking.activity.price) %></td>
+              <td colspan="10">S$ <%= sprintf('%.2f', booking.activity.adult_price) %></td>
               <td colspan="10">
 
                 <%= form_for(booking) do |f| %>
