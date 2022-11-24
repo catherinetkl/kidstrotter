@@ -3,37 +3,39 @@
     <div class="row g-0">
       <div class="col-md-3">
 
-        <form class="form-purple p-3">
+        <form class="form-purple p-4 m-4">
           <!-- Email input -->
           <div class="form-outline mb-4">
-            <label class="form-label" for="form1Example1">Email address</label>
+            <h3 class="fw-bold">Search</h3>
+            <label class="form-label">Name of Attraction</label>
             <input type="email" id="form1Example1" class="form-control" />
           </div>
 
           <!-- Password input -->
           <div class="form-outline mb-4">
-            <label class="form-label" for="form1Example2">Password</label>
-            <input type="password" id="form1Example2" class="form-control" />
+            <label class="form-label">Visit Date</label>
+            <input type="password" class="form-control" />
           </div>
 
           <!-- 2 column grid layout for inline styling -->
           <div class="row mb-4">
-            <div class="col d-flex justify-content-center">
+            <div class="col vstack">
               <!-- Checkbox -->
               <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="form1Example3" checked />
-                <label class="form-check-label" for="form1Example3"> Remember me </label>
+                <input class="form-check-input" type="checkbox" value="">
+                <label class="form-check-label"> Indoors </label>
               </div>
-            </div>
-
-            <div class="col">
-              <!-- Simple link -->
-              <a href="#!">Forgot password?</a>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="">
+                <label class="form-check-label"> Outdoors </label>
+              </div>
             </div>
           </div>
 
           <!-- Submit button -->
-          <button type="submit" class="btn btn-primary btn-block">Sign in</button>
+          <div class="d-grid">
+            <%= link_to "Search",  "", class: %(btn btn-primary form-purple-btn), type: %(submit) %>
+          </div>
         </form>
 
       </div>
@@ -46,7 +48,7 @@
           <div class="row">
             <div class="col-lg-6 col-md-12 mb-4 mb-lg-0">
               <img
-                src="https://via.placeholder.com/1400x2016"
+                src="https://via.placeholder.com/1000x1016"
                 class="w-100 shadow-1-strong rounded mb-4"
                 alt="Wintry Mountain Landscape"
               />
@@ -54,13 +56,13 @@
 
             <div class="col-lg-6 mb-4 mb-lg-0">
               <img
-                src="https://via.placeholder.com/1000x700"
+                src="https://via.placeholder.com/1000x500"
                 class="w-100 shadow-1-strong rounded mb-4"
                 alt="Mountains in the Clouds"
               />
 
               <img
-                src="https://via.placeholder.com/1000x700"
+                src="https://via.placeholder.com/1000x500"
                 class="w-100 shadow-1-strong rounded mb-4"
                 alt="Boat on Calm Water"
               />
@@ -74,7 +76,7 @@
         </div>
 
         <div class="card-footer d-flex flex-wrap align-content-between justify-content-between">
-          <div class="h2 align-middle m-0">Price: <%= number_to_currency(@activity.price) %></div>
+          <div class="h2 align-middle m-0">Adult Price: <%= number_to_currency(@activity.adult_price) %></div>
           <div class="d-grid gap-2 d-md-flex justify-content-md-end align-middle">
             <%= link_to "Bookmark (No link yet)",  "", class: %(btn btn-primary) %>
             <%= link_to "Book Now",  new_activity_booking_path(@activity), class: %(btn btn-primary) %>
@@ -93,7 +95,7 @@
 <h1><%= @activity.name %></h1>
 
 <p>Description: <%= @activity.description %></p>
-<p>Price: <%= @activity.price %></p>
+<p>Adult Price: <%= @activity.adult_price %></p>
 <p>Location: <%= @activity.location %></p>
 <p>Suitable For Ages: <%= @activity.age_group %></p>
 
