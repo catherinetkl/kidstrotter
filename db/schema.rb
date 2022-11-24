@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_24_055532) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_24_064401) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -46,7 +46,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_24_055532) do
     t.string "name", null: false
     t.text "description"
     t.string "location", null: false
-    t.float "price", null: false
     t.string "age_group", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -55,6 +54,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_24_055532) do
     t.bigint "category_id"
     t.bigint "organizer_id"
     t.string "google_image_url"
+    t.float "adult_price", default: 0.0, null: false
+    t.float "child_price", default: 0.0, null: false
     t.index ["category_id"], name: "index_activities_on_category_id"
     t.index ["organizer_id"], name: "index_activities_on_organizer_id"
   end
@@ -78,8 +79,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_24_055532) do
     t.datetime "updated_at", null: false
     t.integer "adult_qty", default: 0, null: false
     t.integer "child_qty", default: 0, null: false
-    t.float "adult_price", default: 0.0, null: false
-    t.float "child_price", default: 0.0, null: false
     t.index ["activity_id"], name: "index_bookings_on_activity_id"
     t.index ["user_id"], name: "index_bookings_on_user_id"
   end
