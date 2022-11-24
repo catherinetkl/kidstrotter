@@ -1,12 +1,16 @@
 class ActivitiesController < ApplicationController
-  def index
-    @activities = Activity.all
+
+  def landing
     @categories = Category.all
-    if params[:query].present?
-      yield @activities = Activity.search_by_activity(params[:query])
-    else
-      @activities = Activity.all
-    end
+
+    @activities = Activity.first(4)
+  end
+
+  def index
+    @categories = Category.all
+
+    @activities = Activity.all
+    @activities = Activity.search_by_activity(params[:query]) if params[:query].present?
   end
 
   def show

@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  root to: 'activities#index'
+  root to: 'activities#landing'
 
   resources :categories do
     resources :activities

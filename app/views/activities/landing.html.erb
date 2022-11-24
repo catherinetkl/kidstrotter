@@ -1,0 +1,98 @@
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.unsplash.com/photo-1627764940620-90393d0e8c34?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80);">
+
+  <div class="container">
+  <h1 class="mb-3">Your handy dandy kids activities guide</strong>!</h1>
+
+    <div class="row justify-content-left">
+      <div class="col-4">
+
+        <div class="form">
+            <%= form_with url: activities_path, method: :get, class: "d-flex" do %>
+            <%= text_field_tag :query,params[:query],class: "form-control", placeholder: "Find a product"%>
+            <%= submit_tag "Search", class: "btn btn-success" %>
+            <% end %>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<%# Nature, Wildlife, Indoor Playground, Museuems and Exhibitions, Outdoor Attractions %>
+
+<section class="container">
+  <div class="row row-cols-7 my-5">
+    <div class="col">
+      <div class="box border border-1 d-flex flex-column justify-content-center align-items-center">
+        <i class="fa-solid fa-gamepad"></i>
+        <p>Overview</p>
+      </div>
+    </div>
+    <div class="col">
+      <div class="box border border-1 d-flex flex-column justify-content-center align-items-center">
+        <i class="fa-solid fa-film"></i>
+        <p>Nature</p>
+      </div>
+    </div>
+    <div class="col">
+      <div class="box border border-1 d-flex flex-column justify-content-center align-items-center">
+        <i class="fa-solid fa-umbrella"></i>
+        <p>Museuems and Exhibitions</p>
+      </div>
+    </div>
+    <div class="col">
+      <div class="box border border-1 d-flex flex-column justify-content-center align-items-center">
+        <i class="fa-solid fa-sun"></i>
+        <p>Outdoor Attractions</p>
+      </div>
+    </div>
+    <div class="col">
+      <div class="box border border-1 d-flex flex-column justify-content-center align-items-center">
+        <i class="fa-solid fa-pizza-slice"></i>
+        <p>Wildlife</p>
+      </div>
+    </div>
+    <div class="col">
+      <div class="box border border-1 d-flex flex-column justify-content-center align-items-center">
+        <i class="fa-solid fa-mug-hot"></i>
+        <p>Indoor Playground</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container">
+  <div>
+  <%= link_to "See all", activities_path, style: "float: inline-end; margin-top: 1rem;" %>
+
+  <h1 class="my-3">All Activities</h1>
+  </div>
+  <div class="row row-cols-4">
+    <% @activities.each do |activity| %>
+      <div class="col">
+        <%= link_to activity_path(activity) do %>
+          <div class="card-trip">
+          <img src=<%="#{activity.image_url}"%> alt="">
+            <div class="card-trip-infos">
+                <div>
+                  <h2><%= activity.name %></h2>
+                  <p class="mb-1"><%= activity.location %></p>
+                  <p><%= activity.description %></p>
+                  <p>Suitable For Ages: <%= activity.age_group %></p>
+                </div>
+                <h2 class="card-trip-pricing">
+
+                  <% if activity.adult_price == 0%>
+
+                    Free
+                  <% else %>
+                    $<%= sprintf('%.2f', activity.adult_price) %>
+                  <% end %>
+                </h2>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+  <br>
+</div>
