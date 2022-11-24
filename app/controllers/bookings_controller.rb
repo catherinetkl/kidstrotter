@@ -12,6 +12,7 @@ class BookingsController < ApplicationController
   end
 
   def new
+    @category = Category.all
     @activity = Activity.find(params[:activity_id])
 
     @booking = Booking.new
