@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_23_092503) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_24_055532) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -54,6 +54,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_23_092503) do
     t.boolean "require_payment", default: false
     t.bigint "category_id"
     t.bigint "organizer_id"
+    t.string "google_image_url"
     t.index ["category_id"], name: "index_activities_on_category_id"
     t.index ["organizer_id"], name: "index_activities_on_organizer_id"
   end
