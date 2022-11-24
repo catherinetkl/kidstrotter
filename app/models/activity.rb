@@ -31,10 +31,9 @@ class Activity < ApplicationRecord
 
   # <img src="#{photo_url}"
 
-  private
-
-  def update_google_image_url
-    self.google_image_url ||= fetch_google_image_urls&.first
+  def image_url
+    photo = nil
+    photo ? photo : google_image_url
   end
 
   def fetch_google_image_urls
@@ -49,7 +48,13 @@ class Activity < ApplicationRecord
     return nil unless read_body.dig("candidates")&.first&.dig("photos").present?
 
     read_body['candidates'].first["photos"].map do |photo|
-      "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=#{photo["photo_reference"]}&key=AIzaSyBblxAfyQjITHddg4IYMF77L-PHrfrLW4s"
+      "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=#{photo["photo_reference"]}&key=AIzaSyBblxAfyQjITHddg4IYMF77L-PHrfrLW4s".to_sym
     end
+  end
+
+  private
+
+  def update_google_image_url
+    self.google_image_url ||= fetch_google_image_urls&.first
   end
 end
