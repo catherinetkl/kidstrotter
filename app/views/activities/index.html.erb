@@ -81,10 +81,10 @@
                   <p>Suitable For Ages: <%= activity.age_group %></p>
                 </div>
                 <h2 class="card-trip-pricing">
-                  <% if activity.price == 0 %>
+                  <% if activity.adult_price == 0%>
                     Free
                   <% else %>
-                    $<%= sprintf('%.2f', activity.price) %>
+                    $<%= sprintf('%.2f', activity.adult_price) %>
                   <% end %>
                 </h2>
             </div>
