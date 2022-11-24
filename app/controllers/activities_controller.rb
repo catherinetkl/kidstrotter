@@ -3,7 +3,7 @@ class ActivitiesController < ApplicationController
   def landing
     @categories = Category.all
 
-    @activities = Activity.first(4)
+    @activities = Activity.first(3)
   end
 
   def index

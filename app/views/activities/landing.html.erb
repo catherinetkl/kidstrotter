@@ -23,12 +23,6 @@
   <div class="row row-cols-7 my-5">
     <div class="col">
       <div class="box border border-1 d-flex flex-column justify-content-center align-items-center">
-        <i class="fa-solid fa-gamepad"></i>
-        <p>Overview</p>
-      </div>
-    </div>
-    <div class="col">
-      <div class="box border border-1 d-flex flex-column justify-content-center align-items-center">
         <i class="fa-solid fa-film"></i>
         <p>Nature</p>
       </div>
@@ -62,11 +56,11 @@
 
 <div class="container">
   <div>
-  <%= link_to "See all", activities_path, style: "float: inline-end; margin-top: 1rem;" %>
+  <%= link_to "All", activities_path, style: "float: inline-end; margin-top: 1rem;" %>
 
-  <h1 class="my-3">All Activities</h1>
+  <h1 class="my-3">Trending Activities</h1>
   </div>
-  <div class="row row-cols-4">
+  <div class="row row-cols-3">
     <% @activities.each do |activity| %>
       <div class="col">
         <%= link_to activity_path(activity) do %>
@@ -80,9 +74,7 @@
                   <p>Suitable For Ages: <%= activity.age_group %></p>
                 </div>
                 <h2 class="card-trip-pricing">
-
                   <% if activity.adult_price == 0%>
-
                     Free
                   <% else %>
                     $<%= sprintf('%.2f', activity.adult_price) %>
