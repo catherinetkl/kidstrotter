@@ -2,7 +2,13 @@
     <div class="row">
       <div class="col-6 mx-auto">
 
-        <%= simple_form_for(@booking) do |f| %>
+        <br>
+        <br>
+        <%= @activity.category%>
+        <br>
+        <br>
+
+        <%= simple_form_for [@activity, @booking,] do |f| %>
           <%= f.association :activity %>
           <%= f.input :adult_qty %>
           <%= f.input :child_qty %>
@@ -10,9 +16,6 @@
           <%= f.input :child_price %>
           <%= f.submit %>
         <% end %>
-
-
-        <h6><%= link_to "Back", activity_path, class: "btn btn-primary" %></h6>
       </div>
     </div>
   </div>

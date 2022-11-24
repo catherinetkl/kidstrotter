@@ -8,11 +8,11 @@ Rails.application.routes.draw do
   end
 
   resources :activities do
-    resources :bookings, only: %i[create]
+    resources :bookings, only: %i[create new]
   end
 
   resources :bookmarks do
-    resources :reviews, only: %i[create]
+    resources :reviews, only: %i[create new]
   end
 
   resources :bookings, only: %i[index show destroy]
