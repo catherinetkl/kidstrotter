@@ -77,7 +77,7 @@ event_names.keys.each do |category_name|
     request = Net::HTTP::Get.new(url)
     read_body = JSON.parse(https.request(request).read_body)
 
-    pp "google places api response is #{ready_body}"
+    pp "google places api response is #{read_body}"
 
     address = read_body.dig("candidates")&.first&.dig("formatted_address")
     lat = read_body.dig("candidates")&.first&.dig("geometry")&.dig('location')&.dig('lat')
