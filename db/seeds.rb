@@ -3,7 +3,7 @@
 event_names = {
   'Nature' => {
     'paid' => ['Gardens by the Bay', 'ORTO', 'Bollywood Farms', "Jacob Ballas Children's Garden"],
-    'unpaid' => ['Singapore Botanic Gardens', 'Water Play at Clusia Cove', 'Active Garden at Gardens by the Bay']
+    'unpaid' => ['Singapore Botanic Gardens', 'Water Play at Clusia Cove']
   },
 
   'Wildlife' => {
@@ -23,12 +23,13 @@ event_names = {
 
   'Outdoor Attractions' => {
     'paid' => ['Mud Krank', 'Skyride at Skyline Luge Sentosa', 'The Karting Arena', 'Universal Studios Singapore', 'SkyHelix Sentosa'],
-    'unpaid' => ['Fort Siloso Skywalk', 'Coastal Playgrove at East Coast Park', 'Active Garden at Gardens by the Bay', 'Jurassic Mile', 'Jubilee Park at Fort Canning']
+    'unpaid' => ['Fort Siloso Skywalk', 'Coastal Playgrove at East Coast Park', 'Jurassic Mile', 'Jubilee Park at Fort Canning']
   }
 }
 
 puts %(Cleaning up database...)
 Booking.destroy_all
+GoogleImage.destroy_all
 Activity.destroy_all
 Organizer.destroy_all
 Category.destroy_all
@@ -82,83 +83,56 @@ event_names.keys.each do |category_name|
   category = Category.create!(name: category_name)
   pp "Created category with ID #{category.id}"
 
-  pp "Creating paid activities......"
-  event_names[category_name]["paid"].each do |event_name|
-    pp "Trying to create Activity #{event_name}"
-    thing = CGI.escape(event_name)
-    url = URI("https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=#{thing}&inputtype=textquery&fields=formatted_address%2Cname%2Crating%2Cphotos%2Cgeometry&region=sg&locationbias=circle:50000@1.3521,103.8198&key=AIzaSyBblxAfyQjITHddg4IYMF77L-PHrfrLW4s")
-    pp "Generated URL is #{url}"
+  ["paid", "unpaid"].each do |need_pay_or_not|
+    pp "Creating #{need_pay_or_not} activities......"
+    event_names[category_name][need_pay_or_not].each do |event_name|
+      pp "Trying to create Activity #{event_name}"
+      thing = CGI.escape(event_name)
+      url = URI("https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=#{thing}&inputtype=textquery&fields=formatted_address%2Cname%2Crating%2Cphotos%2Cgeometry&region=sg&locationbias=circle:50000@1.3521,103.8198&key=AIzaSyBblxAfyQjITHddg4IYMF77L-PHrfrLW4s")
 
-    https = Net::HTTP.new(url.host, url.port)
-    https.use_ssl = true
-    request = Net::HTTP::Get.new(url)
-    read_body = JSON.parse(https.request(request).read_body)
+      https = Net::HTTP.new(url.host, url.port)
+      https.use_ssl = true
+      request = Net::HTTP::Get.new(url)
+      read_body = JSON.parse(https.request(request).read_body)
 
-    pp "google places api response is #{read_body}"
+      address = read_body.dig("candidates")&.first&.dig("formatted_address")
+      lat = read_body.dig("candidates")&.first&.dig("geometry")&.dig('location')&.dig('lat')
+      long = read_body.dig("candidates")&.first&.dig("geometry")&.dig('location')&.dig('lng')
 
-    address = read_body.dig("candidates")&.first&.dig("formatted_address")
-    lat = read_body.dig("candidates")&.first&.dig("geometry")&.dig('location')&.dig('lat')
-    long = read_body.dig("candidates")&.first&.dig("geometry")&.dig('location')&.dig('lng')
+      activity =
+        Activity.create!(
+          name: event_name,
+          description: ['Lorem Ipsum'].sample,
+          address: address,
+          require_booking: need_pay_or_not == "paid",
+          require_payment: need_pay_or_not == "paid",
+          adult_price: 50,
+          child_price: 20,
+          latitude: lat,
+          longitude: long,
+          age_group: '6-9',
+          organizer: Organizer.all.sample,
+          category: category
+        )
 
-    activity =
-      Activity.create!(
-        name: event_name,
-        description: ['Lorem Ipsum'].sample,
-        address: address,
-        require_booking: true,
-        require_payment: true,
-        adult_price: 50,
-        child_price: 20,
-        latitude: lat,
-        longitude: long,
-        age_group: '6-9',
-        organizer: Organizer.all.sample,
-        category: category,
-      )
+        activity.age_groups << AgeGroup.all.sample
 
-      activity.age_groups << AgeGroup.all.sample
-
-      puts "Activity with id: #{activity.id} has been created"
+        puts "Activity with id: #{activity.id} has been created"
+    end
   end
+end
 
-  pp "Creating unpaid activities......"
-  event_names[category_name]["unpaid"].each do |event_name|
-    pp "Trying to create Activity #{event_name}"
-    thing = CGI.escape(event_name)
-    url = URI("https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=#{thing}&inputtype=textquery&fields=formatted_address%2Cname%2Crating%2Cphotos%2Cgeometry&region=sg&locationbias=circle:50000@1.3521,103.8198&key=AIzaSyBblxAfyQjITHddg4IYMF77L-PHrfrLW4s")
-    pp "Generated URL is #{url}"
+pp "==================="
+pp "ADD IMAGES TO ACTIVITIES"
+pp "==================="
 
-    https = Net::HTTP.new(url.host, url.port)
-    https.use_ssl = true
-    request = Net::HTTP::Get.new(url)
-    read_body = JSON.parse(https.request(request).read_body)
+rows = CSV.parse(File.read("lib/photos_patch.csv"))
 
-    pp "google places api response is #{read_body}"
-
-    address = read_body.dig("candidates")&.first&.dig("formatted_address")
-    lat = read_body.dig("candidates")&.first&.dig("geometry")&.dig('location')&.dig('lat')
-    long = read_body.dig("candidates")&.first&.dig("geometry")&.dig('location')&.dig('lng')
-
-    activity =
-      Activity.create!(
-        name: event_name,
-        description: ['Lorem Ipsum'].sample,
-        address: address,
-        require_booking: false,
-        require_payment: false,
-        adult_price: 0,
-        child_price: 0,
-        latitude: lat,
-        longitude: long,
-        age_group: '6-9',
-        organizer: Organizer.all.sample,
-        category: category,
-      )
-
-      activity.age_groups << AgeGroup.all.sample
-
-      puts "Activity with id: #{activity.id} has been created"
-  end
+rows.each do |row|
+  pp row[0]
+  activity = Activity.find_by(name: row[0])
+  activity.google_images << GoogleImage.create(url: row[1])
+  activity.save!
 end
 
 pp "==================="
