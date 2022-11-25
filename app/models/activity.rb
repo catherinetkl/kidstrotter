@@ -55,6 +55,29 @@ class Activity < ApplicationRecord
     end
   end
 
+  def fetch_google_lat
+    thing = CGI.escape(name)
+    url = URI("https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=#{thing}&inputtype=textquery&fields=formatted_address%2Cname%2Crating%2Cphotos%2Cgeometry&key=AIzaSyBblxAfyQjITHddg4IYMF77L-PHrfrLW4s")
+
+    https = Net::HTTP.new(url.host, url.port)
+    https.use_ssl = true
+    request = Net::HTTP::Get.new(url)
+    read_body = JSON.parse(https.request(request).read_body)
+
+    read_body.dig("candidates")&.first&.dig("geometry")&.dig('location')&.dig('lat')
+  end
+
+  def fetch_google_long
+    thing = CGI.escape(event_name)
+    url = URI("https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=#{thing}&inputtype=textquery&fields=formatted_address%2Cname%2Crating%2Cphotos%2Cgeometry&key=AIzaSyBblxAfyQjITHddg4IYMF77L-PHrfrLW4s")
+
+    https = Net::HTTP.new(url.host, url.port)
+    https.use_ssl = true
+    request = Net::HTTP::Get.new(url)
+    read_body = JSON.parse(https.request(request).read_body)
+    read_body.dig("candidates")&.first&.dig("geometry")&.dig('location')&.dig('lng')
+  end
+
   private
 
   def update_google_image_url

@@ -6,7 +6,7 @@ event_names = {
 
   "Indoor Playground" => ['Pororo Park Singapore', 'Superpark Singapore', 'Kiztopia Club', 'Superpark Singapore', 'Amazonia', 'The Artground', 'Airzone', 'Tayo Station', 'Bounce Singapore', 'NERF Action Xperience'],
 
-  "Museuems and Exhibitions" => ['Singapore Discovery Centre', 'Science Centre Singapore', 'Lee Kong Chian Natural History Museum', 'Futre World - ArtScience Museum', 'Singapore Maritime Galley', 'Battlebox', 'Singapore Maritime Galley' 'National Galley Singapore', 'National Museum of Singapore'],
+  "Museuems and Exhibitions" => ['Singapore Discovery Centre', 'Science Centre Singapore', 'Lee Kong Chian Natural History Museum', 'Futre World - ArtScience Museum', 'Singapore Maritime Galley', 'Battlebox', 'National Galley Singapore', 'National Museum of Singapore'],
 
   "Outdoor Attractions" => ['Mud Krank', 'Fort Siloso Skywalk', 'Skyride at Skyliine Luge Sentosa', 'The Karting Arena', 'Coastal Playgrove at East Coast Park', 'Active Garden at Gardens by the Bay', 'Jubilee Park at Fort Canning', 'Jurassic Mile', 'Universal Studios', 'SkyHelix Sentosa']
 }
