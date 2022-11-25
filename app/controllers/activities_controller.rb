@@ -16,7 +16,9 @@ class ActivitiesController < ApplicationController
   end
 
   def show
+    @bookmark = Bookmark.new
     @activity = Activity.find(params[:id])
+
 
     @markers = {
       lat: @activity.latitude,
