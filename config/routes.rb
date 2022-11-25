@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  root to: 'activities#landing'
+  root to: 'activities#homepage'
 
   resources :categories do
     resources :activities

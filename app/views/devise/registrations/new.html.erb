@@ -1,31 +1,69 @@
-<h2>Sign up</h2>
+<div class="devise-container" style="margin-bottom: 50px;">
+  <div class="container">
+    <div class="grid">
 
-<%= simple_form_for(resource, as: resource_name,
-  url: registration_path(resource_name),
-  data: {turbo: false}) do |f| %>
-  <%= f.error_notification %>
+      <div class="col-6 mx-auto">
+        <div class="form">
+          <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name),data: {turbo: false}) do |f| %>
+          <%= f.error_notification %>
 
-  <div class="form-inputs">
-    <%= f.input :first_name,
-                required: true,
-                autofocus: true %>
-    <%= f.input :last_name,
-                required: true %>
-    <%= f.input :email,
-                required: true,
-                input_html: { autocomplete: "email" }%>
-    <%= f.input :password,
-                required: true,
-                hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :password_confirmation,
-                required: true,
-                input_html: { autocomplete: "new-password" } %>
+          <br>
+
+          <div class="bg-white text-weight-medium mt-4 p-3" style="border-radius: 15px; border: solid 1px F5F5D; box-shadow: 0 3px 10px rgb(0 0 0 / 0.3);">
+
+            <div class="form-inputs" style= "height: 650px;">
+
+              <div class="text-center">
+                <br>
+                <h2>Sign up for KidsTrotter</h2>
+                <br>
+              </div>
+
+              <div class="mb-3" style="margin: 0 2rem">
+                <%= f.input :first_name,
+                            required: true %>
+              </div>
+
+              <div class="mb-3" style="margin: 0 2rem">
+                <%= f.input :last_name,
+                            required: true %>
+              </div>
+
+              <div class="mb-3" style="margin: 0 2rem">
+                <%= f.input :email,
+                            required: true,
+                            autofocus: true,
+                            input_html: { autocomplete: "email" } %>
+              </div>
+
+              <div class="mb-3" style="margin: 0 2rem">
+                <%= f.input :password,
+                            required: true,
+                            hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+                            input_html: { autocomplete: "new-password" } %>
+              </div>
+
+              <div class="mb-3" style="margin: 0 2rem">
+                <%= f.input :password_confirmation,
+                            required: true,
+                            input_html: { autocomplete: "new-password" } %>
+              </div>
+
+              <br>
+
+              <div class="form-actions" style= "margin: 0 2rem;">
+                <%= link_to "Return", activities_path, class: "btn btn-outline-secondary", style: "margin-left: 65px; margin-right: 45px; width: 185px; height: 40px; border-radius: 5px;" %>
+                <%= f.button :submit, "Sign up", class: 'btn text-white', style: "width: 185px; height: 40px; border-radius: 5px; background-color: #f03827;" %>
+              </div>
+
+            </div>
+
+          </div>
+
+          <% end %>
+        </div>
+      </div>
+
+    </div>
   </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>

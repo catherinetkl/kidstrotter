@@ -67,7 +67,7 @@ event_names.keys.each do |category_name|
   pp "Created category with ID #{category.id}"
 
   event_names[category_name].each do |event_name|
-    pp "Trying to create Activirty #{event_name}"
+    pp "Trying to create Activity #{event_name}"
     thing = CGI.escape(event_name)
     url = URI("https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=#{thing}&inputtype=textquery&fields=formatted_address%2Cname%2Crating%2Cphotos%2Cgeometry&region=sg&locationbias=circle:50000@1.3521,103.8198&key=AIzaSyBblxAfyQjITHddg4IYMF77L-PHrfrLW4s")
     pp "Generated URL is #{url}"
