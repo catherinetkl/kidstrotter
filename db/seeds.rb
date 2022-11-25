@@ -69,7 +69,7 @@ event_names.keys.each do |category_name|
   event_names[category_name].each do |event_name|
     pp "Trying to create Activirty #{event_name}"
     thing = CGI.escape(event_name)
-    url = URI("https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=#{thing}&inputtype=textquery&fields=formatted_address%2Cname%2Crating%2Cphotos%2Cgeometry&key=AIzaSyBblxAfyQjITHddg4IYMF77L-PHrfrLW4s")
+    url = URI("https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=#{thing}&inputtype=textquery&fields=formatted_address%2Cname%2Crating%2Cphotos%2Cgeometry&region=sg&key=AIzaSyBblxAfyQjITHddg4IYMF77L-PHrfrLW4s")
     pp "Generated URL is #{url}"
 
     https = Net::HTTP.new(url.host, url.port)
