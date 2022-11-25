@@ -73,56 +73,53 @@
           <p class="mb-2"><i class="fa-solid fa-star"></i> Reviews qty | <i class="fa fa-book"></i> Bookings qty | <i class="fa-solid fa-location-dot"></i> <%= @activity.address %></p>
 
           <div class="row">
+
             <div class="col-lg-8 col-md-12 mb-lg-0 mb-3">
-              <div class="img-preview bg-image" style="height: 600px; background-image: url(<%="#{@activity.image_url}"%>);"></div>
+              <div class="img-preview bg-image" style="height: 600px; background-image: url(<%="#{@activity.hero_image_url}"%>);"></div>
             </div>
 
             <div class="col-lg-4 mb-lg-0 d-grid">
               <div class="img-preview bg-primary align-self-top mb-2" style="height: 290px;"></div>
-
               <div class="img-preview bg-danger align-self-end mt-2" style="height: 290px;"></div>
             </div>
 
           </div>
-
-          <p class="card-text lead">
-            <%= @activity.description %>
-          </p>
         </div>
 
         <div class="card-body">
           <div class="row">
             <div class="col-lg-8 col-md-12 mb-lg-0 mb-3">
               <div class="card-activity">
-                Something
+                <span class="h5 lh-sm fw-bold"><%= @activity.description %></span>
               </div>
             </div>
 
-            <div class="col-lg-4 mb-lg-0 d-grid">
-              <div class="card-activity">
-                Something
+            <div class="col-lg-4 mb-lg-0">
+              <div class="card-activity text-center">
+
+                <div class="d-flex flex-column" style="height: 100%;">
+                  <div class="p-2 h2 fw-bold">Pricings</div>
+                  <div class="p-2 h3">Adult: <span class="fw-bold"><%= number_to_currency(@activity.adult_price) %></span></div>
+                  <div class="p-2 h3">Child: <span class="fw-bold"><%= number_to_currency(@activity.child_price) %></span></div>
+                  <div class="mt-auto">
+
+                    <div class="row">
+                      <div class="col-lg-6 mb-lg-0 mb-3">
+                        <%= simple_form_for([@activity, @bookmark]) do |f| %>
+                          <%= f.submit "Bookmark", class: %(btn purple-btn-solid p-3) %>
+                        <%end%>
+                      </div>
+
+                      <div class="col-lg-6 mb-lg-0 mb-3">
+                        <%= link_to "Book Now", new_activity_booking_path(@activity), class: %(btn purple-btn-outline p-3) %>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+
               </div>
             </div>
-
-          </div>
-
-          <p class="card-text lead">
-            <%= @activity.description %>
-          </p>
-        </div>
-
-        <div class="card-footer d-flex flex-wrap align-content-between justify-content-between">
-          <div class="h2 align-middle m-0">Adult Price: <%= number_to_currency(@activity.adult_price) %></div>
-
-          <div class="d-grid gap-2 d-md-flex justify-content-md-end align-middle">
-
-            <%= simple_form_for([@activity, @bookmark]) do |f| %>
-            <div class="d-grid gap-2">
-              <%= f.submit "Bookmark", class: %(btn btn-primary) %>
-            </div>
-            <%end%>
-
-            <%= link_to "Book Now", new_activity_booking_path(@activity), class: %(btn btn-primary) %>
 
           </div>
         </div>
@@ -151,3 +148,16 @@
 <% end %>
 
 <div style="width: 400px; height: 400px;" data-controller="map" data-map-markers-value="<%= @markers.to_json %>" data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
+
+
+<div class="row">
+  <div class="col-lg-6">
+    <%= simple_form_for([@activity, @bookmark]) do |f| %>
+      <%= f.submit "Bookmark", class: %(btn btn-primary) %>
+    <%end%>
+  </div>
+
+  <div class="col-lg-6">
+    <%= link_to "Book Now", new_activity_booking_path(@activity), class: %(btn btn-primary) %>
+  </div>
+</div>

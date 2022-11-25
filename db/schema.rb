@@ -11,6 +11,7 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.0].define(version: 2022_11_25_080018) do
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -57,9 +58,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_25_080018) do
     t.float "child_price", default: 0.0, null: false
     t.float "latitude"
     t.float "longitude"
-    t.bigint "google_image_id"
     t.index ["category_id"], name: "index_activities_on_category_id"
-    t.index ["google_image_id"], name: "index_activities_on_google_image_id"
     t.index ["organizer_id"], name: "index_activities_on_organizer_id"
   end
 
@@ -104,8 +103,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_25_080018) do
   end
 
   create_table "google_images", force: :cascade do |t|
+    t.string "url", null: false
+    t.bigint "activity_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["activity_id"], name: "index_google_images_on_activity_id"
   end
 
   create_table "organizers", force: :cascade do |t|
@@ -143,12 +145,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_25_080018) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "activities", "categories"
-  add_foreign_key "activities", "google_images"
   add_foreign_key "activities", "organizers"
   add_foreign_key "bookings", "activities"
   add_foreign_key "bookings", "users"
   add_foreign_key "bookmarks", "activities"
   add_foreign_key "bookmarks", "users"
+  add_foreign_key "google_images", "activities"
   add_foreign_key "organizers", "users"
   add_foreign_key "reviews", "bookings"
   add_foreign_key "reviews", "users"

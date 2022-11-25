@@ -1,18 +1,35 @@
 # This file should contain all the record creation needed to seed the database with its default values.
+
 event_names = {
-  "Nature" => ['Gardens by the Bay', 'Singapore Botanic Gardens', 'ORTO', 'Bollywood Farms', 'Water Play at Clusia Cove', "Jacob Ballas Children's Garden", 'Active Garden at Gardens by the Bay'],
+  'Nature' => {
+    'paid' => ['Gardens by the Bay', 'ORTO', 'Bollywood Farms', "Jacob Ballas Children's Garden"],
+    'unpaid' => ['Singapore Botanic Gardens', 'Water Play at Clusia Cove']
+  },
 
-  "Wildlife" => ['Singapore Zoo', 'Jurong Bird Park', 'S.E.A Aquarium','Jurong Frog Farm', 'Hay Diaries', 'Gallop Stable', 'The Live Turtle & Tortoise Museum'],
+  'Wildlife' => {
+    'paid' => ['Singapore Zoo', 'Jurong Bird Park', 'S.E.A Aquarium', 'Gallop Stable', 'The Live Turtle & Tortoise Museum'],
+    'unpaid' => ['Jurong Frog Farm', 'Hay Dairies']
+  },
 
-  "Indoor Playground" => ['Pororo Park Singapore', 'Superpark Singapore', 'Kiztopia Club', 'Superpark Singapore', 'Amazonia', 'The Artground', 'Airzone', 'Tayo Station', 'Bounce Singapore', 'NERF Action Xperience'],
+  'Indoor Playground' => {
+    'paid' => ['Pororo Park Singapore', 'Superpark Singapore', 'Kiztopia Club', 'Play by Kinderplay', 'Amazonia', 'NERF Action Xperience', 'Tayo Station'],
+    'unpaid' => ['Paragon Playground', "PIP's Playbox", 'Marina Square Playground', 'Suntec City Playground', '313 Somerset Playground']
+  },
 
-  "Museums and Exhibitions" => ['Singapore Discovery Centre', 'Science Centre Singapore', 'Lee Kong Chian Natural History Museum', 'Future World - ArtScience Museum', 'Singapore Maritime Galley', 'Battlebox', 'National Galley Singapore', 'National Museum of Singapore'],
+  'Museums and Exhibitions' => {
+    'paid' => ['Singapore Discovery Centre', 'Science Centre Singapore', 'Lee Kong Chian Natural History Museum', 'Future World - ArtScience Museum', 'Battlebox', 'National Gallery Singapore', 'National Museum of Singapore'],
+    'unpaid' => ['Air Force Museum', 'Masak Masak - The Artground', 'Singapore Maritime Gallery']
+  },
 
-  "Outdoor Attractions" => ['Mud Krank', 'Fort Siloso Skywalk', 'Skyride at Skyliine Luge Sentosa', 'The Karting Arena', 'Coastal Playgrove at East Coast Park', 'Active Garden at Gardens by the Bay', 'Jubilee Park at Fort Canning', 'Jurassic Mile', 'Universal Studios', 'SkyHelix Sentosa']
+  'Outdoor Attractions' => {
+    'paid' => ['Mud Krank', 'Skyride at Skyline Luge Sentosa', 'The Karting Arena', 'Universal Studios Singapore', 'SkyHelix Sentosa'],
+    'unpaid' => ['Fort Siloso Skywalk', 'Coastal Playgrove at East Coast Park', 'Jurassic Mile', 'Jubilee Park at Fort Canning']
+  }
 }
 
 puts %(Cleaning up database...)
 Booking.destroy_all
+GoogleImage.destroy_all
 Activity.destroy_all
 Organizer.destroy_all
 Category.destroy_all
@@ -66,39 +83,56 @@ event_names.keys.each do |category_name|
   category = Category.create!(name: category_name)
   pp "Created category with ID #{category.id}"
 
-  event_names[category_name].each do |event_name|
-    pp "Trying to create Activity #{event_name}"
-    thing = CGI.escape(event_name)
-    url = URI("https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=#{thing}&inputtype=textquery&fields=formatted_address%2Cname%2Crating%2Cphotos%2Cgeometry&region=sg&locationbias=circle:50000@1.3521,103.8198&key=AIzaSyBblxAfyQjITHddg4IYMF77L-PHrfrLW4s")
-    pp "Generated URL is #{url}"
+  ["paid", "unpaid"].each do |need_pay_or_not|
+    pp "Creating #{need_pay_or_not} activities......"
+    event_names[category_name][need_pay_or_not].each do |event_name|
+      pp "Trying to create Activity #{event_name}"
+      thing = CGI.escape(event_name)
+      url = URI("https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=#{thing}&inputtype=textquery&fields=formatted_address%2Cname%2Crating%2Cphotos%2Cgeometry&region=sg&locationbias=circle:50000@1.3521,103.8198&key=AIzaSyBblxAfyQjITHddg4IYMF77L-PHrfrLW4s")
 
-    https = Net::HTTP.new(url.host, url.port)
-    https.use_ssl = true
-    request = Net::HTTP::Get.new(url)
-    read_body = JSON.parse(https.request(request).read_body)
+      https = Net::HTTP.new(url.host, url.port)
+      https.use_ssl = true
+      request = Net::HTTP::Get.new(url)
+      read_body = JSON.parse(https.request(request).read_body)
 
-    pp "google places api response is #{read_body}"
+      address = read_body.dig("candidates")&.first&.dig("formatted_address")
+      lat = read_body.dig("candidates")&.first&.dig("geometry")&.dig('location')&.dig('lat')
+      long = read_body.dig("candidates")&.first&.dig("geometry")&.dig('location')&.dig('lng')
 
-    address = read_body.dig("candidates")&.first&.dig("formatted_address")
-    lat = read_body.dig("candidates")&.first&.dig("geometry")&.dig('location')&.dig('lat')
-    long = read_body.dig("candidates")&.first&.dig("geometry")&.dig('location')&.dig('lng')
+      activity =
+        Activity.create!(
+          name: event_name,
+          description: ['Lorem Ipsum'].sample,
+          address: address,
+          require_booking: need_pay_or_not == "paid",
+          require_payment: need_pay_or_not == "paid",
+          adult_price: 50,
+          child_price: 20,
+          latitude: lat,
+          longitude: long,
+          age_group: '6-9',
+          organizer: Organizer.all.sample,
+          category: category
+        )
 
-    activity = Activity.create!(
-      name: event_name,
-      description: ['Lorem Ipsum'].sample,
-      address: address,
-      adult_price: 50,
-      child_price: 20,
-      latitude: lat,
-      longitude: long,
-      age_group: '6-9',
-      organizer: Organizer.all.sample,
-      category: category,
-    )
-    activity.age_groups << AgeGroup.all.sample
+        activity.age_groups << AgeGroup.all.sample
 
-    puts "Activity with id: #{activity.id} has been created"
+        puts "Activity with id: #{activity.id} has been created"
+    end
   end
+end
+
+pp "==================="
+pp "ADD IMAGES TO ACTIVITIES"
+pp "==================="
+
+rows = CSV.parse(File.read("lib/photos_patch.csv"))
+
+rows.each do |row|
+  pp row[0]
+  activity = Activity.find_by(name: row[0])
+  activity.google_images << GoogleImage.create(url: row[1])
+  activity.save!
 end
 
 pp "==================="
