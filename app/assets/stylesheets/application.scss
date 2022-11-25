@@ -6,6 +6,7 @@
 // External libraries
 @import "bootstrap/scss/bootstrap";
 @import "font-awesome";
+@import "star-rating.js/dist/star-rating.css";
 
 // Your CSS partials
 @import "components/index";
@@ -16,6 +17,7 @@
 @import "components/image";
 @import "pages/index";
 @import "pages/landing_page";
+
 
 p {
   margin-bottom: 0;
