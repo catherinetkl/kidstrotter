@@ -1,0 +1,49 @@
+<div class="container pt-2">
+  <div class="d-flex p-3">
+    <h3>Your Bookmarks</h3>
+  </div>
+</div>
+
+    <div class="container">
+      <div class="d-flex p-3">
+        <table class="table table-striped table-hover text-center">
+          <thead>
+            <tr>
+            <div>
+              <th colspan="10">ID</th>
+              <th colspan="10">Activity</th>
+              <th colspan="10">Location</th>
+              <th colspan="10">Description</th>
+              <th colspan="10">Adult Price</th>
+              <th colspan="10">Child Price</th>
+              <th colspan="10">Age Group</th>
+            <div>
+            </tr>
+          </thead>
+        <tbody>
+          <% @bookmarks.each_with_index do | bookmark, index | %>
+            <tr>
+              <td colspan="10"><%= index + 1 %></td>
+              <td colspan="10"><%= bookmark.activity.name %></td>
+              <td colspan="10"><%= bookmark.activity.address %></td>
+              <td colspan="10"><%= bookmark.activity.description %></td>
+              <td colspan="10"><%= bookmark.activity.adult_price %></td>
+              <td colspan="10"><%= bookmark.activity.child_price %></td>
+              <td colspan="10"><%= bookmark.activity.age_group %></td>
+              <td colspan="10">
+
+              <div class ="mx-10 px-10 text-end">
+                <%= link_to "Delete", bookmark_path(bookmark), class: "btn btn-sm", style: "margin-right: 10px; background-color: #2dbdb4; color: white; border-radius: 10px", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%>
+              </div>
+
+
+
+              </td>
+            </tr>
+          <% end %>
+      </tbody>
+      </table>
+      </div>
+    </div>
+  </div>
+</div>

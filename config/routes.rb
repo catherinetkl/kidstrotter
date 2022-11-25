@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   resources :activities do
     resources :bookings, only: %i[create new]
+    resources :bookmarks, only: %i[create new]
   end
 
   resources :bookmarks do
@@ -16,5 +17,6 @@ Rails.application.routes.draw do
   end
 
   resources :bookings, only: %i[index show destroy]
+  resources :bookmarks, only: %i[index show destroy]
   resources :activities
 end
