@@ -67,13 +67,17 @@ event_names.keys.each do |category_name|
   pp "Created category with ID #{category.id}"
 
   event_names[category_name].each do |event_name|
+    pp "Trying to create Activirty #{event_name}"
     thing = CGI.escape(event_name)
     url = URI("https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=#{thing}&inputtype=textquery&fields=formatted_address%2Cname%2Crating%2Cphotos%2Cgeometry&key=AIzaSyBblxAfyQjITHddg4IYMF77L-PHrfrLW4s")
+    pp "Generated URL is #{url}"
 
     https = Net::HTTP.new(url.host, url.port)
     https.use_ssl = true
     request = Net::HTTP::Get.new(url)
     read_body = JSON.parse(https.request(request).read_body)
+
+    pp "google places api response is #{ready_body}"
 
     address = read_body.dig("candidates")&.first&.dig("formatted_address")
     lat = read_body.dig("candidates")&.first&.dig("geometry")&.dig('location')&.dig('lat')
