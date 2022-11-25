@@ -16,17 +16,18 @@ class ActivitiesController < ApplicationController
   end
 
   def show
-    @activities = Activity.all
-
     @activity = Activity.find(params[:id])
-    @booking = Booking.new
-    @bookmark = Bookmark.new
 
-    @markers = @activities.geocoded.map do |act|
-      {
-        lat: act.latitude,
-        lng: act.longitude
-      }
-    end
+    @markers = {
+      lat: @activity.latitude,
+      lng: @activity.longitude
+    }
   end
 end
+
+# @activities = Activity.all
+# @markers = @activities.geocoded.map do |act|
+#   {
+#     lat: act.latitude,
+#     lng: act.longitude
+#   }

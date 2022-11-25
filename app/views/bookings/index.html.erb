@@ -30,13 +30,11 @@
               <td colspan="10">S$ <%= sprintf('%.2f', booking.activity.adult_price) %></td>
               <td colspan="10">
 
-                <%= form_for(booking) do |f| %>
-                  <div class ="mx-10 px-10 text-end">
-                    <%= f.submit 'Leave a Review', class: "btn btn-sm", style: "margin-right: 10px; background-color: #2dbdb4; color: white; border-radius: 10px" %>
-                    <%= f.submit 'Cancel Booking', class: "btn btn-sm", style: "margin-right: 20px; background-color: #f03826; color: white; border-radius: 10px" %>
-                <% end %>
+              <div class ="mx-10 px-10 text-end">
+                <%# <%= link_to "Leave a Review", booking_path(booking), class: "btn btn-sm", style: "margin-right: 10px; background-color: #2dbdb4; color: white; border-radius: 10px", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%>
+                <%= link_to "Cancel Booking", booking_path(booking), class: "btn btn-sm", style: "margin-right: 30px; background-color: red; color: white; border-radius: 10px", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%>
+              </div>
 
-                </div>
               </td>
             </tr>
           <% end %>
