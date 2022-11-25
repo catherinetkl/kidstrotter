@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_24_085304) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_25_060251) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -53,12 +53,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_24_085304) do
     t.boolean "require_payment", default: false
     t.bigint "category_id"
     t.bigint "organizer_id"
-    t.string "google_image_url"
     t.float "adult_price", default: 0.0, null: false
     t.float "child_price", default: 0.0, null: false
     t.float "latitude"
     t.float "longitude"
+    t.bigint "google_image_id"
     t.index ["category_id"], name: "index_activities_on_category_id"
+    t.index ["google_image_id"], name: "index_activities_on_google_image_id"
     t.index ["organizer_id"], name: "index_activities_on_organizer_id"
   end
 
@@ -100,6 +101,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_24_085304) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "google_images", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "organizers", force: :cascade do |t|
     t.bigint "user_id"
     t.datetime "created_at", null: false
@@ -135,6 +141,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_24_085304) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "activities", "categories"
+  add_foreign_key "activities", "google_images"
   add_foreign_key "activities", "organizers"
   add_foreign_key "bookings", "activities"
   add_foreign_key "bookings", "users"
