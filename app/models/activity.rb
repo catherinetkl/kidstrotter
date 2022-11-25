@@ -51,7 +51,7 @@ class Activity < ApplicationRecord
     return nil unless read_body.dig("candidates")&.first&.dig("photos").present?
 
     read_body['candidates'].first["photos"].map do |photo|
-      "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=#{photo["photo_reference"]}&key=AIzaSyBblxAfyQjITHddg4IYMF77L-PHrfrLW4s".to_sym
+      "https://maps.googleapis.com/maps/api/place/photo?maxwidth=2600&photoreference=#{photo["photo_reference"]}&key=AIzaSyBblxAfyQjITHddg4IYMF77L-PHrfrLW4s".to_sym
     end
   end
 
