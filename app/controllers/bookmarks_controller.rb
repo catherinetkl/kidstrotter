@@ -30,7 +30,7 @@ class BookmarksController < ApplicationController
 
   def destroy
     Bookmark.destroy(params[:id])
-    redirect_to bookmark
+    redirect_to bookmarks_path
   end
 
   private

@@ -1,0 +1,41 @@
+<div class="container pt-2">
+  <div class="d-flex p-3">
+    <h3>Your reviews</h3>
+  </div>
+</div>
+
+    <div class="container">
+      <div class="d-flex p-3">
+        <table class="table table-striped table-hover text-center">
+          <thead>
+            <tr>
+            <div>
+              <th colspan="10">ID</th>
+              <th colspan="10">Category</th>
+              <th colspan="10">Activity</th>
+              <th colspan="10">Your Review</th>
+              <th colspan="10">Rating</th>
+              <th colspan="10"></th>
+            <div>
+            </tr>
+          </thead>
+        <tbody>
+          <% @reviews.each_with_index do | review, index | %>
+              <td colspan="10"><%= index + 1 %></td>
+              <td colspan="10"><%= review.booking.activity.category.name %></td>
+              <td colspan="10"><%= review.booking.activity.name %></td>
+              <td colspan="10"><%= review.comment %></td>
+              <td colspan="10"><%= review.rating %></td>
+              <td colspan="10">
+
+              <%= link_to "Remove Review", review_path(review), class: "btn btn-sm", style: "margin-right: 10px; background-color: red; color: white; border-radius: 10px", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%>
+
+              </td>
+            </tr>
+          <% end %>
+      </tbody>
+      </table>
+      </div>
+    </div>
+  </div>
+</div>

@@ -2,7 +2,6 @@ class BookingsController < ApplicationController
   before_action :authenticate
 
   def index
-    # @bookings = Booking.all
     @bookings = current_user.bookings.all
   end
 
