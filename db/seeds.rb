@@ -67,14 +67,26 @@ event_names.keys.each do |category_name|
   pp "Created category with ID #{category.id}"
 
   event_names[category_name].each do |event_name|
+    thing = CGI.escape(event_name)
+    url = URI("https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=#{thing}&inputtype=textquery&fields=formatted_address%2Cname%2Crating%2Cphotos%2Cgeometry&key=AIzaSyBblxAfyQjITHddg4IYMF77L-PHrfrLW4s")
+
+    https = Net::HTTP.new(url.host, url.port)
+    https.use_ssl = true
+    request = Net::HTTP::Get.new(url)
+    read_body = JSON.parse(https.request(request).read_body)
+
+    address = read_body.dig("candidates")&.first&.dig("formatted_address")
+    lat = read_body.dig("candidates")&.first&.dig("geometry")&.dig('location')&.dig('lat')
+    long = read_body.dig("candidates")&.first&.dig("geometry")&.dig('location')&.dig('lng')
+
     activity = Activity.create!(
       name: event_name,
       description: ['Lorem Ipsum'].sample,
-      address: ['Northpoint'].sample,
+      address: address,
       adult_price: 50,
       child_price: 20,
-      latitude: [48, 45, 35].sample,
-      longitude: [20, 15, 13].sample,
+      latitude: lat,
+      longitude: long,
       age_group: '6-9',
       organizer: Organizer.all.sample,
       category: category,
