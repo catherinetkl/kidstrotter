@@ -41,7 +41,7 @@ class Activity < ApplicationRecord
 
   def fetch_google_image_urls
     thing = CGI.escape(name)
-    url = URI("https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=#{thing}&inputtype=textquery&fields=formatted_address%2Cname%2Crating%2Cphotos&key=AIzaSyBblxAfyQjITHddg4IYMF77L-PHrfrLW4s")
+    url = URI("https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=#{thing}&inputtype=textquery&fields=formatted_address%2Cname%2Crating%2Cphotos&region=sg&locationbias=circle:50000@1.3521,103.8198&key=AIzaSyBblxAfyQjITHddg4IYMF77L-PHrfrLW4s")
 
     https = Net::HTTP.new(url.host, url.port)
     https.use_ssl = true
