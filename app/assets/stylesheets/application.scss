@@ -7,6 +7,7 @@
 @import "bootstrap/scss/bootstrap";
 @import "font-awesome";
 @import "star-rating.js/dist/star-rating.css";
+@import "simple_calendar";
 
 // Your CSS partials
 @import "components/index";
@@ -16,7 +17,7 @@
 @import "components/button";
 @import "components/image";
 @import "pages/index";
-@import "pages/landing_page";
+@import "pages/homepage";
 
 
 p {
