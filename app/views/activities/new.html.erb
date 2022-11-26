@@ -1,0 +1,51 @@
+<div class="devise-container" style="margin-bottom: 50px;">
+  <div class="container">
+    <div class="grid">
+
+      <div class="col-6 mx-auto">
+        <div class="form">
+          <%= simple_form_for (@activity) do |f| %>
+
+          <div class="bg-white text-weight-medium mt-4 p-3" style="border-radius: 15px; border: solid 1px F5F5D; box-shadow: 0 3px 10px rgb(0 0 0 / 0.3);">
+
+            <div class="form-inputs" style= "height: 650px;">
+
+              <div class="text-center">
+                <br>
+                <h3>Create a new activity</h3>
+                <br>
+              </div>
+              <div class="mb-3" style="margin: 0 2rem">
+                <%= f.input :name %>
+              </div>
+
+              <div class="mb-3" style="margin: 0 2rem">
+                <%= f.input :description %>
+              </div>
+
+              <div class="mb-3" style="margin: 0 2rem">
+                <%= f.input :address %>
+              </div>
+
+              <div class="mb-3" style="margin: 0 2rem">
+                <%= f.input :adult_price %>
+              </div>
+
+              <div class="mb-3" style="margin: 0 2rem">
+                <%= f.input :child_price %>
+              </div>
+
+              <div class="mb-3" style="margin: 0 2rem">
+              <br>
+              <div class="form-actions" style= "margin: 0 2rem;">
+                <%= link_to "Return", activities_path, class: "btn btn-outline-secondary", style: "margin-left: 65px; margin-right: 45px; width: 185px; height: 40px; border-radius: 5px;" %>
+                <%= f.button :submit, "Submit", class: 'btn text-white', style: "width: 185px; height: 40px; border-radius: 5px; background-color: #f03827;" %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>
