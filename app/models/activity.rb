@@ -13,13 +13,12 @@ class Activity < ApplicationRecord
   belongs_to :category
   has_and_belongs_to_many :age_groups
   has_many :google_images
-  has_many :photos
+  # has_many :photos
 
   validates :name, :address, presence: true
   validates :adult_price, numericality: { greater_than_or_equal_to: 0 }, presence: true
   validates :child_price, numericality: { greater_than_or_equal_to: 0 }, presence: true
   validates :age_group, inclusion: { in: %w[0-2 3-5 6-9 10-12 13-17] }
-  # validates :start_time, :end_time, presence: true
 
   pg_search_scope :search_by_activity,
                   against: %i[name],
@@ -40,7 +39,7 @@ class Activity < ApplicationRecord
   def hero_image_url
     image_urls.first
   end
-
+  
   def card_image
     { 'Gardens by the Bay' => "Activities/Nature/Gardens by the Bay/_DSC9043.jpg",
       'ORTO' => "Activities/Nature/ORTO/2021-09-28.jpg",

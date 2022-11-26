@@ -16,7 +16,7 @@ class ActivitiesController < ApplicationController
 
   def show
     @activity = Activity.find(params[:id])
-    @activities = Activity.requested_to(current_user)
+    # @activities = Activity.requested_to(current_user)
     @bookmark = Bookmark.new
 
     @markers = [{
@@ -31,7 +31,6 @@ class ActivitiesController < ApplicationController
 
   def create
     @activity = current_user.activities.build(activity_params)
-    debugger
     if @activity.save!
       redirect_to root_path
       flash[:alert] = 'Activity has been created successfully!'
@@ -40,25 +39,10 @@ class ActivitiesController < ApplicationController
     end
   end
 
-  def dates
-    # Scope your query to the dates being shown:
-    start_time = params.fetch(:start_time, Date.today).to_date
-
-    # For a monthly view:
-    @bookings = Booking.where(starts_at: start_time.beginning_of_month.beginning_of_week..start_time.end_of_month.end_of_week)
-
-    # Or, for a weekly view:
-    @bookings = Booking.where(starts_at: start_time.beginning_of_week..start_time.end_of_week)
-  end
-
-  def multi_days?
-    (end_time.to_date - start_time.to_date).to_i >= 1
-  end
-
   private
 
   def activity_params
-    params.require(:activity).permit(:name, :description, :address, :start_time, :end_time, :adult_price, :child_price, :age_group, :user_id, :photo)
+    params.require(:activity).permit(:name, :description, :address, :start_time, :end_time, :adult_price, :child_price, :age_group)
   end
 
   def authenticate

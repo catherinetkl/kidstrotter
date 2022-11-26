@@ -129,11 +129,6 @@
   </div>
 </div>
 
-
-
-
-
-
 <div class="g-screen-container bg-warning text-center text-light fw-bold">Area below to be deleted</div>
 <h1><%= @activity.name %></h1>
 
@@ -148,16 +143,3 @@
 <% end %>
 
 <div style="width: 400px; height: 400px;" data-controller="map" data-map-markers-value="<%= @markers.to_json %>" data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
-
-
-<div class="row">
-  <div class="col-lg-6">
-    <%= simple_form_for([@activity, @bookmark]) do |f| %>
-      <%= f.submit "Bookmark", class: %(btn btn-primary) %>
-    <%end%>
-  </div>
-
-  <div class="col-lg-6">
-    <%= link_to "Book Now", new_activity_booking_path(@activity), class: %(btn btn-primary) %>
-  </div>
-</div>
