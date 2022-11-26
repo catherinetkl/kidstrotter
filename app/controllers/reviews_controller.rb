@@ -1,6 +1,7 @@
 class ReviewsController < ApplicationController
   def index
-    @reviews = Review.where(user: current_user)
+    # @reviews = Review.where(user: current_user)
+    @reviews = current_user.reviews.all
   end
 
   def new
