@@ -1,0 +1,8 @@
+meta_name: "KidsTrotter"
+meta_title: "KidsTrotter - Your handy dandy guide
+  # for activities, attractions and things to do"
+meta_description: "Find discounted attraction tickets,
+  # unique experiences, and more! Discover and book fantastic
+  # experiences with KidsTrotter!"
+meta_image: "logo.png" # should exist in `app/assets/images/`
+# twitter_account: "@product_twitter_account"   # required for Twitter Cards
