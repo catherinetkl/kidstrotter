@@ -13,11 +13,13 @@ class Activity < ApplicationRecord
   belongs_to :category
   has_and_belongs_to_many :age_groups
   has_many :google_images
+  has_many :photos
 
   validates :name, :address, presence: true
   validates :adult_price, numericality: { greater_than_or_equal_to: 0 }, presence: true
   validates :child_price, numericality: { greater_than_or_equal_to: 0 }, presence: true
   validates :age_group, inclusion: { in: %w[0-2 3-5 6-9 10-12 13-17] }
+  # validates :start_time, :end_time, presence: true
 
   pg_search_scope :search_by_activity,
                   against: %i[name],
@@ -85,12 +87,12 @@ class Activity < ApplicationRecord
       'Jurassic Mile' => "Activities/Outdoor Attractions/Jurassic Mile/20220314_101946.jpg",
       'Jubilee Park at Fort Canning' => "Activities/Outdoor Attractions/Jubilee Park at Fort Canning/2019-07-07.jpg" }[name]
   end
-
+  
   # def image_urls
   #   photos = []
   #   photos.present? ? photos : google_images.map(&:url)
   # end
-
+  
   # def fetch_google_image_urls
   #   thing = CGI.escape(name)
   #   url = URI("https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=#{thing}&inputtype=textquery&fields=place_id%2Cformatted_address%2Cname%2Crating%2Cphotos%2Cgeometry&key=AIzaSyBblxAfyQjITHddg4IYMF77L-PHrfrLW4s")

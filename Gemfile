@@ -4,6 +4,12 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby "3.1.2"
 gem "devise"
 gem 'net-http'
+gem 'strftime', '~> 1.0'
+gem 'simple_form_fancy_uploads'
+gem 'active_storage_validations'
+gem 'image_processing', '~> 1.12', '>= 1.12.2'
+
+
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.4"
