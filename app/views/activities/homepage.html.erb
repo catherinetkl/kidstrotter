@@ -41,11 +41,12 @@
   <h1 class="my-3">Trending Activities</h1>
   </div>
   <div class="row row-cols-3">
-    <% @activities.each do |activity| %>
+    <% @activities.first(3).each do |activity| %>
       <div class="col">
         <%= link_to activity_path(activity) do %>
           <div class="card-trip">
-          <img src=<%="#{activity.hero_image_url}"%> alt="">
+          <%= image_tag(activity.card_image) %>
+
             <div class="card-trip-infos">
                 <div>
                   <h2><%= activity.name %></h2>
