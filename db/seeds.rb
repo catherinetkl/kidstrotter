@@ -122,18 +122,18 @@ event_names.keys.each do |category_name|
   end
 end
 
-pp "==================="
-pp "ADD IMAGES TO ACTIVITIES"
-pp "==================="
+# pp "==================="
+# pp "ADD IMAGES TO ACTIVITIES"
+# pp "==================="
 
-rows = CSV.parse(File.read("lib/photos_patch.csv"))
+# rows = CSV.parse(File.read("lib/photos_patch.csv"))
 
-rows.each do |row|
-  pp row[0]
-  activity = Activity.find_by(name: row[0])
-  activity.google_images << GoogleImage.create(url: row[1])
-  activity.save!
-end
+# rows.each do |row|
+#   pp row[0]
+#   activity = Activity.find_by(name: row[0])
+#   activity.google_images << GoogleImage.create(url: row[1])
+#   activity.save!
+# end
 
 pp "==================="
 pp "POPULATING BOOKINGS"
