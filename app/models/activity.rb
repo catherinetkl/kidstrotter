@@ -66,7 +66,7 @@ class Activity < ApplicationRecord
   #   end
   # end
 
-  private
+  # private
 
   # def update_google_image_urls
   #   fetch_google_image_urls.each do |url|
