@@ -18,6 +18,7 @@
         <%= simple_form_for [@activity, @booking,] do |f| %>
                   <%= f.input :adult_qty %>
                   <%= f.input :child_qty %>
+                  <%= f.input :start_time, label: "Booking Date" %>
                   <div>
                     <%= link_to "Return", activities_path, class: "btn btn-outline-secondary" %>
                     <%= f.button :submit, "Submit", class: 'btn text-white', style: "width: 175px; height: 40px; border-radius: 5px; background-color: #f03827;" %>

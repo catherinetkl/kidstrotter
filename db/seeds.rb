@@ -28,12 +28,22 @@ event_names = {
 }
 
 puts %(Cleaning up database...)
+
+puts %(Cleaning up bookings...)
 Booking.destroy_all
+puts %(Cleaning up images...)
 GoogleImage.destroy_all
+puts %(Cleaning up bookmarks...)
+Bookmark.destroy_all
+puts %(Cleaning up activities...)
 Activity.destroy_all
+puts %(Cleaning up organizers...)
 Organizer.destroy_all
+puts %(Cleaning up categories...)
 Category.destroy_all
+puts %(Cleaning up users...)
 User.destroy_all
+puts %(Cleaning up age groups...)
 AgeGroup.destroy_all
 
 puts %(Database cleaned!)
@@ -110,7 +120,7 @@ event_names.keys.each do |category_name|
 
       activity =
         Activity.create!(
-          name: event_name,
+          name: event_names,
           description: ['Lorem Ipsum'].sample,
           address: "18 Marina Gardens Dr, Singapore 018953",
           require_booking: need_pay_or_not == "paid",
@@ -129,7 +139,6 @@ event_names.keys.each do |category_name|
         puts "Activity with id: #{activity.id} has been created"
     end
   end
-end
 
 # pp "==================="
 # pp "ADD IMAGES TO ACTIVITIES"

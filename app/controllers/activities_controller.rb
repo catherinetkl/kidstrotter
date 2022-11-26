@@ -16,7 +16,6 @@ class ActivitiesController < ApplicationController
 
   def show
     @activity = Activity.find(params[:id])
-    # @activities = Activity.requested_to(current_user)
     @bookmark = Bookmark.new
 
     @markers = [{
