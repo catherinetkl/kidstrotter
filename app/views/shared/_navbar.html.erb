@@ -38,7 +38,7 @@
             </a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
               <div class="dropdown-item">Logged in as: <%= current_user.first_name.capitalize %></div>
-              <%# <div class="dropdown-item">Role: <%= current_user.organizer.user_id %>
+              <div class="dropdown-item">Role: Admin</div>
               <%= link_to "My Reviews", reviews_path, class: "dropdown-item" %>
               <%= link_to "Edit Profile", edit_user_registration_path, class: "dropdown-item" %>
               <%= link_to "About Us", "#", class: "dropdown-item" %>

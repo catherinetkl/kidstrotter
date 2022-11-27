@@ -29,8 +29,9 @@ class ActivitiesController < ApplicationController
   end
 
   def create
-    @activity = Activity.create(product_params)
-    @activity.user = User.last
+    @categories = Category.all
+    @organizer = current_user.organizer.id
+    @activity = Activity.create(activity_params)
 
     if @activity.save!
       redirect_to root_path
@@ -43,7 +44,7 @@ class ActivitiesController < ApplicationController
   private
 
   def activity_params
-    params.require(:activity).permit(:name, :description, :address, :adult_price, :child_price, :age_group)
+    params.require(:activity).permit(:name, :description, :address, :adult_price, :child_price, :age_group, :category_id, :organizer_id)
   end
 
   def authenticate
