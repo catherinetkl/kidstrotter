@@ -1,9 +1,3 @@
-<div class="container pt-2">
-  <div class="d-flex p-3">
-    <h3>Bookings List</h3>
-  </div>
-</div>
-
 <div class="container">
 
 
@@ -16,6 +10,7 @@
                 <tr>
                   <div>
                     <th colspan="10">Activity</th>
+                    <th colspan="10">Date</th>
                     <th colspan="10">Category</th>
                     <th colspan="10">Adults</th>
                     <th colspan="10">Children</th>
@@ -29,7 +24,9 @@
               <tbody>
 
                   <div class="card-trip-infos">
-                    <td colspan="10"><%= booking.activity.name %></td>
+                    <%# <td colspan="10"><%= booking.activity.name %>
+                    <td colspan="10">Placeholder</td>
+                    <td colspan="10"><%= booking.start_time %></td>
                     <td colspan="10"><%= booking.activity.category.name %></td>
                     <td colspan="10"><%= booking.adult_qty %></td>
                     <td colspan="10"><%= booking.child_qty %></td>
@@ -40,7 +37,7 @@
                       <%= link_to "Details", booking_path(booking), class: %(btn btn-sm), style: "margin-right: 10px; background-color: orange; color: white; border-radius: 10px" %>
                       <%= link_to "Leave a Review", new_booking_review_path(booking), class: %(btn btn-sm), style: "margin-right: 10px; background-color: #2dbdb4; color: white; border-radius: 10px" %>
                       <%= link_to "Cancel Booking", booking_path(booking), class: "btn btn-sm", style: "margin-right: 10px; background-color: red; color: white; border-radius: 10px", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%>
-                      <img src=<%="#{booking.activity.hero_image_url}"%> alt="", style="height: 50px;">
+
                     </div>
 
                     </tr>
@@ -91,5 +88,30 @@
         <% end %>
       <% end %>
     </div>
+
+
+<br>
+<br>
+
+
+<div class="container">
+  <div>
+    <%= month_calendar(events: @bookings) do |date, bookings| %>
+
+      <div>
+        <%= date.day %>
+      </div>
+
+      <% bookings.each do |booking| %>
+        <div class="card-header">
+          <div class="card-title">
+            <%= link_to booking.activity.category.name, booking_path(booking) %>
+          </div>
+        </div>
+      <% end %>
+
+    <% end %>
+  </div>
+</div>
 
 </div>

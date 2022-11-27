@@ -3,14 +3,11 @@ class BookingsController < ApplicationController
 
   def index
     @bookings = current_user.bookings.all
-
     start_date = params.fetch(:start_date, Date.today).to_date
 
-    # For a monthly view:
-    # @cal_bookings = Booking.where(starts_at: start_date.beginning_of_month.beginning_of_week..start_date.end_of_month.end_of_week)
-
-    # For a weekly view:
-    @calendar_bookings = Booking.where(starts_at: start_date.beginning_of_week..start_date.end_of_week)
+    @bookings = Booking.where(
+      start_time: start_date.beginning_of_month.beginning_of_week..start_date.end_of_month.end_of_week
+    )
   end
 
   def show
@@ -46,7 +43,8 @@ class BookingsController < ApplicationController
   private
 
   def booking_params
-    params.require(:booking, :activity).permit(:adult_qty, :child_qty, :status)
+    # :start_time, :end_time
+    params.require(:booking).permit(:adult_qty, :child_qty, :start_time)
   end
 
   def authenticate
