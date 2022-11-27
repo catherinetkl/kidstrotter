@@ -9,7 +9,7 @@
       <% bookings.each do |booking| %>
         <div class="card-header">
           <div class="card-title">
-            <%= link_to booking.activity.category.name, booking_path(booking) %>
+            <%= link_to booking.activity.name, booking_path(booking) %>
           </div>
         </div>
       <% end %>
@@ -46,7 +46,7 @@
 
                 <div class="card-trip-infos">
                   <%# <td colspan="10"><%= booking.activity.name %>
-                  <td colspan="10">Placeholder</td>
+                  <td colspan="10"><%= booking.activity.name %></td>
                   <td colspan="10"><%= booking.start_time %></td>
                   <td colspan="10"><%= booking.activity.category.name %></td>
                   <td colspan="10"><%= booking.adult_qty %></td>
@@ -58,7 +58,7 @@
                     <%= link_to "Details", booking_path(booking), class: %(btn btn-sm), style: "margin-right: 10px; background-color: orange; color: white; border-radius: 10px" %>
                     <%= link_to "Leave a Review", new_booking_review_path(booking), class: %(btn btn-sm), style: "margin-right: 10px; background-color: #2dbdb4; color: white; border-radius: 10px" %>
                     <%= link_to "Cancel Booking", booking_path(booking), class: "btn btn-sm", style: "margin-right: 10px; background-color: red; color: white; border-radius: 10px", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%>
-
+                    <%= image_tag(booking.activity.card_image, class: "img-preview bg-image", style: "height: 300px; width: 350px;") %>
                   </div>
 
                   </tr>

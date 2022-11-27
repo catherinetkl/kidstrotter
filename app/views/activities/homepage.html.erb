@@ -8,7 +8,7 @@
 
         <div class="form">
             <%= form_with url: activities_path, method: :get, class: "d-flex" do %>
-            <%= text_field_tag :query,params[:query],class: "form-control", placeholder: "Find a product"%>
+            <%= text_field_tag :query,params[:query],class: "form-control", placeholder: "Find an activity"%>
             <%= submit_tag "Search", class: "btn btn-success" %>
             <% end %>
         </div>
