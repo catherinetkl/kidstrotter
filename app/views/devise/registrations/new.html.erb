@@ -11,7 +11,7 @@
 
           <div class="bg-white text-weight-medium mt-4 p-3" style="border-radius: 15px; border: solid 1px F5F5D; box-shadow: 0 3px 10px rgb(0 0 0 / 0.3);">
 
-            <div class="form-inputs" style= "height: 650px;">
+            <div class="form-inputs" style= "height: 750px;">
 
               <div class="text-center">
                 <br>
@@ -47,6 +47,10 @@
                 <%= f.input :password_confirmation,
                             required: true,
                             input_html: { autocomplete: "new-password" } %>
+              </div>
+
+              <div class="mb-3 gravatar_edit" style="margin: 0 2rem">
+                <%= f.file_field :avatar, placeholder: 'Upload picture',direct_upload: true%>
               </div>
 
               <br>

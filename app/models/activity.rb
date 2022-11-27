@@ -19,9 +19,9 @@ class Activity < ApplicationRecord
   validates :adult_price, numericality: { greater_than_or_equal_to: 0 }, presence: true
   validates :child_price, numericality: { greater_than_or_equal_to: 0 }, presence: true
 
-  pg_search_scope :search_by_activity,
+  pg_search_scope :search_by_activity_and_category,
                   against: %i[name],
-                  # associated_against: { category: %i[name] },
+                  associated_against: { category: %i[name] },
                   using: { tsearch: { prefix: true } }
 
   # before_save :update_google_image_urls

@@ -10,6 +10,11 @@ class BookingsController < ApplicationController
     # )
   end
 
+  def organizer_index
+    @users = User.all
+    @bookings = Booking.all
+  end
+
   def show
     @booking = Booking.find(params[:id])
   end
@@ -35,6 +40,20 @@ class BookingsController < ApplicationController
     end
   end
 
+  def edit
+    @booking = Booking.find(params[:id])
+  end
+
+  def update
+    @booking = Booking.find(params[:id])
+    @booking.update_attributes(bookings_params)
+    if @booking.save
+      redirect_to @booking, notice: 'Successfully changed status'
+    else
+      render 'activities/show', status: :unprocessable_entity
+    end
+  end
+
   def destroy
     Booking.destroy(params[:id])
     redirect_to booking_path
@@ -44,7 +63,7 @@ class BookingsController < ApplicationController
 
   def booking_params
     # :start_time, :end_time
-    params.require(:booking).permit(:adult_qty, :child_qty, :start_time)
+    params.require(:booking).permit(:adult_qty, :child_qty, :start_time, :status)
   end
 
   def authenticate

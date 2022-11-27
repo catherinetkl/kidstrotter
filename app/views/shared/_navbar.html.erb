@@ -23,27 +23,27 @@
           </li>
 
           <li class="nav-item">
-            <%= link_to "Bookings", bookings_path, class: "nav-link" %>
+            <%= link_to "Patron List", organizer_bookings_path, class: "nav-link" %>
           </li>
-          <li class="nav-item">
-            <%= link_to "Bookmarks", bookmarks_path, class: "nav-link" %>
-          </li>
+
           <li class="nav-item">
             <%= link_to "Chat Support", "#", class: "nav-link" %>
           </li class="nav-item">
 
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <i class="fa-solid fa-bars"></i>
-            </a>
-            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <div class="dropdown-item">Logged in as: <%= current_user.first_name.capitalize %></div>
-              <div class="dropdown-item">Role: Admin</div>
-              <%= link_to "My Reviews", reviews_path, class: "dropdown-item" %>
-              <%= link_to "Edit Profile", edit_user_registration_path, class: "dropdown-item" %>
-              <%= link_to "About Us", "#", class: "dropdown-item" %>
-              <%= link_to "Logout", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
-            </ul>
+            <% if current_user.avatar.attached?%>
+              <%= image_tag(current_user.avatar, alt: "avatar", class: "avatar", style: "margin-left: 20px; margin-bottom:5px; height: 40px; width: 40px;", id: "avatar", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false) %>
+            <% else %>
+              <%= image_tag("avatar.png", alt: "avatar", class: "avatar", style: "margin-left: 20px; margin-bottom:5px; height: 40px; width: 40px;", id: "avatar", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false) %>
+            <% end %>
+              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                <div class="dropdown-item">Logged in as: <%= current_user.first_name.capitalize %></div>
+                <div class="dropdown-item">Role: Admin</div>
+                <%= link_to "My Reviews", reviews_path, class: "dropdown-item" %>
+                <%= link_to "Edit Profile", edit_user_registration_path, class: "dropdown-item" %>
+                <%= link_to "About Us", "#", class: "dropdown-item" %>
+                <%= link_to "Logout", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
+              </ul>
           </li>
 
         <% else %>
@@ -59,17 +59,18 @@
           </li class="nav-item">
 
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <i class="fa-solid fa-bars"></i>
-            </a>
-            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <div class="dropdown-item">Logged in as: <%= current_user.first_name.capitalize %></div>
-              <%# <div class="dropdown-item">Role: <%= current_user.organizer.user_id %>
-              <%= link_to "My Reviews", reviews_path, class: "dropdown-item" %>
-              <%= link_to "Edit Profile", edit_user_registration_path, class: "dropdown-item" %>
-              <%= link_to "About Us", "#", class: "dropdown-item" %>
-              <%= link_to "Logout", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
-            </ul>
+            <% if current_user.avatar.attached?%>
+              <%= image_tag(current_user.avatar, alt: "avatar", class: "avatar", style: "margin-left: 20px; margin-bottom:5px; height: 40px; width: 40px;", id: "avatar", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false) %>
+            <% else %>
+              <%= image_tag("avatar.png", alt: "avatar", class: "avatar", style: "margin-left: 20px; margin-bottom:5px; height: 40px; width: 40px;", id: "avatar", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false) %>
+            <% end %>
+              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                <div class="dropdown-item">Logged in as: <%= current_user.first_name.capitalize %></div>
+                <%= link_to "My Reviews", reviews_path, class: "dropdown-item" %>
+                <%= link_to "Edit Profile", edit_user_registration_path, class: "dropdown-item" %>
+                <%= link_to "About Us", "#", class: "dropdown-item" %>
+                <%= link_to "Logout", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
+              </ul>
           </li>
         <% end %>
 

@@ -2,18 +2,15 @@ class ActivitiesController < ApplicationController
   def homepage
     @categories = Category.all
     @activities = Activity.first(3)
-    if params[:query].present?
-      yield @activities = Activity.search_by_activity(params[:query])
-    else
-      @activities = Activity.all
-    end
   end
 
   def index
     @activities = Activity.all
     @categories = Category.all
+
     if params[:query].present?
-      @activities = Activity.search_by_activity(params[:query])
+      @activities = Activity.search_by_activity_and_category(params[:query])
+
     else
       @activities = Activity.all
     end
