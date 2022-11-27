@@ -45,6 +45,10 @@
           </div>
         </form>
 
+        <form class="form-purple fw-bold p-2 m-4">
+          <div id="ww_d048d7a91d69b" v='1.3' loc='id' a='{"t":"responsive","lang":"en","sl_lpl":1,"ids":["wl2912"],"font":"Arial","sl_ics":"one_a","sl_sot":"celsius","cl_bkg":"#B6B2F3","cl_font":"#000000","cl_cloud":"#d4d4d4","cl_persp":"#2196F3","cl_sun":"#FFC107","cl_moon":"#FFC107","cl_thund":"#FF5722","cl_odd":"#0000000a"}'><a href="https://weatherwidget.org/tr/" id="ww_d048d7a91d69b_u" target="_blank">Web Sitesi için Ücretsiz HTML Hava Durumu Widget</a></div><script async src="https://app1.weatherwidget.org/js/?id=ww_d048d7a91d69b"></script>
+        </form>
+
         <form class="form-purple p-4 m-4">
           <div class="form-outline mb-4">
             <h3 class="fw-bold">Package details</h3>
@@ -54,12 +58,12 @@
           </div>
 
           <div class="form-outline mb-4">
-            <h3 class="fw-bold">Opening hours</h3>
-
+            <h3 class="fw-bold">Eligibility</h3>
+            <li class="mx-3">Children aged 0-3 can enter free of charge</li>
           </div>
 
           <div class="form-outline mb-4">
-            <h3 class="fw-bold">Eligibility</h3>
+            <h3 class="fw-bold">Opening hours</h3>
 
           </div>
 
@@ -75,7 +79,9 @@
           <div class="row">
 
             <div class="col-lg-8 col-md-12 mb-lg-0 mb-3">
+              <%#
               <div class="img-preview bg-image" style="height: 600px"><%= image_tag(@activity.card_image, class: "img-preview bg-image", style: "height: 600px") %>
+              <div class="img-preview bg-secondary" style="height: 600px;">
               </div>
             </div>
 
@@ -125,6 +131,58 @@
           </div>
         </div>
 
+        <div class="card-body">
+          <h2 class="m-0 fw-bold">Most recent reviews</h2>
+        </div>
+
+        <div class="card-body">
+          <div class="card-review">
+            <div class="d-flex justify-content-between flex-wrap text-muted">
+              <div class="d-inline h5 fw-bold">
+                <span><img src="https://picsum.photos/80?random=1" class="avatar m-2"></span>
+                <span>Monsieur Jean Pierre</span>
+                <p class="py-2"><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i></p>
+              </div>
+              <div class="d-inline my-2">Yesterday</div>
+            </div>
+            <p class="m-0">Had a wonderful and fun time with my family. Recommended for all to go and have fun.</p>
+          </div>
+        </div>
+
+        <div class="card-body">
+          <div class="card-review">
+            <div class="d-flex justify-content-between flex-wrap text-muted">
+              <div class="d-inline h5 fw-bold">
+                <span><img src="https://picsum.photos/80?random=2" class="avatar m-2"></span>
+                <span>Yifei Chen</span>
+                <p class="py-2"><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i></p>
+              </div>
+              <div class="d-inline my-2">Yesterday</div>
+            </div>
+            <p class="m-0">Hassle-free redemption.</p>
+          </div>
+        </div>
+
+        <div class="card-body">
+          <div class="card-review">
+            <div class="d-flex justify-content-between flex-wrap text-muted">
+              <div class="d-inline h5 fw-bold">
+                <span><img src="https://picsum.photos/80?random=3" class="avatar m-2"></span>
+                <span>Xiao Ming</span>
+                <p class="py-2"><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i></p>
+              </div>
+              <div class="d-inline my-2"><%= Time.now.ctime%></div>
+            </div>
+            <p class="m-0">Fantastic experience!! You just need the voucher and scan at the entrance. Very easy to use and saves you time and money on purchasing as well.</p>
+            <div class="d-flex d-inline gap-4 flex-wrap">
+              <div><img src="https://picsum.photos/150?random=1" class="img-round-corners"></div>
+              <div><img src="https://picsum.photos/150?random=2" class="img-round-corners"></div>
+              <div><img src="https://picsum.photos/150?random=3" class="img-round-corners"></div>
+              <div><img src="https://picsum.photos/150?random=4" class="img-round-corners"></div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
@@ -133,10 +191,12 @@
 <div class="g-screen-container bg-warning text-center text-light fw-bold">Area below to be deleted</div>
 <h1><%= @activity.name %></h1>
 
+<p>ID: <%= @activity.id %></p>
 <p>Description: <%= @activity.description %></p>
 <p>Adult Price: <%= number_to_currency(@activity.adult_price) %></p>
 <p>Location: <%= @activity.address %></p>
 <p>Suitable For Ages: <%= @activity.age_group %></p>
+
 
 <!-- button -->
 <%= simple_form_for [@activity] do |f| %>
