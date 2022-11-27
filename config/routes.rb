@@ -20,4 +20,6 @@ Rails.application.routes.draw do
   resources :bookmarks, only: %i[index show destroy]
   resources :reviews, only: %i[index destroy]
   resources :activities
+
+  get '/organizer_bookings', to: 'bookings#organizer_index', as: :organizer_bookings
 end

@@ -24,9 +24,10 @@
 <div class="container">
   <div class="d-flex p-3">
     <% @bookings.each do |booking| %>
+
       <% if booking.status == "pending" %>
         <div>
-          <table class="table table-striped table-hover text-center">
+          <table class="table table-striped table-hover text-center", style="border: black;">
             <thead>
               <tr>
                 <div>
@@ -36,7 +37,7 @@
                   <th colspan="10">Adults</th>
                   <th colspan="10">Children</th>
                   <th colspan="10">Status</th>
-
+                  <th colspan="10">Organizer</th>
                   <th colspan="10"></th>
                 <div>
               </tr>
@@ -44,25 +45,25 @@
 
             <tbody>
 
-                <div class="card-trip-infos">
-                  <%# <td colspan="10"><%= booking.activity.name %>
-                  <td colspan="10"><%= booking.activity.name %></td>
-                  <td colspan="10"><%= booking.start_time %></td>
-                  <td colspan="10"><%= booking.activity.category.name %></td>
-                  <td colspan="10"><%= booking.adult_qty %></td>
-                  <td colspan="10"><%= booking.child_qty %></td>
-                  <td colspan="10"><%= booking.status %></td>
-                  <td colspan="10">
+                  <div>
+                    <td colspan="10"><%= booking.activity.name %></td>
+                    <td colspan="10"><%= booking.start_time %></td>
+                    <td colspan="10"><%= booking.activity.category.name %></td>
+                    <td colspan="10"><%= booking.adult_qty %></td>
+                    <td colspan="10"><%= booking.child_qty %></td>
+                    <td colspan="10"><%= booking.status %></td>
+                    <td colspan="10"><%= booking.activity.organizer.user.first_name %></td>
+                    <td colspan="10">
+                  </div>
 
-                  <div class ="mx-10 px-10 text-end">
+                  <div class = "text-end">
                     <%= link_to "Details", booking_path(booking), class: %(btn btn-sm), style: "margin-right: 10px; background-color: orange; color: white; border-radius: 10px" %>
                     <%= link_to "Leave a Review", new_booking_review_path(booking), class: %(btn btn-sm), style: "margin-right: 10px; background-color: #2dbdb4; color: white; border-radius: 10px" %>
                     <%= link_to "Cancel Booking", booking_path(booking), class: "btn btn-sm", style: "margin-right: 10px; background-color: red; color: white; border-radius: 10px", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%>
-                    <%= image_tag(booking.activity.card_image, class: "img-preview bg-image", style: "height: 300px; width: 350px;") %>
+                    <%= image_tag(booking.activity.card_image, class: "img-preview bg-image mt-4 mb-3", style: "height: 300px; width: 350px;") %>
                   </div>
-
                   </tr>
-                </div>
+
             </tbody>
           </table>
         <div>
