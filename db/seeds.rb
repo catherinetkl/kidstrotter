@@ -95,32 +95,14 @@ event_names.keys.each do |category_name|
 
   ["paid", "unpaid"].each do |need_pay_or_not|
     pp "Creating #{need_pay_or_not} activities......"
-    # event_names[category_name][need_pay_or_not].each do |event_name|
-    #   pp "Trying to create Activity #{event_name}"
-    #   thing = CGI.escape(event_name)
-    #   url = URI("https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=#{thing}&inputtype=textquery&fields=formatted_address%2Cname%2Crating%2Cphotos%2Cgeometry&region=sg&locationbias=circle:50000@1.3521,103.8198&key=AIzaSyBblxAfyQjITHddg4IYMF77L-PHrfrLW4s")
+    event_names[category_name][need_pay_or_not].each do |event_name|
 
-    #   https = Net::HTTP.new(url.host, url.port)
-    #   https.use_ssl = true
-    #   request = Net::HTTP::Get.new(url)
-    #   read_body = JSON.parse(https.request(request).read_body)
+      pp "Trying to create Activity #{event_name}"
 
-    #   address = read_body.dig("candidates")&.first&.dig("formatted_address")
-    #   lat = read_body.dig("candidates")&.first&.dig("geometry")&.dig('location')&.dig('lat')
-    #   long = read_body.dig("candidates")&.first&.dig("geometry")&.dig('location')&.dig('lng')
 
-    # pp "==================="
-    # pp "ADD LOCATIONS TO ACTIVITIES"
-    # pp "==================="
-
-    # rows = CSV.parse(File.read("lib/geometry.csv"))
-
-    # rows.each do |row|
-    # end
-
-      activity =
+    activity =
         Activity.create!(
-          name: event_names,
+          name: event_name,
           description: ['Lorem Ipsum'].sample,
           address: "18 Marina Gardens Dr, Singapore 018953",
           require_booking: need_pay_or_not == "paid",
@@ -133,12 +115,12 @@ event_names.keys.each do |category_name|
           organizer: Organizer.all.sample,
           category: category
         )
-
         activity.age_groups << AgeGroup.all.sample
 
         puts "Activity with id: #{activity.id} has been created"
     end
   end
+end
 
 # pp "==================="
 # pp "ADD IMAGES TO ACTIVITIES"
@@ -172,5 +154,28 @@ all_activities.each do |activity|
     puts "Booking with id: #{booking.id} has been created"
 
     attending_users << attending_user.id
+
   end
 end
+
+
+ #   thing = CGI.escape(event_name)
+      #   url = URI("https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=#{thing}&inputtype=textquery&fields=formatted_address%2Cname%2Crating%2Cphotos%2Cgeometry&region=sg&locationbias=circle:50000@1.3521,103.8198&key=AIzaSyBblxAfyQjITHddg4IYMF77L-PHrfrLW4s")
+
+    #   https = Net::HTTP.new(url.host, url.port)
+    #   https.use_ssl = true
+    #   request = Net::HTTP::Get.new(url)
+    #   read_body = JSON.parse(https.request(request).read_body)
+
+    #   address = read_body.dig("candidates")&.first&.dig("formatted_address")
+    #   lat = read_body.dig("candidates")&.first&.dig("geometry")&.dig('location')&.dig('lat')
+    #   long = read_body.dig("candidates")&.first&.dig("geometry")&.dig('location')&.dig('lng')
+
+    # pp "==================="
+    # pp "ADD LOCATIONS TO ACTIVITIES"
+    # pp "==================="
+
+    # rows = CSV.parse(File.read("lib/geometry.csv"))
+
+    # rows.each do |row|
+    # end
