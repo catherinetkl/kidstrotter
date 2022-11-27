@@ -8,7 +8,7 @@
 
           <div class="bg-white text-weight-medium mt-4 p-3" style="border-radius: 15px; border: solid 1px F5F5D; box-shadow: 0 3px 10px rgb(0 0 0 / 0.3);">
 
-            <div class="form-inputs" style= "height: 650px;">
+            <div class="form-inputs" style= "height: 950px;">
 
               <div class="text-center">
                 <br>
@@ -18,7 +18,15 @@
               <div class="mb-3" style="margin: 0 2rem">
                 <%= f.input :name %>
               </div>
-
+              <div class="mb-4" style="margin: 0 2rem">
+                <%= f.association :category %>
+              </div>
+              <div class="mb-3" style="margin: 0 2rem">
+                <div>Your current organization code: (<%= current_user.organizer.id %>)</div>
+                <div>Admin Name: (<%= current_user.first_name %>)</div>
+                <br>
+                <%= f.association :organizer, label: "Organization" %>
+              </div>
               <div class="mb-3" style="margin: 0 2rem">
                 <%= f.input :description %>
               </div>
@@ -33,6 +41,10 @@
 
               <div class="mb-3" style="margin: 0 2rem">
                 <%= f.input :child_price %>
+              </div>
+
+              <div class="mb-3" style="margin: 0 2rem">
+                <%= f.input :age_group %>
               </div>
 
               <div class="mb-3" style="margin: 0 2rem">

@@ -1,103 +1,7 @@
 <div class="container">
 
-
-    <div class="d-flex p-3">
-      <% @bookings.each do |booking| %>
-        <% if booking.status == "pending" %>
-          <div>
-            <table class="table table-striped table-hover text-center">
-              <thead>
-                <tr>
-                  <div>
-                    <th colspan="10">Activity</th>
-                    <th colspan="10">Date</th>
-                    <th colspan="10">Category</th>
-                    <th colspan="10">Adults</th>
-                    <th colspan="10">Children</th>
-                    <th colspan="10">Status</th>
-
-                    <th colspan="10"></th>
-                  <div>
-                </tr>
-              </thead>
-
-              <tbody>
-
-                  <div class="card-trip-infos">
-                    <%# <td colspan="10"><%= booking.activity.name %>
-                    <td colspan="10">Placeholder</td>
-                    <td colspan="10"><%= booking.start_time %></td>
-                    <td colspan="10"><%= booking.activity.category.name %></td>
-                    <td colspan="10"><%= booking.adult_qty %></td>
-                    <td colspan="10"><%= booking.child_qty %></td>
-                    <td colspan="10"><%= booking.status %></td>
-                    <td colspan="10">
-
-                    <div class ="mx-10 px-10 text-end">
-                      <%= link_to "Details", booking_path(booking), class: %(btn btn-sm), style: "margin-right: 10px; background-color: orange; color: white; border-radius: 10px" %>
-                      <%= link_to "Leave a Review", new_booking_review_path(booking), class: %(btn btn-sm), style: "margin-right: 10px; background-color: #2dbdb4; color: white; border-radius: 10px" %>
-                      <%= link_to "Cancel Booking", booking_path(booking), class: "btn btn-sm", style: "margin-right: 10px; background-color: red; color: white; border-radius: 10px", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%>
-
-                    </div>
-
-                    </tr>
-                  </div>
-              </tbody>
-            </table>
-          <div>
-
-        <% elsif booking.status == "completed" %>
-          <div>
-            <table class="table table-striped table-hover text-center">
-              <thead>
-                <tr>
-                  <div>
-                    <th colspan="10">Activity</th>
-                    <th colspan="10">Category</th>
-                    <th colspan="10">Adults</th>
-                    <th colspan="10">Children</th>
-                    <th colspan="10">Status</th>
-
-                    <th colspan="10"></th>
-                  <div>
-                </tr>
-              </thead>
-
-              <tbody>
-
-                  <div class="card-trip-infos">
-                    <td colspan="10"><%= booking.activity.name %></td>
-                    <td colspan="10"><%= booking.activity.category.name %></td>
-                    <td colspan="10"><%= booking.adult_qty %></td>
-                    <td colspan="10"><%= booking.child_qty %></td>
-                    <td colspan="10"><%= booking.status %></td>
-                    <td colspan="10">
-
-                    <div class ="mx-10 px-10 text-end">
-                      <%= link_to "Details", booking_path(booking), class: %(btn btn-sm), style: "margin-right: 10px; background-color: orange; color: white; border-radius: 10px" %>
-                      <%= link_to "Leave a Review", new_booking_review_path(booking), class: %(btn btn-sm), style: "margin-right: 10px; background-color: #2dbdb4; color: white; border-radius: 10px" %>
-                      <%= link_to "Cancel Booking", booking_path(booking), class: "btn btn-sm", style: "margin-right: 10px; background-color: red; color: white; border-radius: 10px", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%>
-                      <img src=<%="#{booking.activity.hero_image_url}"%> alt="", style="height: 50px;">
-                    </div>
-
-                    </tr>
-                  </div>
-              </tbody>
-            </table>
-          <div>
-        <% end %>
-      <% end %>
-    </div>
-
-
-<br>
-<br>
-
-
-<div class="container">
-  <div>
+  <div class="calendar">
     <%= month_calendar(events: @bookings) do |date, bookings| %>
-
       <div>
         <%= date.day %>
       </div>
@@ -109,9 +13,100 @@
           </div>
         </div>
       <% end %>
-
     <% end %>
   </div>
+
 </div>
 
+<br>
+<br>
+
+<div class="container">
+  <div class="d-flex p-3">
+    <% @bookings.each do |booking| %>
+      <% if booking.status == "pending" %>
+        <div>
+          <table class="table table-striped table-hover text-center">
+            <thead>
+              <tr>
+                <div>
+                  <th colspan="10">Activity</th>
+                  <th colspan="10">Date</th>
+                  <th colspan="10">Category</th>
+                  <th colspan="10">Adults</th>
+                  <th colspan="10">Children</th>
+                  <th colspan="10">Status</th>
+
+                  <th colspan="10"></th>
+                <div>
+              </tr>
+            </thead>
+
+            <tbody>
+
+                <div class="card-trip-infos">
+                  <%# <td colspan="10"><%= booking.activity.name %>
+                  <td colspan="10">Placeholder</td>
+                  <td colspan="10"><%= booking.start_time %></td>
+                  <td colspan="10"><%= booking.activity.category.name %></td>
+                  <td colspan="10"><%= booking.adult_qty %></td>
+                  <td colspan="10"><%= booking.child_qty %></td>
+                  <td colspan="10"><%= booking.status %></td>
+                  <td colspan="10">
+
+                  <div class ="mx-10 px-10 text-end">
+                    <%= link_to "Details", booking_path(booking), class: %(btn btn-sm), style: "margin-right: 10px; background-color: orange; color: white; border-radius: 10px" %>
+                    <%= link_to "Leave a Review", new_booking_review_path(booking), class: %(btn btn-sm), style: "margin-right: 10px; background-color: #2dbdb4; color: white; border-radius: 10px" %>
+                    <%= link_to "Cancel Booking", booking_path(booking), class: "btn btn-sm", style: "margin-right: 10px; background-color: red; color: white; border-radius: 10px", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%>
+
+                  </div>
+
+                  </tr>
+                </div>
+            </tbody>
+          </table>
+        <div>
+
+      <% elsif booking.status == "completed" %>
+        <div>
+          <table class="table table-striped table-hover text-center">
+            <thead>
+              <tr>
+                <div>
+                  <th colspan="10">Activity</th>
+                  <th colspan="10">Category</th>
+                  <th colspan="10">Adults</th>
+                  <th colspan="10">Children</th>
+                  <th colspan="10">Status</th>
+
+                  <th colspan="10"></th>
+                <div>
+              </tr>
+            </thead>
+
+            <tbody>
+
+                <div class="card-trip-infos">
+                  <td colspan="10"><%= booking.activity.name %></td>
+                  <td colspan="10"><%= booking.activity.category.name %></td>
+                  <td colspan="10"><%= booking.adult_qty %></td>
+                  <td colspan="10"><%= booking.child_qty %></td>
+                  <td colspan="10"><%= booking.status %></td>
+                  <td colspan="10">
+
+                  <div class ="mx-10 px-10 text-end">
+                    <%= link_to "Details", booking_path(booking), class: %(btn btn-sm), style: "margin-right: 10px; background-color: orange; color: white; border-radius: 10px" %>
+                    <%= link_to "Leave a Review", new_booking_review_path(booking), class: %(btn btn-sm), style: "margin-right: 10px; background-color: #2dbdb4; color: white; border-radius: 10px" %>
+                    <%= link_to "Cancel Booking", booking_path(booking), class: "btn btn-sm", style: "margin-right: 10px; background-color: red; color: white; border-radius: 10px", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%>
+                    <img src=<%="#{booking.activity.hero_image_url}"%> alt="", style="height: 50px;">
+                  </div>
+
+                  </tr>
+                </div>
+            </tbody>
+          </table>
+        <div>
+      <% end %>
+    <% end %>
+  </div>
 </div>

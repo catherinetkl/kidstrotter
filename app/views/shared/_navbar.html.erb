@@ -11,7 +11,17 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto">
-        <% if user_signed_in? %>
+
+        <% if !user_signed_in? %>
+          <li class="nav-item">
+            <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+          </li>
+
+        <% elsif current_user.try(:organizer) %>
+          <li class="nav-item">
+            <%= link_to "Create an Activity", new_activity_path, class: "nav-link" %>
+          </li>
+
           <li class="nav-item">
             <%= link_to "Bookings", bookings_path, class: "nav-link" %>
           </li>
@@ -22,27 +32,47 @@
             <%= link_to "Chat Support", "#", class: "nav-link" %>
           </li class="nav-item">
 
-          <%# <li class="nav-item"> %>
-            <%# <button type="button" class="btn btn-outline-danger" style="border-radius: 5px; padding: 0px; padding-left: 10px; padding-right: 10px; font-size: 15px; margin-right: 20px;"> %>
-            <%# <%= link_to "Sell at Prymart", new_product_path, class: "nav-link uniquebtn" %>
-          <%# </li> %>
-
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <i class="fa-solid fa-bars"></i>
             </a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+              <div class="dropdown-item">Logged in as: <%= current_user.first_name.capitalize %></div>
+              <div class="dropdown-item">Role: Admin</div>
               <%= link_to "My Reviews", reviews_path, class: "dropdown-item" %>
               <%= link_to "Edit Profile", edit_user_registration_path, class: "dropdown-item" %>
               <%= link_to "About Us", "#", class: "dropdown-item" %>
               <%= link_to "Logout", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
             </ul>
           </li>
+
         <% else %>
+
           <li class="nav-item">
-            <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+            <%= link_to "Bookings", bookings_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Bookmarks", bookmarks_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Chat Support", "#", class: "nav-link" %>
+          </li class="nav-item">
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fa-solid fa-bars"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+              <div class="dropdown-item">Logged in as: <%= current_user.first_name.capitalize %></div>
+              <%# <div class="dropdown-item">Role: <%= current_user.organizer.user_id %>
+              <%= link_to "My Reviews", reviews_path, class: "dropdown-item" %>
+              <%= link_to "Edit Profile", edit_user_registration_path, class: "dropdown-item" %>
+              <%= link_to "About Us", "#", class: "dropdown-item" %>
+              <%= link_to "Logout", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
+            </ul>
           </li>
         <% end %>
+
       </ul>
     </div>
   </div>
