@@ -1,2 +1,38 @@
 <h1>Pages#home</h1>
 <p>Find me in app/views/pages/home.html.erb</p>
+
+
+<div class="container">
+  <div>
+  <h1 class="my-3">All Activities</h1>
+  </div>
+  <div class="row row-cols-4">
+    <% @activities.each do |activity| %>
+      <div class="col">
+        <%= link_to activity_path(activity) do %>
+          <div class="card-trip">
+          <%= image_tag(activity.card_image) %>
+            <div class="card-trip-infos">
+                <div>
+                  <h2><%= activity.name %></h2>
+                  <p class="mb-1"><%= activity.address %></p>
+                  <p><%= activity.description %></p>
+                  <p>Suitable For Ages: <%= activity.age_group %></p>
+                </div>
+                <h2 class="card-trip-pricing">
+
+                  <% if activity.adult_price == 0%>
+
+                    Free
+                  <% else %>
+                    $<%= sprintf('%.2f', activity.adult_price) %>
+                  <% end %>
+                </h2>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+  <br>
+</div>
