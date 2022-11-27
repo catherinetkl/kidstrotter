@@ -1,9 +1,0 @@
-<%= month_calendar(events: @calendar_bookings, end_attribute: :end_time) do |date, booking| %>
-  <%= date %>
-
-  <% booking.each do |f| %>
-    <div class="booking">
-      <p><%= f.name %></p>
-    </div>
-  <% end %>
-<% end %>

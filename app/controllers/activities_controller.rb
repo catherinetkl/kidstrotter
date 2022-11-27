@@ -29,7 +29,9 @@ class ActivitiesController < ApplicationController
   end
 
   def create
-    @activity = current_user.activities.build(activity_params)
+    @activity = Activity.create(product_params)
+    @activity.user = User.last
+
     if @activity.save!
       redirect_to root_path
       flash[:alert] = 'Activity has been created successfully!'
@@ -41,7 +43,7 @@ class ActivitiesController < ApplicationController
   private
 
   def activity_params
-    params.require(:activity).permit(:name, :description, :address, :start_time, :end_time, :adult_price, :child_price, :age_group)
+    params.require(:activity).permit(:name, :description, :address, :adult_price, :child_price, :age_group)
   end
 
   def authenticate
