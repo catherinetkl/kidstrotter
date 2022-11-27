@@ -19,3 +19,12 @@
   font-size: 3rem;
 
 }
+
+.icon-container {
+  // border: 1px solid black;
+  transition: transform .2s;
+}
+
+.icon-container:hover {
+  transform: scale(1.1);
+}

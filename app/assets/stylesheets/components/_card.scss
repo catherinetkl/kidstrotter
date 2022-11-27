@@ -8,6 +8,15 @@
   padding: 16px;
 }
 
+.card-review {
+  overflow-y: scroll;
+  background: whitesmoke;
+  color: black;
+  border-radius: 5px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  padding: 16px;
+}
+
 .card-trip {
   overflow: hidden;
   background: white;

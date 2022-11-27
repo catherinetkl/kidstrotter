@@ -10,6 +10,7 @@ class ActivitiesController < ApplicationController
 
     if params[:query].present?
       @activities = Activity.search_by_activity_and_category(params[:query])
+
     else
       @activities = Activity.all
     end
