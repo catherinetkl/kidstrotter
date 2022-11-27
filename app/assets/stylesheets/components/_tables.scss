@@ -1,0 +1,33 @@
+/* _tables.scss:88 */
+$table-hover-bg: linear-gradient(180deg, #FA897B 100%, #FFDD94 100%);
+
+/* _table-row.scss:16 */
+$hover-background: linear-gradient(180deg, #FA897B 100%, #FFDD94 100%);
+$background: state;
+$hover-background: linear-gradient(180deg, #FA897B 50%, #FFDD94 100%);
+$hover-background: linear-gradient(180deg, #FA897B 50%, #FFDD94 100%);
+
+/* _tables.scss:88 */
+.table-hover {
+  tbody tr {
+    @include hover {
+      background-color: $table-hover-bg;
+    }
+  }
+}
+
+/* _table-row.scss:16 */
+.table-hover {
+  $hover-background: darken($background, 5%);
+
+  .table-#{$state} {
+    @include hover {
+      background-color: $hover-background;
+
+      > td,
+      > th {
+        background-color: $hover-background;
+      }
+    }
+  }
+}
