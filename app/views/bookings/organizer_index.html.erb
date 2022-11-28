@@ -30,10 +30,10 @@
               <td colspan="10">
 
               <div class ="mx-10 px-10 text-end">
-                <% link_to 'Click to approve' , booking_path(booking, request: {status: 'Booked'}), method: :put %>
-                <%= link_to("Click to approve", booking_path(booking, :status => "Booked")) %>
+                <%= link_to 'Approve' , edit_booking_path(booking, request: {status: 'Booked'}) %>
                 <%= link_to "Reject" , booking_path(booking), style: "margin-right:20px; margin-top: 12px;",data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%>
               </div>
+            </tr>
 
             <% end %>
             </div>
@@ -41,6 +41,5 @@
 
         </table>
       <div>
-
   </div>
 </div>

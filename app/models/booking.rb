@@ -8,5 +8,5 @@ class Booking < ApplicationRecord
   validates :start_time, presence: true
   validates :status, presence: true
 
-  STATUSES = %w[ pending booked completed ]
+  STATUSES = %w[ Booked Completed ]
 end
