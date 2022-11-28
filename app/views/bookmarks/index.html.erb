@@ -27,8 +27,8 @@
               <td colspan="10"><%= bookmark.activity.name %></td>
               <td colspan="10"><%= bookmark.activity.address %></td>
               <td colspan="10"><%= bookmark.activity.description %></td>
-              <td colspan="10"><%= bookmark.activity.adult_price %></td>
-              <td colspan="10"><%= bookmark.activity.child_price %></td>
+              <td colspan="10"><%= number_to_currency(bookmark.activity.adult_price) %></td>
+              <td colspan="10"><%= number_to_currency(bookmark.activity.child_price) %></td>
               <td colspan="10"><%= bookmark.activity.age_group %></td>
               <td colspan="10">
 
