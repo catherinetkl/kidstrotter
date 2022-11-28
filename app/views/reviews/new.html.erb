@@ -16,7 +16,7 @@
             <p>The Marina Bay Sands (abbreviation: MBS) is a resort and casino hotel in Marina Bay within the Downtown Core district of Singapore. It was opened in 2010. It has been called the world's most expensive standalone casino property at S$8 billion (US$6.88 billion), including the land cost.[1].</p>
           </div>
           <div class="col-7">
-              <%= simple_form_for [@booking, @review,] do |f| %>
+              <%= simple_form_for [@booking, @review] do |f| %>
                 <%= f.input :rating, collection: (1..5).to_a, label: "Your Rating:", input_html: {data: {controller: "star-rating"}} %>
                 <br>
                 <%= f.input :comment %>

@@ -12,9 +12,7 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    @activity = Activity.find(params[:activity_id])
     @booking = Booking.find(params[:booking_id])
-
     @review = Review.new(review_params)
     @review.user = current_user
     @review.booking = @booking
