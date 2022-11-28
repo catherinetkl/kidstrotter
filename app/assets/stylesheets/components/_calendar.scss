@@ -1,10 +1,14 @@
-.simple-calendar {
+.calendar {
   table {
-    min-height: 100vh;
+    min-height: 100px;
   }
   .today {
     background-color: #FAF3DD;
   }
+}
+
+tbody > tr:nth-child(odd) {
+  background-color: #B6B2F3;
 }
 
 .booking {
