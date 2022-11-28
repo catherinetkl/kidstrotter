@@ -16,7 +16,11 @@
 
         <div class="row g-0" style="border: 1px solid black; margin-top: 15px;">
           <div class="col-md-4">
-            <%= image_tag(activity.card_image, class: "img-fluid rounded-start image-tag") %>
+            <% if activity.photo.key.nil? %>
+              <%= image_tag(activity.card_image, class: "img-fluid rounded-start image-tag") %>
+            <% else %>
+              <%= cl_image_tag activity.photo.key, class: "img-fluid rounded-start image-tag" %>
+            <% end %>
           </div>
           <div class="col-md-8">
             <div class="card-body">
