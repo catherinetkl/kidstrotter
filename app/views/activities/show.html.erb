@@ -81,7 +81,7 @@
           <div class="row">
 
             <div class="col-lg-8 col-md-12 mb-lg-0 mb-3 d-flex align-items-center">
-              <%= image_tag(@activity.card_image, class: "img-preview bg-image") %>
+              <%= image_tag(@activity.card_image, class: "img-preview bg-image flex-fill", style: %(max-height: 600px;)) %>
             </div>
 
             <div class="col-lg-4 mb-lg-0 d-grid">
@@ -105,20 +105,20 @@
               <div class="card-activity text-center">
 
                 <div class="d-flex flex-column" style="height: 100%;">
-                  <div class="p-2 h5 fw-bold">Pricing</div>
-                  <div class="p-2 h6">Adult: <span class="fw-bold"><%= number_to_currency(@activity.adult_price) %></span></div>
-                  <div class="p-2 h6">Child: <span class="fw-bold"><%= number_to_currency(@activity.child_price) %></span></div>
+                  <div class="p-2 h5 m-0 fw-bold">Pricing</div>
+                  <div class="p-2 h6 m-0">Adult: <span class="fw-bold"><%= number_to_currency(@activity.adult_price) %></span></div>
+                  <div class="p-2 h6 m-0">Child: <span class="fw-bold"><%= number_to_currency(@activity.child_price) %></span></div>
                   <div class="mt-auto">
 
                     <div class="row">
                       <div class="col-lg-6 mb-lg-0 mb-3">
                         <%= simple_form_for([@activity, @bookmark]) do |f| %>
-                          <%= f.submit "Bookmark", class: %(btn purple-btn-solid fs-6 py-3) %>
+                          <%= f.submit "Bookmark", class: %(btn purple-btn-solid flex-fill fs-6 py-2) %>
                         <%end%>
                       </div>
 
                       <div class="col-lg-6 mb-lg-0 mb-3">
-                        <%= link_to "Book Now", new_activity_booking_path(@activity), class: %(btn purple-btn-outline d-grid fs-6 py-3) %>
+                        <%= link_to "Book Now", new_activity_booking_path(@activity), class: %(btn purple-btn-outline d-grid fs-6 py-2) %>
                       </div>
                     </div>
 
