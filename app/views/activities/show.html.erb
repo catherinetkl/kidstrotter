@@ -69,7 +69,7 @@
         </form>
 
         <form class="form-purple p-3 m-4">
-          <div style="height: 200px;" data-controller="map" data-map-markers-value="<%= @markers.to_json %>" data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
+          <div style="height: 400px;" data-controller="map" data-map-markers-value="<%= @markers.to_json %>" data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
         </form>
       </div>
       <div class="col-md-9 d-flex align-items-between flex-column">
@@ -81,12 +81,12 @@
           <div class="row">
 
             <div class="col-lg-8 col-md-12 mb-lg-0 mb-3 d-flex align-items-center">
-              <%= image_tag(@activity.card_image, class: "img-preview bg-image") %>
+              <%= image_tag(@activity.card_image, class: "img-preview bg-image flex-fill", style: %(max-height: 600px;)) %>
             </div>
 
             <div class="col-lg-4 mb-lg-0 d-grid">
-              <div class="img-preview bg-primary align-self-top mb-2" style="height: 290px;"></div>
-              <div class="img-preview bg-danger align-self-end mt-2" style="height: 290px;"></div>
+              <div class="img-preview bg-image align-self-end mb-2" style="background-image: url('https://picsum.photos/800?random=1'); height: 290px;"></div>
+              <div class="img-preview bg-image align-self-end mt-2" style="background-image: url('https://picsum.photos/800?random=2'); height: 290px;"></div>
             </div>
 
           </div>
@@ -105,20 +105,20 @@
               <div class="card-activity text-center">
 
                 <div class="d-flex flex-column" style="height: 100%;">
-                  <div class="p-2 h5 fw-bold">Pricing</div>
-                  <div class="p-2 h6">Adult: <span class="fw-bold"><%= number_to_currency(@activity.adult_price) %></span></div>
-                  <div class="p-2 h6">Child: <span class="fw-bold"><%= number_to_currency(@activity.child_price) %></span></div>
+                  <div class="p-2 h5 m-0 fw-bold">Pricing</div>
+                  <div class="p-2 h6 m-0">Adult: <span class="fw-bold"><%= number_to_currency(@activity.adult_price) %></span></div>
+                  <div class="p-2 h6 m-0">Child: <span class="fw-bold"><%= number_to_currency(@activity.child_price) %></span></div>
                   <div class="mt-auto">
 
                     <div class="row">
                       <div class="col-lg-6 mb-lg-0 mb-3">
                         <%= simple_form_for([@activity, @bookmark]) do |f| %>
-                          <%= f.submit "Bookmark", class: %(btn purple-btn-solid btn-sm p-3) %>
+                          <%= f.submit "Bookmark", class: %(btn purple-btn-solid flex-fill fs-6 py-2) %>
                         <%end%>
                       </div>
 
                       <div class="col-lg-6 mb-lg-0 mb-3">
-                        <%= link_to "Book Now", new_activity_booking_path(@activity), class: %(btn purple-btn-outline btn-sm p-3) %>
+                        <%= link_to "Book Now", new_activity_booking_path(@activity), class: %(btn purple-btn-outline d-grid fs-6 py-2) %>
                       </div>
                     </div>
 
@@ -137,7 +137,7 @@
 
         <div class="card-body">
           <div class="card-review">
-            <div class="d-flex justify-content-between flex-wrap text-muted">
+            <div class="d-flex justify-content-between flex-wrap">
               <div class="d-inline h5 fw-bold">
                 <span><img src="https://picsum.photos/80?random=1" class="avatar m-2"></span>
                 <span>Monsieur Jean Pierre</span>
@@ -151,7 +151,7 @@
 
         <div class="card-body">
           <div class="card-review">
-            <div class="d-flex justify-content-between flex-wrap text-muted">
+            <div class="d-flex justify-content-between flex-wrap">
               <div class="d-inline h5 fw-bold">
                 <span><img src="https://picsum.photos/80?random=2" class="avatar m-2"></span>
                 <span>Yifei Chen</span>
@@ -165,7 +165,7 @@
 
         <div class="card-body">
           <div class="card-review">
-            <div class="d-flex justify-content-between flex-wrap text-muted">
+            <div class="d-flex justify-content-between flex-wrap">
               <div class="d-inline h5 fw-bold">
                 <span><img src="https://picsum.photos/80?random=3" class="avatar m-2"></span>
                 <span>Xiao Ming</span>
@@ -174,7 +174,7 @@
               <div class="d-inline my-2"><%= Time.now.ctime%></div>
             </div>
             <p class="m-0">Fantastic experience!! You just need the voucher and scan at the entrance. Very easy to use and saves you time and money on purchasing as well.</p>
-            <div class="d-flex d-inline gap-4 flex-wrap">
+            <div class="d-flex d-inline gap-4 flex-wrap justify-content-center">
               <div><img src="https://picsum.photos/150?random=1" class="img-round-corners"></div>
               <div><img src="https://picsum.photos/150?random=2" class="img-round-corners"></div>
               <div><img src="https://picsum.photos/150?random=3" class="img-round-corners"></div>
@@ -188,6 +188,8 @@
   </div>
 </div>
 
+<!-- Hidden Area
+
 <div class="g-screen-container bg-warning text-center text-light fw-bold">Area below to be deleted</div>
 <h1><%= @activity.name %></h1>
 
@@ -196,9 +198,13 @@
 <p>Adult Price: <%= number_to_currency(@activity.adult_price) %></p>
 <p>Location: <%= @activity.address %></p>
 <p>Suitable For Ages: <%= @activity.age_group %></p>
+<p>Activity Latitude: <%= @activity.latitude %></p>
+<p>Activity Longitude: <%= @activity.longitude %></p>
 
 
-<!-- button -->
+
 <%= simple_form_for [@activity] do |f| %>
   <%= f.submit %>
 <% end %>
+
+-->

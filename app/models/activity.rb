@@ -12,8 +12,8 @@ class Activity < ApplicationRecord
   belongs_to :organizer
   belongs_to :category
   has_and_belongs_to_many :age_groups
-  has_many :google_images
-  # has_many :photos
+  has_one_attached :photo
+  # has_many :google_images
 
   validates :name, :address, presence: true
   validates :adult_price, numericality: { greater_than_or_equal_to: 0 }, presence: true
@@ -30,7 +30,7 @@ class Activity < ApplicationRecord
   # has_attached :photo
 
   # def photo_url
-  #   photo.attached? ? photo.path : google_image_url
+  #   photo.attached? ? photo.path : card_image
   # end
 
   # <img src="#{photo_url}"

@@ -1,30 +1,36 @@
-  <div class="container">
-    <div class="row">
-      <div class="col-6 mx-auto mb-5 mt-3">
+<div class="bg-container">
 
-        <div>Activity Name: <%= @booking.activity.name %></div>
+  <div class="card-trip pb-5">
+    <%= image_tag(@booking.activity.card_image, style: "height:400px;width:100%;object-fit:cover; padding-bottom: 20px;") %>
+    <div class="card-trip-infos">
 
-        <div>Category: <%= @booking.activity.category.name %></div>
+      <div class="container">
 
-        <div>Adult Price: <%= @booking.activity.adult_price %></div>
-
-        <div>Child Price: <%= @booking.activity.child_price %></div>
-
-
-      </div>
-
-    <div class="row">
-      <div class="col-6 mx-auto">
-        <%= simple_form_for [@booking, @review,] do |f| %>
-          <%= f.input :rating, collection: (1..5).to_a, label: "Rate your experience", input_html: {data: {controller: "star-rating"}} %>
-          <%= f.input :comment %>
-          <%= link_to "Return", reviews_path, class: "btn btn-outline-secondary" %>
-          <%= f.button :submit, "Submit", class: 'btn text-white', style: "width: 175px; height: 40px; border-radius: 5px; background-color: #f03827;" %>
+        <div class="row">
+          <div class="col-5">
+            <h1><%=@booking.activity.name %></h1>
+            <h6>Category: <%=@booking.activity.category.name %></h6 >
+            <br>
+            <br>
+            <h6><%=@booking.activity.address %></h6>
+            <p>The Marina Bay Sands (abbreviation: MBS) is a resort and casino hotel in Marina Bay within the Downtown Core district of Singapore. It was opened in 2010. It has been called the world's most expensive standalone casino property at S$8 billion (US$6.88 billion), including the land cost.[1].</p>
           </div>
-        <% end %>
+          <div class="col-7">
+              <%= simple_form_for [@booking, @review,] do |f| %>
+                <%= f.input :rating, collection: (1..5).to_a, label: "Your Rating:", input_html: {data: {controller: "star-rating"}} %>
+                <br>
+                <%= f.input :comment %>
+                <br>
+                <div class="">
+                  <%= link_to "Return", reviews_path, class: "btn btn-outline-secondary" %>
+                  <%= f.button :submit, "Submit", class: 'btn btn-outline-primary' %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        </div>
       </div>
     </div>
 
-      </div>
-    </div>
-  </div>
+
+</div>

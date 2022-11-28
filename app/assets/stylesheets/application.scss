@@ -8,22 +8,12 @@
 @import "font-awesome";
 @import "star-rating.js/dist/star-rating.css";
 @import "simple_calendar";
-@import 'bootstrap/scss/bootstrap';
-
-//@import 'custom';
+@import "@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder";
 
 // Your CSS partials
 @import "components/index";
-@import "components/banner";
-@import "components/card";
-@import "components/form";
-@import "components/button";
-@import "components/image";
-@import "components/widget";
 @import "pages/index";
-@import "pages/homepage";
-@import "components/horizontal_card";
-@import "components/search_bar";
+
 p {
   margin-bottom: 0;
 }
