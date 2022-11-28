@@ -64,11 +64,12 @@
 
           <div class="form-outline mb-4">
             <h5 class="fw-bold">Opening hours</h5>
-
+            <li class="mx-3">Monday to Sunday: 8:30am-6:00pm</li>
           </div>
         </form>
-        <form class="form-purple p-4 m-4">
-          <div style="width: 200px; height: 200px; left:22px top: 80px;" data-controller="map" data-map-markers-value="<%= @markers.to_json %>" data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
+
+        <form class="form-purple p-3 m-4">
+          <div style="height: 200px;" data-controller="map" data-map-markers-value="<%= @markers.to_json %>" data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
         </form>
       </div>
       <div class="col-md-9 d-flex align-items-between flex-column">
@@ -79,11 +80,8 @@
 
           <div class="row">
 
-            <div class="col-lg-8 col-md-12 mb-lg-0 mb-3">
-              <%#
-              <div class="img-preview bg-image" style="height: 600px"><%= image_tag(@activity.card_image, class: "img-preview bg-image", style: "height: 600px") %>
-              <div class="img-preview bg-secondary" style="height: 600px;">
-              </div>
+            <div class="col-lg-8 col-md-12 mb-lg-0 mb-3 d-flex align-items-center">
+              <%= image_tag(@activity.card_image, class: "img-preview bg-image") %>
             </div>
 
             <div class="col-lg-4 mb-lg-0 d-grid">
