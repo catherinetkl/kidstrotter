@@ -1,7 +1,6 @@
 .image-tag {
   height: 100%;
   object-fit: cover;
-  border-radius: 5px;
 }
 
 .h-card {
@@ -11,8 +10,40 @@
 }
 
 .s-card {
+  position: relative;
+  height: 250px;
   background-color: white;
   margin-top: 15px;
-  border: 1px solid black;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  //overflow: hidden;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 4px 15px 0 rgba(0, 0, 0, 0.1);
 
+  p{
+    padding: 2px;
+  }
+}
+
+.card-price {
+  position: absolute;
+  bottom: -3px;
+  right: -2px;
+  background-color: orange;
+  font-size: 14px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 4px 15px 0 rgba(0, 0, 0, 0.1);
+}
+
+.card-add {
+  color: black;
+  font-size: 15px;
+}
+
+.card-age {
+  font-size: 12px;
+}
+
+.button-detail {
+  padding: 1px 10px 1px 10px;
+  position: absolute;
+  bottom: 0;
 }
