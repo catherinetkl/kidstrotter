@@ -45,11 +45,8 @@
       <div class="col">
         <%= link_to activity_path(activity) do %>
           <div class="card-trip">
-          <% if activity.photo.key.nil? %>
-            <%= image_tag(activity.card_image) %>
-          <% else %>
-            <%= cl_image_tag activity.photo.key, class: "img-fluid rounded-start image-tag" %>
-          <% end %>
+          <%= image_tag(activity.card_image) %>
+
             <div class="card-trip-infos">
                 <div>
                   <h2><%= activity.name %></h2>
