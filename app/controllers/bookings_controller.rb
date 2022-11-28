@@ -46,9 +46,9 @@ class BookingsController < ApplicationController
 
   def update
     @booking = Booking.find(params[:id])
-    @booking.update_attributes(bookings_params)
-    if @booking.save
-      redirect_to @booking, notice: 'Successfully changed status'
+    @booking.update(booking_params)
+    if @booking.save!
+      redirect_to organizer_bookings_path
     else
       render 'activities/show', status: :unprocessable_entity
     end
