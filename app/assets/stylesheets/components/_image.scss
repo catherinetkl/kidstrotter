@@ -5,12 +5,13 @@
   overflow: hidden;
   height: 100%;
   border-radius: 20px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
 }
 
 .img-round-corners {
   height: 150px;
   border-radius: 20px;
-  border: 1px solid black;
   margin-top: 20px;
   margin-bottom: 20px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
 }
