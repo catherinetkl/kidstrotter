@@ -8,6 +8,7 @@
 @import "font-awesome";
 @import "star-rating.js/dist/star-rating.css";
 @import "simple_calendar";
+@import "@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder";
 
 // Your CSS partials
 @import "components/index";
@@ -19,6 +20,7 @@
 @import "components/widget";
 @import "pages/index";
 @import "pages/homepage";
+@import "pages/reviewnew";
 @import "components/horizontal_card";
 
 p {

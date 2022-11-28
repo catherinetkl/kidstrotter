@@ -22,9 +22,6 @@
                 <%= f.association :category %>
               </div>
               <div class="mb-3" style="margin: 0 2rem">
-                <div>Your current organization code: (<%= current_user.organizer.id %>)</div>
-                <div>Admin Name: (<%= current_user.first_name %>)</div>
-                <br>
                 <%= f.association :organizer, label: "Organization" %>
               </div>
               <div class="mb-3" style="margin: 0 2rem">
@@ -45,6 +42,10 @@
 
               <div class="mb-3" style="margin: 0 2rem">
                 <%= f.input :age_group %>
+              </div>
+
+              <div class="mb-3 gravatar_edit" style="margin: 0 2rem">
+                <%= f.file_field :avatar, placeholder: 'Upload picture',direct_upload: true%>
               </div>
 
               <div class="mb-3" style="margin: 0 2rem">
