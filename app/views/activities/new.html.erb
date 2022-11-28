@@ -18,12 +18,11 @@
               <div class="mb-3" style="margin: 0 2rem">
                 <%= f.input :name %>
               </div>
+
               <div class="mb-4" style="margin: 0 2rem">
                 <%= f.association :category %>
               </div>
-              <div class="mb-3" style="margin: 0 2rem">
-                <%= f.association :organizer, label: "Organization" %>
-              </div>
+
               <div class="mb-3" style="margin: 0 2rem">
                 <%= f.input :description %>
               </div>
@@ -44,11 +43,10 @@
                 <%= f.input :age_group %>
               </div>
 
-              <div class="mb-3 gravatar_edit" style="margin: 0 2rem">
-                <%= f.file_field :avatar, placeholder: 'Upload picture',direct_upload: true%>
+              <div class="mb-3" style="margin: 0 2rem">
+                <%= f.input :photo, as: :file %>
               </div>
 
-              <div class="mb-3" style="margin: 0 2rem">
               <br>
               <div class="form-actions" style= "margin: 0 2rem;">
                 <%= link_to "Return", activities_path, class: "btn btn-outline-secondary", style: "margin-left: 65px; margin-right: 45px; width: 185px; height: 40px; border-radius: 5px;" %>
