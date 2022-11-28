@@ -1,5 +1,6 @@
 class ReviewsController < ApplicationController
   before_action :authenticate
+  # please
 
   def index
     # @reviews = Review.where(user: current_user)
