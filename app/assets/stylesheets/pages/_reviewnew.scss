@@ -1,10 +1,14 @@
 .bg-container {
   background-color: white;
-  height: 1000px;
+  height: 100%;
   h1 {
+    padding-top: 5px;
     font-size: 30px;
     text-align: start;
   };
+  p {
+    width: 450px;
+  }
 }
 
 .review-card1 {
@@ -35,7 +39,7 @@
 }
 
 .card-trip .card-trip-infos {
-  padding-top: 10px;
+  padding-top: 15px;
   padding-bottom: 10px;
   display: flex;
   justify-content: space-between;

@@ -39,6 +39,8 @@ puts test_hash['ORTO']
 puts %(Cleaning up database...)
 
 puts %(Cleaning up bookings...)
+Review.destroy_all
+puts %(Cleaning up bookings...)
 Booking.destroy_all
 puts %(Cleaning up images...)
 GoogleImage.destroy_all

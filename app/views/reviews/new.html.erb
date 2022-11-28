@@ -9,6 +9,11 @@
         <div class="row">
           <div class="col-5">
             <h1><%=@booking.activity.name %></h1>
+            <h6>Category: <%=@booking.activity.category.name %></h6 >
+            <br>
+            <br>
+            <h6><%=@booking.activity.address %></h6>
+            <p>The Marina Bay Sands (abbreviation: MBS) is a resort and casino hotel in Marina Bay within the Downtown Core district of Singapore. It was opened in 2010. It has been called the world's most expensive standalone casino property at S$8 billion (US$6.88 billion), including the land cost.[1].</p>
           </div>
           <div class="col-7">
               <%= simple_form_for [@booking, @review,] do |f| %>
