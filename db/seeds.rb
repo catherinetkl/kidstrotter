@@ -27,6 +27,15 @@ event_names = {
   }
 }
 
+filepath = 'lib/geometry.csv'
+test_hash = {}
+
+CSV.foreach(filepath) do |row|
+  test_hash[row[0]] = [row[1], row[2], row[3]]
+end
+
+puts test_hash['ORTO']
+
 puts %(Cleaning up database...)
 
 puts %(Cleaning up bookings...)
@@ -95,22 +104,22 @@ event_names.keys.each do |category_name|
 
   ["paid", "unpaid"].each do |need_pay_or_not|
     pp "Creating #{need_pay_or_not} activities......"
-    event_names[category_name][need_pay_or_not].each do |event_name|
+    event_names[category_name][need_pay_or_not].each do |activity_name|
 
-      pp "Trying to create Activity #{event_name}"
+      pp "Trying to create Activity #{activity_name}"
 
 
     activity =
         Activity.create!(
-          name: event_name,
+          name: activity_name,
           description: ['Lorem Ipsum'].sample,
-          address: "18 Marina Gardens Dr, Singapore 018953",
+          address: test_hash[activity_name][0],
           require_booking: need_pay_or_not == "paid",
           require_payment: need_pay_or_not == "paid",
           adult_price: 50,
           child_price: 20,
-          latitude: 1.284862,
-          longitude: 103.8640812,
+          latitude: test_hash[activity_name][1],
+          longitude: test_hash[activity_name][2],
           age_group: '6-9',
           organizer: Organizer.all.sample,
           category: category
