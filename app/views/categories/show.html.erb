@@ -4,17 +4,17 @@
   </div>
   <div class="form">
     <%= form_with url: activities_path, method: :get, class: "d-flex" do %>
-      <%= text_field_tag :query,params[:query],class: "form-control", placeholder: "Find a activity"%>
-      <%= submit_tag "Search", class: "btn btn-success" %>
+      <%= text_field_tag :query,params[:query],class: "form-control search-bar", placeholder: "Search..."%>
+      <%= submit_tag "Search", class: "btn btn-success search-btn" %>
     <% end %>
   </div>
 </div>
 <div class="container d-flex mb-2">
   <div>
-    <div class="card mb-3" style="max-width: 700px;">
+    <div class="card mb-3 h-card" style="max-width: 700px;">
       <% @activities.each do |activity| %>
 
-        <div class="row g-0" style="border: 1px solid black; margin-top: 15px;">
+        <div class="row g-0 s-card icon-container">
           <div class="col-md-4">
             <% if activity.photo.key.nil? %>
               <%= image_tag(activity.card_image, class: "img-fluid rounded-start image-tag") %>
@@ -25,17 +25,17 @@
           <div class="col-md-8">
             <div class="card-body">
               <h5 class="card-title"><strong><%= activity.name %></strong></h5>
-              <p class="card-text"><%= activity.address %></p>
-              <p class="card-text">Suitable For Ages: <%= activity.age_group %></p>
-              <p class="card-trip-pricing">
+              <p class="card-text card-add">📍<%= link_to activity.address, '#' %></p>
+              <p class="card-text card-age">Suitable For Ages: <%= activity.age_group %></p>
+              <p class="card-text card-add">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod. Ut enim ad minim veniam </p>
+              <p class="card-trip-pricing card-price">
                 <% if activity.adult_price == 0%>
                   Free
                 <% else %>
-                  $<%= sprintf('%.2f', activity.adult_price) %>
+                  From S$<%= sprintf('%.2f', activity.adult_price) %>
                 <% end %>
               </p>
-              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-              <%= link_to('Book Now', activity_path(activity), class: "btn btn-primary", type: "button", style: "border-radius: 5px;") %>
+              <%= link_to('More details', activity_path(activity), class: "btn purple-btn-solid btn-detail mt-2 fs-6", type: "button", style: "border-radius: 5px; padding: 1px 10px 1px 10px") %>
             </div>
           </div>
         </div>
@@ -44,6 +44,6 @@
     </div>
   </div>
 
-  <div style="width: 800px; height: 730px; float: right; position: sticky; bottom: 1rem;
-  align-self: flex-end;" data-controller="map" data-map-markers-value="<%= @markers.to_json %>" data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
+  <div style="width: 700px; height: 500px; float: right; position: sticky; bottom: 1rem;
+  align-self: flex-end; margin-top: 15px;" data-controller="map" data-map-markers-value="<%= @markers.to_json %>" data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
 </div>
