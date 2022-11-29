@@ -76,7 +76,7 @@ end
 organizing_user = User.create!(
   first_name: Faker::Name.name,
   last_name: Faker::Name.name,
-  email: ['admin@admin.com', 'admin2@admin.com'].sample,
+  email: 'admin@admin.com',
   password: 123_456
 )
 puts "User with id: #{organizing_user.id} has been created"

@@ -9,6 +9,13 @@
 @import "star-rating.js/dist/star-rating.css";
 @import "simple_calendar";
 @import "@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder";
+@import "bootstrap-icons/font/bootstrap-icons";
+@font-face {
+  font-family: "bootstrap-icons";
+  src: font-url("bootstrap-icons/font/fonts/bootstrap-icons.woff2") format("woff2"),
+    font-url("bootstrap-icons/font/fonts/bootstrap-icons.woff") format("woff");
+}
+
 
 // Your CSS partials
 @import "components/index";

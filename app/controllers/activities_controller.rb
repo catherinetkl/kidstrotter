@@ -1,7 +1,18 @@
 class ActivitiesController < ApplicationController
+  before_action :set_activity, only: %i[show favorite unfavorite]
+
   def homepage
     @categories = Category.all
     @activities = Activity.first(3)
+  end
+
+  def favorite
+    current_user.favorited?(@activity) ? current_user.unfavorite(@activity) : current_user.favorite(@activity)
+
+    respond_to do |format|
+      format.html { redirect_to activities_path }
+      format.text { render partial: 'bookmark', formats: :html, locals: { current_user: current_user, activity: @activity }}
+    end
   end
 
   def index
@@ -17,7 +28,6 @@ class ActivitiesController < ApplicationController
   end
 
   def show
-    @activity = Activity.find(params[:id])
     @bookmark = Bookmark.new
 
     @markers = [{
@@ -44,6 +54,10 @@ class ActivitiesController < ApplicationController
   end
 
   private
+
+  def set_activity
+    @activity = Activity.find(params[:id])
+  end
 
   def activity_params
     params.require(:activity).permit(:name, :description, :address, :adult_price, :child_price, :age_group, :category_id, :photo)

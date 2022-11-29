@@ -8,6 +8,10 @@ Rails.application.routes.draw do
   end
 
   resources :activities do
+    member do
+      get :favorite
+    end
+
     resources :bookings, only: %i[create new]
     resources :bookmarks, only: %i[create new]
   end
@@ -20,6 +24,7 @@ Rails.application.routes.draw do
   resources :bookmarks, only: %i[index show destroy]
   resources :reviews, only: %i[index destroy]
   resources :activities
+
 
   get '/organizer_bookings', to: 'bookings#organizer_index', as: :organizer_bookings
 end
