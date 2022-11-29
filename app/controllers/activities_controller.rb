@@ -16,12 +16,12 @@ class ActivitiesController < ApplicationController
   end
 
   def index
-    @activities = Activity.all
     @categories = Category.all
 
     if params[:query].present?
       @activities = Activity.search_by_activity_and_category(params[:query])
-
+    elsif params[:require_payment].present?
+      @activities = Activity.where(require_payment: params[:require_payment])
     else
       @activities = Activity.all
     end

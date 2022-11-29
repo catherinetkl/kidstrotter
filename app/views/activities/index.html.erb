@@ -3,6 +3,8 @@
   <div class="form">
     <%= form_with url: activities_path, method: :get, class: "d-flex" do %>
       <%= text_field_tag :query,params[:query],class: "form-control search-bar", placeholder: "Search..."%>
+      <%= select_tag :require_payment, options_for_select([ ["None", nil], ["Free", false], ["Paid", true] ], ["Free"])%>
+
       <%= submit_tag "Search", class: "btn btn-success search-btn" %>
     <% end %>
   </div>
@@ -35,6 +37,7 @@
                   Free
                 <% else %>
                   From S$<%= sprintf('%.2f', activity.adult_price) %>
+                  From S$<%= sprintf('%.2f', activity.child_price) %>
                 <% end %>
               </p>
               <%= link_to('More details', activity_path(activity), class: "btn purple-btn-solid btn-detail mt-2 fs-6", type: "button", style: "border-radius: 5px; padding: 1px 10px 1px 10px") %>
