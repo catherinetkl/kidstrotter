@@ -24,6 +24,10 @@ class Activity < ApplicationRecord
                   associated_against: { category: %i[name] },
                   using: { tsearch: { prefix: true } }
 
+  # pg_search_scope_2 :search_by_activity_and_category,
+  #                   against: %i[name],
+  #                   associated_against: { category: %i[name] },
+  #                   using: { tsearch: { any_word: true } }
   # before_save :update_google_image_urls
 
   # TODO
