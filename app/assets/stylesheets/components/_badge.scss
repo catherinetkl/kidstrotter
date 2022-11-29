@@ -4,11 +4,30 @@
 }
 
 .badge-green {
-  background-color: aquamarine;
-  color: black;
+  background-color: green;
+  color: white;
 }
 
 .badge-yellow {
-  background-color: rgb(255, 255, 120);
+  background-color: rgb(214, 214, 73);
+  color: black;
+}
+
+.badge-orange {
+  background-color: orange;
+  color: black;
+  font-size: medium;
+  border: 2px solid black;
+}
+
+.badge-orange:hover {
+  background-color: yellow;
+  color: purple;
+  font-size: medium;
+  border: 2px solid purple;
+}
+
+.badge-orange-plain {
+  background-color: orange;
   color: black;
 }
