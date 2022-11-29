@@ -13,8 +13,4 @@ class Booking < ApplicationRecord
   def completed?
     true
   end
-
-  def organizer?
-    current_user.organizer = true
-  end
 end
