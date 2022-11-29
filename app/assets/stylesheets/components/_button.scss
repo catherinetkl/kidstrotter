@@ -12,6 +12,7 @@
 }
 
 .purple-btn-solid {
+  align-items: center;
   font-size: larger;
   color: white;
   background: #605DEC;
@@ -23,6 +24,7 @@
 }
 
 .purple-btn-outline {
+  align-items: center;
   font-size: larger;
   border: 1px solid #605DEC;
   border-radius: 4px;
@@ -32,4 +34,20 @@
   border: 1px solid #B6B2F3;
   border-radius: 4px;
   background: #B6B2F3;
+}
+
+.red-btn-solid {
+  align-items: center;
+  font-size: larger;
+  color: white;
+  background: rgb(185, 40, 40);
+  border-radius: 4px;
+}
+
+.red-btn-solid:hover {
+  align-items: center;
+  font-size: larger;
+  color: white;
+  background: rgb(100, 50, 50);
+  border-radius: 4px;
 }
