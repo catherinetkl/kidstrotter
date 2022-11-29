@@ -1,45 +1,36 @@
-<div class="container pt-2">
-  <div class="d-flex p-3">
-    <h3>Patron List</h3>
-  </div>
-</div>
+<div class="container d-flex mb-2">
+  <div>
+    <div class="card mb-3 h-card" style="max-width: 700px;">
+      <% @bookings.each do |booking| %>
 
-<div class="container">
-  <div class="d-flex p-3">
-
-      <div>
-        <table class="table table-striped table-hover text-center", style="width:1200px;">
-          <thead>
-            <tr>
-              <div>
-                <th colspan="10">No.</th>
-                <th colspan="10">User</th>
-                <th colspan="10">Activity</th>
-                <th colspan="10">Status</th>
-                <th colspan="10"></th>
-              <div>
-            </tr>
-          </thead>
-
-          <tbody>
-            <% @bookings.each_with_index do | booking, index| %>
-              <td colspan="10"><%= index + 1 %></td>
-              <td colspan="10"><%= booking.user.first_name %></td>
-              <td colspan="10"><%= booking.activity.name %></td>
-              <td colspan="10"><%= booking.status %></td>
-              <td colspan="10">
-
-              <div class ="mx-10 px-10 text-end">
-                <%= link_to 'Approve' , edit_booking_path(booking, request: {status: 'Booked'}) %>
-                <%= link_to "Reject" , booking_path(booking), style: "margin-right:20px; margin-top: 12px;",data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%>
-              </div>
-            </tr>
-
+        <div class="row g-0 s-card icon-container">
+          <div class="col-md-4">
+            <% if booking.activity.photo.key.nil? %>
+              <%= image_tag(booking.activity.card_image, class: "img-fluid rounded-start image-tag") %>
+            <% else %>
+              <%= cl_image_tag booking.activitiy.photo.key, class: "img-fluid rounded-start image-tag" %>
             <% end %>
-            </div>
-          </tbody>
+          </div>
+          <div class="col-md-8">
 
-        </table>
-      <div>
+            <div class="card-body">
+              <h5 class="card-title"><strong><%= booking.activity.name %></strong></h5>
+              <p class="card-text card-add"><%= link_to booking.activity.address, '#' %></p>
+              <p class="card-text card-age">Suitable For Ages: <%= booking.activity.age_group %></p>
+              <p class="card-text card-add">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</p>
+
+              <br>
+
+              <%= simple_form_for(booking) do |f| %>
+               <%= f.input :status, collection: Booking::STATUSES, label: false%>
+              <% end %>
+             </div>
+
+            </div>
+
+          </div>
+        </div>
+
+      <% end %>
+    </div>
   </div>
-</div>

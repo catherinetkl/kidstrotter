@@ -8,5 +8,13 @@ class Booking < ApplicationRecord
   validates :status, presence: true
   has_many :reviews, dependent: :nullify
 
-  STATUSES = %w[ Booked Completed ]
+  STATUSES = %w[ Pending Booked Completed ]
+
+  def completed?
+    true
+  end
+
+  def organizer?
+    current_user.organizer = true
+  end
 end
