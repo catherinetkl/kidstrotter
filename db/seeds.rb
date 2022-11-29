@@ -71,19 +71,19 @@ pp "==================="
     password: 123_456
   )
   puts "User with id: #{attending_user.id} has been created"
-
-  organizing_user = User.create!(
-    first_name: Faker::Name.name,
-    last_name: Faker::Name.name,
-    email: Faker::Internet.email,
-    password: 123_456
-  )
-  puts "User with id: #{organizing_user.id} has been created"
-
-  organizer = Organizer.create!(user: organizing_user)
-  puts "Organizer with id: #{organizer.id} has been created"
-
 end
+
+organizing_user = User.create!(
+  first_name: Faker::Name.name,
+  last_name: Faker::Name.name,
+  email: ['admin@admin.com', 'admin2@admin.com'].sample,
+  password: 123_456
+)
+puts "User with id: #{organizing_user.id} has been created"
+
+organizer = Organizer.create!(user: organizing_user)
+puts "Organizer with id: #{organizer.id} has been created"
+
 
 pp "==================="
 pp "POPULATING AGE GROUPS"
@@ -122,7 +122,7 @@ event_names.keys.each do |category_name|
           child_price: 20,
           latitude: test_hash[activity_name][1],
           longitude: test_hash[activity_name][2],
-          age_group: '6-9',
+          age_group: '4-12',
           organizer: Organizer.all.sample,
           category: category
         )

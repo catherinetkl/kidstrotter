@@ -14,9 +14,15 @@
     <div class="card mb-3 h-card" style="max-width: 700px;">
       <% @activities.each do |activity| %>
 
+
+
         <div class="row g-0 s-card icon-container">
           <div class="col-md-4">
-            <%= image_tag(activity.card_image, class: "img-fluid rounded-start image-tag") %>
+            <% if activity.photo.key.nil? %>
+              <%= image_tag(activity.card_image, class: "img-fluid rounded-start image-tag") %>
+            <% else %>
+              <%= cl_image_tag activity.photo.key, class: "img-fluid rounded-start image-tag" %>
+            <% end %>
           </div>
           <div class="col-md-8">
             <div class="card-body">
@@ -33,7 +39,7 @@
                 <% end %>
               </p>
               <%= link_to('More details', activity_path(activity), class: "btn purple-btn-solid btn-detail mt-2 fs-6", type: "button", style: "border-radius: 5px; padding: 1px 10px 1px 10px") %>
-              <p class="card-text card-rating">4.9 reviews (2153)</p>
+              <p class="card-text card-rating">⭐</i>4.9 reviews (2153)</p>
             </div>
           </div>
         </div>
