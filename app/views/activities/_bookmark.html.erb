@@ -1,0 +1,4 @@
+
+  <%= link_to favorite_activity_path(activity), data: { action: "click->bookmark#toggleFavorite" } do %>
+    <i class="bi bi-bookmark<%= '-fill' if current_user.favorited?(activity) %>"></i>
+  <% end %>

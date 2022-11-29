@@ -14,6 +14,7 @@ class Activity < ApplicationRecord
   has_and_belongs_to_many :age_groups
   has_one_attached :photo
   # has_many :google_images
+  acts_as_favoritable
 
   validates :name, :address, presence: true
   validates :adult_price, numericality: { greater_than_or_equal_to: 0 }, presence: true

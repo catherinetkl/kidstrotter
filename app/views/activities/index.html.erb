@@ -14,7 +14,7 @@
     <div class="card mb-3 h-card" style="max-width: 700px;">
       <% @activities.each do |activity| %>
 
-        <div class="row g-0 s-card icon-container">
+        <div class="row g-0 s-card">
           <div class="col-md-4">
             <% if activity.photo.key.nil? %>
               <%= image_tag(activity.card_image, class: "img-fluid rounded-start image-tag") %>
@@ -25,6 +25,11 @@
           <div class="col-md-8">
             <div class="card-body">
               <h5 class="card-title"><strong><%= activity.name %></strong></h5>
+
+              <div class="bookmark-container" data-controller="bookmark">
+                <%= render 'bookmark', activity: activity %>
+              </div>
+
               <p class="card-text card-add">📍<%= link_to activity.address, '#' %></p>
               <p class="card-text card-age">Suitable For Ages: <%= activity.age_group %></p>
               <p class="card-text card-add">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</p>
@@ -38,6 +43,7 @@
               </p>
               <%= link_to('More details', activity_path(activity), class: "btn purple-btn-solid btn-detail mt-2 fs-6", type: "button", style: "border-radius: 5px; padding: 1px 10px 1px 10px") %>
               <p class="card-text card-rating">⭐</i>4.9 reviews (2153)</p>
+
             </div>
           </div>
         </div>
