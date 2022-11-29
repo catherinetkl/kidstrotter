@@ -48,7 +48,7 @@
           <% if activity.photo.key.nil? %>
            <%= image_tag(activity.card_image) %>
           <% else %>
-           <%= cl_image_tag activity.photo.key, class: "img-fluid rounded-start image-tag" %>
+           <%= cl_image_tag activity.photo.key %>
           <% end %>
 
             <div class="card-trip-infos">

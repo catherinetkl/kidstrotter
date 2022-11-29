@@ -23,7 +23,11 @@
   <div class="d-flex p-0 m-0">
     <% @bookings.each do |booking| %>
       <div class="card-product">
-        <%= image_tag(booking.activity.card_image, class: "img-preview bg-image mt-4 mb-3") %>
+        <% if booking.activity.photo.key.nil? %>
+         <%= image_tag(booking.activity.card_image, class: "img-preview bg-image mt-4 mb-3") %>
+        <% else %>
+         <%= cl_image_tag booking.activity.photo.key, class: "img-fluid rounded-start image-tag" %>
+        <% end %>
            <div class="card-product-infos">
               <h2><%= booking.activity.name %></h2>
               <p><%= booking.start_time %></p>
