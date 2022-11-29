@@ -50,7 +50,13 @@
   <div class="">
     <% @bookings.each do |booking| %>
       <div class="card-product">
-        <%= image_tag(booking.activity.card_image, class: "img-preview bg-image") %>
+
+        <% if booking.activity.photo.key.nil? %>
+         <%= image_tag(booking.activity.card_image, class: "img-preview bg-image") %>
+        <% else %>
+         <%= cl_image_tag booking.activity.photo.key, class: "img-fluid rounded-start image-tag" %>
+        <% end %>
+
            <div class="card-product-infos">
               <h2><%= booking.activity.name %></h2>
               <p><%= booking.start_time.ctime %></p>

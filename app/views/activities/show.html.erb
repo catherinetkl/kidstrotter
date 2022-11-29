@@ -85,8 +85,10 @@
                 <%= image_tag(@activity.card_image, class: %(img-preview bg-image flex-fill), style: %(max-height: 600px;)) %>
               <% else %>
                 <%= cl_image_tag @activity.photo.key, class: %(img-preview bg-image flex-fill image-tag), style: %(max-height: 600px;) %>
+                
               <% end %>
             </div>
+
 
             <div class="col-lg-4 mb-lg-0 d-grid">
               <div class="img-preview bg-image align-self-end mb-2" style="background-image: url('https://picsum.photos/800?random=1'); height: 290px;"></div>

@@ -1,6 +1,5 @@
 class ReviewsController < ApplicationController
   before_action :authenticate
-  # please
 
   def index
     # @reviews = Review.where(user: current_user)
@@ -13,7 +12,6 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    @activity = Activity.find(params[:activity_id])
     @booking = Booking.find(params[:booking_id])
 
     @review = Review.new(review_params)
