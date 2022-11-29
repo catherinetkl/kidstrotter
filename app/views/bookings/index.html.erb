@@ -1,5 +1,5 @@
-<div class="container">
-
+<div class="container mt-4">
+  <h1 class="fw-bold">Bookings</h1>
   <div class="simple-calendar">
     <%= month_calendar(events: @bookings) do |date, bookings| %>
       <div>
@@ -17,20 +17,49 @@
   </div>
 
 </div>
-<br>
+
+<% @bookings.each do |booking| %>
+  <div class="container my-3">
+    <div class="card-body">
+      <div class="card-review">
+        <div class="row m-0">
+          <div class="col-lg-3 p-0 d-flex"><%= image_tag(booking.activity.card_image, class: %(img-preview bg-image flex-fill), style: %(max-height: 300px;)) %></div>
+          <div class="col-lg-8 vstack">
+            <span class="h2 fw-bold"><%= booking.activity.name %></span>
+            <p><i class="fa-solid fa-location-dot"></i> <%= booking.activity.address %></p>
+            <p class="text-bg-success"><%= booking.start_time.strftime('%a %d %b %Y') %></p>
+            <span><%= booking.activity.category.name %></span>
+            <span><%= booking.adult_qty %></span>
+            <span><%= booking.child_qty %></span>
+            <span><%= booking.status %></span>
+            <span><%= booking.activity.organizer.user.first_name %></span>
+          </div>
+          <div class="col-lg-1 vstack">
+            Button1
+            Button2
+            Button3
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
 
 <div class="container">
-  <div class="d-flex p-0 m-0">
+  <div class="">
     <% @bookings.each do |booking| %>
       <div class="card-product">
+
         <% if booking.activity.photo.key.nil? %>
-         <%= image_tag(booking.activity.card_image, class: "img-preview bg-image mt-4 mb-3") %>
+         <%= image_tag(booking.activity.card_image, class: "img-preview bg-image") %>
         <% else %>
          <%= cl_image_tag booking.activity.photo.key, class: "img-fluid rounded-start image-tag" %>
         <% end %>
+
            <div class="card-product-infos">
               <h2><%= booking.activity.name %></h2>
-              <p><%= booking.start_time %></p>
+              <p><%= booking.start_time.ctime %></p>
               <p><%= booking.activity.category.name %></p>
               <p><%= booking.adult_qty %></p>
               <p><%= booking.child_qty %></p>

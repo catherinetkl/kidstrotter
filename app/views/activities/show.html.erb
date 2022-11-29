@@ -52,19 +52,19 @@
         <form class="form-purple p-4 m-4">
           <div class="form-outline mb-4">
             <h5 class="fw-bold">Package details</h5>
-            <h6><span class="d-grid badge text-bg-light text-wrap text-start">No cancellation</span></h6>
-            <h6><span class="d-grid badge text-bg-light text-wrap text-start">Instant confirmation</span></h6>
-            <h6><span class="d-grid badge text-bg-light text-wrap text-start">Book now for today</span></h6>
+            <h6><span class="d-grid badge badge-pink text-wrap text-start">No cancellation</span></h6>
+            <h6><span class="d-grid badge badge-pink text-wrap text-start">Instant confirmation</span></h6>
+            <h6><span class="d-grid badge badge-pink text-wrap text-start">Book now for today</span></h6>
           </div>
 
           <div class="form-outline mb-4">
             <h5 class="fw-bold">Eligibility</h5>
-            <li class="mx-3">Children aged 0-3 can enter free of charge</li>
+            <h6><span class="d-grid badge badge-green text-wrap text-start">Children aged 0-3 can enter free of charge</span></h6>
           </div>
 
           <div class="form-outline mb-4">
             <h5 class="fw-bold">Opening hours</h5>
-            <li class="mx-3">Monday to Sunday: 8:30am-6:00pm</li>
+            <h6><span class="d-grid badge badge-yellow text-wrap text-start">Monday to Sunday: 8:30am-6:00pm</span></h6>
           </div>
         </form>
 
@@ -82,9 +82,10 @@
 
             <div class="col-lg-8 col-md-12 mb-lg-0 mb-3 d-flex align-items-center">
               <% if @activity.photo.key.nil? %>
-                <%= image_tag(@activity.card_image, class: "img-preview bg-image flex-fill", style: %(max-height: 600px;)) %>
+                <%= image_tag(@activity.card_image, class: %(img-preview bg-image flex-fill), style: %(max-height: 600px;)) %>
               <% else %>
-                <%= cl_image_tag activity.photo.key, class: "img-fluid rounded-start image-tag" %>
+                <%= cl_image_tag @activity.photo.key, class: %(img-preview bg-image flex-fill image-tag), style: %(max-height: 600px;) %>
+                
               <% end %>
             </div>
 
