@@ -16,6 +16,10 @@ class ActivitiesController < ApplicationController
     end
   end
 
+  def organizer_index
+    @activities = Activity.where(organizer: current_user.organizer)
+  end
+
   def show
     @activity = Activity.find(params[:id])
     @bookmark = Bookmark.new

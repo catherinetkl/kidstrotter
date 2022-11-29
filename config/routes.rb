@@ -22,4 +22,5 @@ Rails.application.routes.draw do
   resources :activities
 
   get '/organizer_bookings', to: 'bookings#organizer_index', as: :organizer_bookings
+  get '/organizer_activities', to: 'activities#organizer_index', as: :organizer_activities
 end
