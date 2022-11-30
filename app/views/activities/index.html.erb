@@ -50,7 +50,6 @@
                   Free
                 <% else %>
                   From S$<%= sprintf('%.2f', activity.adult_price) %>
-                  From S$<%= sprintf('%.2f', activity.child_price) %>
                 <% end %>
               </p>
               <%= link_to('More details', activity_path(activity), class: "btn purple-btn-solid btn-detail mt-2 fs-6", type: "button", style: "border-radius: 5px; padding: 1px 10px 1px 10px") %>
