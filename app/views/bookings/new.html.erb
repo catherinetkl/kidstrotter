@@ -15,7 +15,7 @@
 
     <div class="row">
       <div class="col-6 mx-auto">
-        <%= simple_form_for [@activity, @booking,] do |f| %>
+        <%= simple_form_for [@activity, @booking] do |f| %>
                   <%= f.input :adult_qty %>
                   <%= f.input :child_qty %>
                   <%= f.input :start_time, label: "Booking Date" %>
