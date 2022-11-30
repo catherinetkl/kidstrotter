@@ -5,9 +5,10 @@
       <h6><%= date.day %></h6>
 
       <% bookings.each do |booking| %>
+        <% act = sprintf("%02d", "#{booking.activity.id}") %>
         <%=
-          link_to %(<i class="fa-solid fa-location-pin"></i> #{booking.activity.id}).html_safe, booking_path(booking),
-          class: %(badge badge-orange text-wrap mb-lg-0 mb-2),
+          link_to %(<i class="fa-solid fa-location-pin"></i> #{act}).html_safe, booking_path(booking),
+          class: %(badge badge-orange text-wrap mb-2),
           title: %(#{booking.activity.name})
         %>
       <% end %>
@@ -17,11 +18,14 @@
 </div>
 
 <% @bookings.each do |booking| %>
+  <% act = sprintf("%02d", "#{booking.activity.id}") %>
   <div class="container my-3">
     <div class="card-body">
       <div class="card-review">
         <div class="row m-0">
-          <div class="col-lg-4 col-md-6 mb-lg-0 mb-3 p-0 d-flex"><%= image_tag(booking.activity.card_image, class: %(img-preview bg-image flex-fill align-self-center), style: %(max-height: 250px;)) %></div>
+          <div class="col-lg-4 col-md-6 mb-lg-0 mb-3 p-0 d-flex">
+            <%= image_tag(booking.activity.card_image, class: %(img-preview bg-image flex-fill align-self-center), style: %(max-height: 250px;)) %>
+          </div>
           <div class="col-lg-8 col-md-6 vstack">
             <span class="h2 fw-bold"><%= booking.activity.name %></span>
             <h6><i class="fa-solid fa-location-dot"></i> <%= booking.activity.address %></h6>
@@ -30,14 +34,16 @@
             <h5>
               <span class="badge badge-yellow text-wrap mb-lg-0 mb-2"><%= booking.activity.category.name %></span>
               <span class="badge badge-green text-wrap mb-lg-0 mb-2">Booking Status: <%= booking.status %></span>
-              <span class="badge badge-orange-plain text-wrap mb-lg-0 mb-2">Booking ID: <i class="fa-solid fa-location-pin"></i> <%= booking.activity.id %></span>
+              <span class="badge badge-orange-plain text-wrap mb-lg-0 mb-2">Booking ID: <i class="fa-solid fa-location-pin"></i> <%= act %></span>
             </h5>
             <h6>
               <span>Booked for: <%= booking.adult_qty %> adults,</span>
               <span><%= booking.child_qty %> children</span>
             </h6>
             <div class="d-flex flex-wrap justify-content-between">
-              <h1 class="fw-bold"><%= number_to_currency((booking.adult_qty * booking.activity.adult_price) + (booking.child_qty * booking.activity.child_price)) %></h1>
+              <h1 class="fw-bold">
+                <%= number_to_currency((booking.adult_qty * booking.activity.adult_price) + (booking.child_qty * booking.activity.child_price)) %>
+              </h1>
               <div class="d-flex d-inline flex-wrap gap-2">
                 <%= link_to "Activity details", booking_path(booking), class: %(btn purple-btn-solid d-grid fs-6) %>
                 <%= link_to "Leave a review", new_booking_review_path(booking), class: %(btn purple-btn-outline d-grid fs-6) %>
