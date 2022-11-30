@@ -13,7 +13,6 @@
               <th colspan="10">ID</th>
               <th colspan="10">Activity</th>
               <th colspan="10">Location</th>
-              <th colspan="10">Description</th>
               <th colspan="10">Adult Price</th>
               <th colspan="10">Child Price</th>
               <th colspan="10">Age Group</th>
@@ -26,17 +25,22 @@
               <td colspan="10"><%= index + 1 %></td>
               <td colspan="10"><%= bookmark.name %></td>
               <td colspan="10"><%= bookmark.address %></td>
-              <td colspan="10"><%= bookmark.description %></td>
               <td colspan="10"><%= number_to_currency(bookmark.adult_price) %></td>
               <td colspan="10"><%= number_to_currency(bookmark.child_price) %></td>
               <td colspan="10"><%= bookmark.age_group %></td>
               <td colspan="10">
+              <div class="d-flex justify-content-end align-items-center">
+                <div class ="mx-10 px-10 text-end">
+                  <% if bookmark.adult_price == 0 %>
 
-              <div class ="mx-10 px-10 text-end">
-                <%= link_to "Delete", unfavorite_activity_path(bookmark, page: 'bookmarks'), class: "btn btn-sm", style: "margin-right: 10px; background-color: #2dbdb4; color: white; border-radius: 10px", data: {turbo_confirm: "Are you sure?"} %>
-                <%#= link_to "Delete", bookmark_path(bookmark), class: "btn btn-sm", style: "margin-right: 10px; background-color: #2dbdb4; color: white; border-radius: 10px", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+                  <% else %>
+                    <%= link_to "Book", new_activity_booking_path(bookmark), class: "btn btn-sm", style: "margin-right: 10px; background-color: #2dbdb4; color: white; border-radius: 10px" %>
+                  <% end %>
+                </div>
+                <div class ="mx-10 px-10 text-end">
+                  <%= link_to "🗑", unfavorite_activity_path(bookmark, page: 'bookmarks'), class: "btn btn-sm", style: "margin-right: 10px; background-color: red; color: white; border-radius: 10px", data: {turbo_confirm: "Are you sure?"} %>
+                </div>
               </div>
-
               </td>
             </tr>
           <% end %>
@@ -44,6 +48,8 @@
       </table>
       </div>
     </div>
-  <%= link_to "Return to Listing", activities_path %>
   </div>
+</div>
+<div class="container d-flex justify-content-start" style="margin-left: 100px;">
+  <%= link_to "Return to Listing", activities_path, class: "btn btn-sm" , style: "background-color: red; color: white; border-radius: 10px" %>
 </div>
