@@ -1,4 +1,74 @@
-<div class="container mt-4">
+<div class="container-fluid row mt-4 m-0 p-0">
+
+  <div class="m-0 p-0 col-xxl-4">
+    <div class="container-fluid">
+      <div class="fixation-large m-0 p-0 col-xxl-4 pe-xxl-2">
+        <h1 class="fw-bold">Your Bookings</h1>
+        <%= month_calendar(events: @bookings) do |date, bookings| %>
+          <h6><%= date.day %></h6>
+
+          <% bookings.each do |booking| %>
+            <% act = sprintf("%02d", "#{booking.activity.id}") %>
+            <%=
+              link_to %(<i class="fa-solid fa-location-pin"></i> #{act}).html_safe, booking_path(booking),
+              class: %(badge badge-orange text-wrap mb-2),
+              title: %(#{booking.activity.name})
+            %>
+          <% end %>
+
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="m-0 p-0 col-xxl-8">
+    <% @bookings.each do |booking| %>
+      <% act = sprintf("%02d", "#{booking.activity.id}") %>
+      <div class="container-fluid mb-3">
+        <div class="card-body">
+          <div class="card-review">
+            <div class="row m-0">
+              <div class="col-lg-4 col-md-6 mb-lg-0 mb-3 p-0 d-flex">
+                <%= image_tag(booking.activity.card_image, class: %(img-preview bg-image flex-fill align-self-center), style: %(max-height: 250px;)) %>
+              </div>
+              <div class="col-lg-8 col-md-6 vstack">
+                <span class="h2 fw-bold"><%= booking.activity.name %></span>
+                <h6><i class="fa-solid fa-location-dot"></i> <%= booking.activity.address %></h6>
+                <h4 class="purple-text fw-bold"><%= booking.start_time.strftime('%A, %d %b %Y') %></h4>
+                <h6><i class="fa-solid fa-user-tie"></i></i> Organizer: <%= booking.activity.organizer.user.first_name %></h6>
+                <h5>
+                  <span class="badge badge-yellow text-wrap mb-lg-0 my-1"><%= booking.activity.category.name %></span>
+                  <span class="badge badge-green text-wrap mb-lg-0 my-1">Booking Status: <%= booking.status %></span>
+                  <span class="badge badge-orange-plain text-wrap mb-lg-0 my-1">Booking ID: <i class="fa-solid fa-location-pin"></i> <%= act %></span>
+                </h5>
+                <h6>
+                  <span>Booked for: <%= booking.adult_qty %> adults,</span>
+                  <span><%= booking.child_qty %> children</span>
+                </h6>
+                <div class="d-flex flex-wrap justify-content-between">
+                  <h1 class="fw-bold">
+                    <%= number_to_currency((booking.adult_qty * booking.activity.adult_price) + (booking.child_qty * booking.activity.child_price)) %>
+                  </h1>
+                  <div class="d-flex d-inline flex-wrap gap-2">
+                    <%= link_to "Activity details", booking_path(booking), class: %(btn purple-btn-solid d-grid fs-6) %>
+                    <%= link_to "Leave a review", new_booking_review_path(booking), class: %(btn purple-btn-outline d-grid fs-6) %>
+                    <%= link_to "Cancel booking", booking_path(booking), class: %(btn red-btn-solid d-grid fs-6), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+</div>
+
+
+<!-- Previous working code
+
+<div class="container-fluid">
   <h1 class="fw-bold">Your Bookings</h1>
   <div class="d-grid">
     <%= month_calendar(events: @bookings) do |date, bookings| %>
@@ -19,14 +89,14 @@
 
 <% @bookings.each do |booking| %>
   <% act = sprintf("%02d", "#{booking.activity.id}") %>
-  <div class="container my-3">
+  <div class="container-fluid">
     <div class="card-body">
       <div class="card-review">
         <div class="row m-0">
-          <div class="col-lg-4 col-md-6 mb-lg-0 mb-3 p-0 d-flex">
+          <div class="col-lg-3 col-md-6 mb-lg-0 mb-3 p-0 d-flex">
             <%= image_tag(booking.activity.card_image, class: %(img-preview bg-image flex-fill align-self-center), style: %(max-height: 250px;)) %>
           </div>
-          <div class="col-lg-8 col-md-6 vstack">
+          <div class="col-lg-9 col-md-6 vstack">
             <span class="h2 fw-bold"><%= booking.activity.name %></span>
             <h6><i class="fa-solid fa-location-dot"></i> <%= booking.activity.address %></h6>
             <h4 class="purple-text fw-bold"><%= booking.start_time.strftime('%A, %d %b %Y') %></h4>
@@ -57,8 +127,10 @@
   </div>
 <% end %>
 
+-->
 
-<!-- Hidden Area
+
+<!-- Old code
 
 <div class="container mt-4">
   <h1 class="fw-bold">Your Bookings</h1>
