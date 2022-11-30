@@ -82,10 +82,9 @@
 
             <div class="col-lg-8 col-md-12 mb-lg-0 mb-3 d-flex align-items-center">
               <% if @activity.photo.key.nil? %>
-                <%= image_tag(@activity.card_image, class: "img-fluid rounded-start image-tag") %>
+                <%= image_tag(@activity.card_image, class: "img-fluid img-preview image-tag flex-fill", style: "height: 600px;") %>
               <% else %>
-                <%= cl_image_tag @activity.photo.key, class: "img-fluid rounded-start image-tag" %>
-
+                <%= cl_image_tag @activity.photo.key, class: "img-fluid img-preview image-tag flex-fill", style: "height: 600px;" %>
               <% end %>
             </div>
 
