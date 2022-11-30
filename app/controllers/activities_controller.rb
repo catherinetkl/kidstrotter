@@ -7,12 +7,27 @@ class ActivitiesController < ApplicationController
   end
 
   def favorite
-    current_user.favorited?(@activity) ? current_user.unfavorite(@activity) : current_user.favorite(@activity)
+    # find the activity
+    # favourite the activity with current user
+    current_user.favorite(@activity)
 
     respond_to do |format|
       format.html { redirect_to activities_path }
       format.text { render partial: 'bookmark', formats: :html, locals: { current_user: current_user, activity: @activity }}
     end
+  end
+
+  def unfavorite
+    # find the activity
+    # unfavourite the activity with current user
+    current_user.unfavorite(@activity)
+
+    respond_to do |format|
+      format.html { redirect_to params[:page] == 'bookmarks' ? bookmarks_path : activities_path }
+      format.text { render partial: 'bookmark', formats: :html, locals: { current_user: current_user, activity: @activity }}
+    end
+
+    # Bookmark.destroy(params[:id]) #cant find the id after the first deleted due to unique
   end
 
   def index
@@ -25,6 +40,25 @@ class ActivitiesController < ApplicationController
     # # check if user filtered by price
     @activities = @activities.where(require_payment: params[:require_payment]) if params[:require_payment].present? && params[:require_payment] != 'all'
 
+    if params[:query].present?
+      @activities = Activity.search_by_activity_and_category(params[:query])
+    elsif params[:require_payment].present?
+      @activities = Activity.where(require_payment: params[:require_payment])
+    else
+      @activities = Activity.all
+    end
+
+    @markers = @activities.geocoded.map do |activity|
+      {
+        lat: activity.latitude,
+        lng: activity.longitude,
+      }
+    end
+
+  end
+
+  def organizer_index
+    @activities = Activity.where(organizer: current_user.organizer)
   end
 
   def show

@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :activities do
     member do
       get :favorite
+      get :unfavorite
     end
 
     resources :bookings, only: %i[create new]
@@ -27,4 +28,5 @@ Rails.application.routes.draw do
 
 
   get '/organizer_bookings', to: 'bookings#organizer_index', as: :organizer_bookings
+  get '/organizer_activities', to: 'activities#organizer_index', as: :organizer_activities
 end

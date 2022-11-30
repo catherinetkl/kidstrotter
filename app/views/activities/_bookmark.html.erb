@@ -1,4 +1,13 @@
+<% if current_user.favorited?(activity) %>
+
+  <%= link_to unfavorite_activity_path(activity), data: { action: "click->bookmark#toggleFavorite" } do %>
+    <i class="bi bi-bookmark-fill fa-2x"></i>
+  <% end %>
+
+<% else %>
 
   <%= link_to favorite_activity_path(activity), data: { action: "click->bookmark#toggleFavorite" } do %>
-    <i class="bi bi-bookmark<%= '-fill' if current_user.favorited?(activity) %>"></i>
+    <i class="bi bi-bookmark fa-2x"></i>
   <% end %>
+
+<% end %>

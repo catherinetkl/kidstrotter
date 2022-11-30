@@ -2,6 +2,7 @@ class CategoriesController < ApplicationController
   before_action :set_category, only: %i[show]
   def index
     @categories = Category.all
+    @activities = Activity.all
   end
 
   def show
@@ -18,5 +19,13 @@ class CategoriesController < ApplicationController
 
   def set_category
     @category = Category.find(params[:id])
+    @map_activities = Activity.all
+
+    @markers = @map_activities.geocoded.map do |activity|
+      {
+        lat: activity.latitude,
+        lng: activity.longitude
+      }
+    end
   end
 end
