@@ -124,12 +124,12 @@
     <div class="carousel-inner">
       <% @activities.each_slice(3).with_index do |activities, index| %>
         <div class="carousel-item <%= 'active' if index.zero? %>">
-          <div class="d-flex justify-content-evenly w-100">
+          <div class="row row-cols-3">
             <% activities.each do |activity| %>
               <%= link_to(activity) do %>
                 <div class="card-background">
                   <%= link_to activity_path(activity) do %>
-                  <div class="card-trip icon-container">
+                  <div class="card-trip icon-container col">
                   <%= image_tag(activity.card_image) %>
 
                     <div class="card-trip-infos">
@@ -165,5 +165,50 @@
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Next</span>
     </button>
+  </div>
+</div>
+
+<%# reviews %>
+<div class="container text-center mt-3">
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Review 1</h5>
+          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Review 2</h5>
+          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+        </div>
+      </div>
+    </div>
+      <div class="col-sm-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Review 3</h5>
+          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<%# footer %>
+<div class="footer container">
+  <div class="footer-links">
+    <a href="#"><i class="fab fa-github"></i></a>
+    <a href="#"><i class="fab fa-instagram"></i></a>
+    <a href="#"><i class="fab fa-facebook"></i></a>
+    <a href="#"><i class="fab fa-twitter"></i></a>
+    <a href="#"><i class="fab fa-linkedin"></i></a>
+  </div>
+  <div class="footer-copyright">
+    This footer is made with <i class="fas fa-heart"></i> at PryM
   </div>
 </div>
