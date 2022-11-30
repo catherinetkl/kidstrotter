@@ -2,7 +2,7 @@
   width: 400px;
   height: 45px;
   border-radius: 5px;
-  padding: 5px
+  padding: 5px 10px;
 }
 
 .box {
@@ -27,4 +27,19 @@
 
 .border {
   color: #e0e0e0;
+}
+
+.filters {
+  display: flex;
+height:40px;
+align-items: center;
+margin-top: 20px;
+}
+
+.selecttag {
+  margin-right: 20px !important;
+}
+
+.taglabel {
+  margin-right:8px;
 }
