@@ -1,10 +1,32 @@
 .search-bar {
   width: 400px;
   height: 45px;
-  border-radius: 5px;
-  padding: 5px
+  border-radius: 50px;
+  padding: 5px 10px;
+  margin-top: 10px;
 }
 
+.search-btn {
+  color: white;
+  background: #605DEC;
+  text-decoration: none;
+  position: absolute;
+  border-radius: 50px;
+  right: 777px;
+  top: 174px;
+  height: 30px;
+  border-radius: 50px;
+  font-size: 16px;
+  line-height: 22px;
+  padding: 0px 20px;
+  border: 1px solid #885df1;
+  transition: background 200ms ease, border-color 200ms ease;
+}
+
+.search-btn:hover {
+  color:#000;
+  background: #B6B2F3;
+}
 .box {
   height: 150px;
   background-color: white;
@@ -27,4 +49,24 @@
 
 .border {
   color: #e0e0e0;
+}
+
+.filters {
+  display: flex;
+  height:40px;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.select {
+  border-radius: 50px;
+  width: fit-content;
+}
+
+.selecttag {
+  margin-right: 20px !important;
+}
+
+.taglabel {
+  margin-right: 8px;
 }
