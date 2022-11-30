@@ -1,11 +1,30 @@
 .banner {
+  // background-size: cover;
+  // background-position: 50% 75%;
+  // padding: 150px 0;
+  // height: 490px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  max-height: 100%;
+  max-width: 100%;
+  min-height: 90vh;
+  background-image: linear-gradient(rgba(0,0,0,0.1),rgba(0,0,0,0.1)), url(Banner.jpeg);
   background-size: cover;
-  background-position: 50% 75%;
-  padding: 150px 0;
-  height: 490px;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .banner h1 {
+  margin: 0;
+  color: white;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  font-size: 45px;
+  font-weight: bold;
+}
+
+.banner h2 {
   margin: 0;
   color: white;
   text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
