@@ -15,6 +15,7 @@
   },
   "scripts": {
     "build": "webpack --config webpack.config.js",
-    "db": "rails db:migrate:reset db:seed"
+    "db": "rails db:migrate:reset db:seed",
+    "bw": "webpack --config webpack.config.js --watch"
   }
 }
