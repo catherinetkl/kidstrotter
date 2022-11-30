@@ -32,6 +32,13 @@ class ActivitiesController < ApplicationController
 
   def index
     @categories = Category.all
+    @activities = Activity.all
+
+    @activities = @activities.where(category_id: params[:category].to_i) if params[:category].present?
+    # check if user searched for anything
+    @activities = @activities.search_by_activity_and_category(params[:query]) if params[:query].present?
+    # # check if user filtered by price
+    @activities = @activities.where(require_payment: params[:require_payment]) if params[:require_payment].present? && params[:require_payment] != 'all'
 
     if params[:query].present?
       @activities = Activity.search_by_activity_and_category(params[:query])
@@ -87,7 +94,7 @@ class ActivitiesController < ApplicationController
   end
 
   def activity_params
-    params.require(:activity).permit(:name, :description, :address, :adult_price, :child_price, :age_group, :category_id, :photo)
+    params.require(:activity).permit(:name, :description, :address, :adult_price, :child_price, :age_group, :category_id, :photo,)
   end
 
   def authenticate

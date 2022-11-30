@@ -1,14 +1,21 @@
 <div class="container">
-  <div>
-  <h1 class="my-3"><%= @category.name %></h1>
-  </div>
+
+  <h1><%= @category.name %></h1>
   <div class="form">
-    <%= form_with url: activities_path, method: :get, class: "d-flex" do %>
-      <%= text_field_tag :query,params[:query],class: "form-control search-bar", placeholder: "Search..."%>
+    <%= form_with url: category_path(@category), method: :get, class: "d-flex" do %>
+      <%= text_field_tag :query, params[:query], class: "form-control search-bar", placeholder: "Search..."%>
+      <%= select_tag :require_payment, options_for_select([
+        ["All", "all"],
+        ["Free", false],
+        ["Paid", true]
+        ], selected: params[:require_payment],
+        )%>
+
       <%= submit_tag "Search", class: "btn btn-success search-btn" %>
     <% end %>
   </div>
 </div>
+
 <div class="container d-flex mb-2">
   <div>
     <div class="card mb-3 h-card" style="max-width: 700px;">

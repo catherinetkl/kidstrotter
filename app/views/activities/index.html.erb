@@ -1,15 +1,27 @@
 <div class="container">
+
   <h1>All Activities</h1>
   <div class="form">
     <%= form_with url: activities_path, method: :get, class: "d-flex" do %>
-      <%= text_field_tag :query,params[:query],class: "form-control search-bar", placeholder: "Search..."%>
-      <%= select_tag :require_payment, options_for_select([ ["None", nil], ["Free", false], ["Paid", true] ], ["Free"])%>
+      <%= text_field_tag :query, params[:query], class: "form-control search-bar", placeholder: "Search..."%>
+      <%= select_tag :require_payment, options_for_select([
+        ["All", "all"],
+        ["Free", false],
+        ["Paid", true]
+        ], selected: params[:require_payment],
+        )%>
+        <%= select_tag :category, options_for_select([
+        ["All", nil]].concat(@categories.map { |category| [category.name, category.id] }), selected: params[:category],
+        )%>
+
 
       <%= submit_tag "Search", class: "btn btn-success search-btn" %>
     <% end %>
   </div>
 </div>
+
 <div class="container d-flex mb-2">
+
   <div>
     <div class="card mb-3 h-card" style="max-width: 700px;">
       <% @activities.each do |activity| %>
@@ -53,5 +65,4 @@
   </div>
 
   <div style="width: 700px; height: 500px; float: right; position: sticky; bottom: 1rem; align-self: flex-end; margin-top: 15px;" data-controller="map" data-map-markers-value="<%= @markers.to_json %>" data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
-
 </div>
