@@ -111,18 +111,19 @@ event_names.keys.each do |category_name|
       pp "Trying to create Activity #{activity_name}"
 
 
+
     activity =
         Activity.create!(
           name: activity_name,
           description: ['Lorem Ipsum'].sample,
           address: test_hash[activity_name][0],
-          require_booking: need_pay_or_not == "paid",
-          require_payment: need_pay_or_not == "paid",
-          adult_price: 50,
-          child_price: 20,
+          require_booking: need_pay_or_not == 'paid',
+          require_payment: need_pay_or_not == 'paid',
+          adult_price: need_pay_or_not == 'paid' ? rand(35..90) : 0,
+          child_price: need_pay_or_not == 'paid' ? rand(5..30) : 0,
           latitude: test_hash[activity_name][1],
           longitude: test_hash[activity_name][2],
-          age_group: '4-12',
+          age_group: ['4-12', '4-9', '4-7'].sample,
           organizer: Organizer.all.sample,
           category: category
         )
