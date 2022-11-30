@@ -2,3 +2,19 @@
 @import "activityindex";
 @import "homepage";
 @import "reviewnew";
+
+
+.filters {
+  display: flex;
+height:40px;
+align-items: center;
+margin-top: 20px;
+}
+
+.selecttag {
+  margin-right: 20px !important;
+}
+
+.taglabel {
+  margin-right:8px;
+}
