@@ -2,7 +2,7 @@ class BookmarksController < ApplicationController
   before_action :authenticate
 
   def index
-    @bookmarks = Bookmark.where(user: current_user)
+    # @bookmarks = Bookmark.where(user: current_user)
   end
 
   def new
@@ -14,8 +14,8 @@ class BookmarksController < ApplicationController
   end
 
   def create
-    @activity = Activity.find(params[:activity_id])
 
+    @activity = Activity.find(params[:activity_id])
     @bookmark = Bookmark.new
     @bookmark.user = current_user
     @bookmark.activity = @activity

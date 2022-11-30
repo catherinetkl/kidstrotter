@@ -7,12 +7,27 @@ class ActivitiesController < ApplicationController
   end
 
   def favorite
-    current_user.favorited?(@activity) ? current_user.unfavorite(@activity) : current_user.favorite(@activity)
+    # find the activity
+    # favourite the activity with current user
+    current_user.favorite(@activity)
 
     respond_to do |format|
       format.html { redirect_to activities_path }
       format.text { render partial: 'bookmark', formats: :html, locals: { current_user: current_user, activity: @activity }}
     end
+  end
+
+  def unfavorite
+    # find the activity
+    # unfavourite the activity with current user
+    current_user.unfavorite(@activity)
+
+    respond_to do |format|
+      format.html { redirect_to params[:page] == 'bookmarks' ? bookmarks_path : activities_path }
+      format.text { render partial: 'bookmark', formats: :html, locals: { current_user: current_user, activity: @activity }}
+    end
+
+    # Bookmark.destroy(params[:id]) #cant find the id after the first deleted due to unique
   end
 
   def index

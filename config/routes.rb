@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :activities do
     member do
       get :favorite
+      get :unfavorite
     end
 
     resources :bookings, only: %i[create new]
