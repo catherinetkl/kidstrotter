@@ -25,6 +25,18 @@ class ActivitiesController < ApplicationController
     else
       @activities = Activity.all
     end
+
+    @markers = @activities.geocoded.map do |activity|
+      {
+        lat: activity.latitude,
+        lng: activity.longitude,
+      }
+    end
+
+  end
+
+  def organizer_index
+    @activities = Activity.where(organizer: current_user.organizer)
   end
 
   def show

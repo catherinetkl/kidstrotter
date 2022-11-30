@@ -11,8 +11,8 @@ class BookingsController < ApplicationController
   end
 
   def organizer_index
-    @users = User.all
-    @bookings = Booking.all
+    # @bookings = Booking.all
+    @bookings = Booking.joins(:activity).where(activity: { organizer: current_user.organizer })
   end
 
   def show
@@ -47,6 +47,7 @@ class BookingsController < ApplicationController
   def update
     @booking = Booking.find(params[:id])
     @booking.update(booking_params)
+
     if @booking.save!
       redirect_to organizer_bookings_path
     else

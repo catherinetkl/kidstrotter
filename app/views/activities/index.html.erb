@@ -13,6 +13,7 @@
   <div>
     <div class="card mb-3 h-card" style="max-width: 700px;">
       <% @activities.each do |activity| %>
+
         <div class="row g-0 s-card">
           <div class="col-md-4">
             <% if activity.photo.key.nil? %>
@@ -51,6 +52,6 @@
     </div>
   </div>
 
-  <div style="width: 700px; height: 500px; float: right; position: sticky; bottom: 1rem;
-  align-self: flex-end; margin-top: 15px;" data-controller="map" data-map-markers-value="<%= @markers.to_json %>" data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
+  <div style="width: 700px; height: 500px; float: right; position: sticky; bottom: 1rem; align-self: flex-end; margin-top: 15px;" data-controller="map" data-map-markers-value="<%= @markers.to_json %>" data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
+
 </div>

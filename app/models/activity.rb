@@ -44,6 +44,10 @@ class Activity < ApplicationRecord
     image_urls.first
   end
 
+  def completed?
+    true
+  end
+
   def card_image
     { 'Gardens by the Bay' => "Activities/Nature/Gardens by the Bay/_DSC9043.jpg",
       'ORTO' => "Activities/Nature/ORTO/2021-09-28.jpg",
