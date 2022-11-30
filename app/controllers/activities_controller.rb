@@ -3,7 +3,7 @@ class ActivitiesController < ApplicationController
 
   def homepage
     @categories = Category.all
-    @activities = Activity.first(3)
+    @activities = Activity.all
   end
 
   def favorite
