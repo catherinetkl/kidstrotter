@@ -8,35 +8,18 @@ export default class extends Controller {
     markers: Array
   }
 
-  static targets = ["map", "activities"]
-
   connect() {
     console.log("Map succesfully loaded")
 
     mapboxgl.accessToken = this.apiKeyValue
 
     this.map = new mapboxgl.Map({
-      container: this.mapTarget,
+      container: this.element,
       style: "mapbox://styles/mapbox/streets-v10"
     });
 
     this.#addMarkersToMap()
     this.#fitMapToMarkers()
-    const geocoder = new MapboxGeocoder({ accessToken: mapboxgl.accessToken,
-      mapboxgl: mapboxgl });
-    this.map.addControl(geocoder)
-
-    geocoder.on('result', e => {
-      console.log(e.result.center);
-      const queryString = window.location.search;
-      console.log(queryString);
-      const url = `${queryString ? (queryString + "&") : "?"}lat=${e.result.center[1]}&lon=${e.result.center[0]}`
-      fetch(url, {headers: {"Accept": "application/json"}})
-        .then(response => response.json())
-        .then((data) => {
-          this.activitiesTarget.innerHTML = data.activities_partial
-        })
-  });
   }
 
     #addMarkersToMap() {
