@@ -50,7 +50,7 @@
                     <%= number_to_currency((booking.adult_qty * booking.activity.adult_price) + (booking.child_qty * booking.activity.child_price)) %>
                   </h1>
                   <div class="d-flex d-inline flex-wrap gap-1">
-                    <%= link_to "Activity details", booking_path(booking), class: %(btn purple-btn-solid d-grid flex-fill fs-6) %>
+                    <%= link_to "Activity details", activity_path(booking.activity), class: %(btn purple-btn-solid d-grid flex-fill fs-6) %>
                     <%= link_to "Leave a review", new_booking_review_path(booking), class: %(btn purple-btn-outline d-grid flex-fill fs-6) %>
                     <%= link_to "Cancel booking", booking_path(booking), class: %(btn red-btn-solid d-grid flex-fill fs-6), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
                   </div>
