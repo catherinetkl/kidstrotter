@@ -1,0 +1,11 @@
+<div class="offcanvas offcanvas-end overflow-auto" data-bs-scroll="true" tabindex="-1" id="kidstrotteroffcanvas" aria-labelledby="kidstrotteroffcanvasLabel">
+
+<%# Off canvas contents %>
+  <div class='some-page-wrapper'>
+    <div class="dropdown-item">Logged in as: <%= current_user.first_name.capitalize %></div>
+    <%= link_to "My Reviews", reviews_path, class: "dropdown-item" %>
+    <%= link_to "Edit Profile", edit_user_registration_path, class: "dropdown-item" %>
+    <%= link_to "About Us", "#", class: "dropdown-item" %>
+    <%= link_to "Logout", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
+  </div>
+</div>
