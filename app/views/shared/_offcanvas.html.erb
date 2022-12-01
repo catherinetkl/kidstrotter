@@ -2,10 +2,14 @@
 
 <%# Off canvas contents %>
   <div class='some-page-wrapper'>
-    <div class="dropdown-item">Logged in as: <%= current_user.first_name.capitalize %></div>
-    <%= link_to "My Reviews", reviews_path, class: "dropdown-item" %>
-    <%= link_to "Edit Profile", edit_user_registration_path, class: "dropdown-item" %>
-    <%= link_to "About Us", "#", class: "dropdown-item" %>
-    <%= link_to "Logout", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
+    <% if user_signed_in? %>
+      <div class="dropdown-item">Logged in as: <%= current_user.first_name.capitalize %></div>
+      <%= link_to "My Reviews", reviews_path, class: "dropdown-item" %>
+      <%= link_to "Edit Profile", edit_user_registration_path, class: "dropdown-item" %>
+      <%= link_to "About Us", "#", class: "dropdown-item" %>
+      <%= link_to "Logout", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
+    <% else %>
+      <%= link_to 'Please log in', new_user_session_path %>
+    <% end %>
   </div>
 </div>
