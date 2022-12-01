@@ -36,7 +36,7 @@
   </div>
 </div>
 
-<div class="container d-flex mb-2">
+<div class="container d-flex mb-2" data-controller="name-button-search-trigger">
 
   <div>
     <div class="card mb-3 h-card" style="max-width: 700px;">
@@ -51,7 +51,7 @@
             <% end %>
           </div>
           <div class="col-md-8">
-            <div class="card-body" data-controller="name-button-search-trigger">
+            <div class="card-body">
               <button class="card-title" data-action="click->name-button-search-trigger#queryinput" name-button-search-trigger-target="namebtn" style="font-family: Nunito ; font-size: 1.25 rem ; font-weight: bolder; border: none; font-weight: bolder;"><%= activity.name %></button>
 
               <div class="bookmark-container" data-controller="bookmark">
