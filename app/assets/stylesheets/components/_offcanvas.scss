@@ -5,8 +5,15 @@
   opacity: 90%;
 }
 
-.canvas-wrap {
+.canvas-wrap1 {
   background-color: rgba(235, 235, 235, 0.945);
+
+}
+
+.canvas-wrap2 {
+  background-color: rgba(235, 235, 235, 0.945);
+  height: 500px;
+  padding-top: 15px;
 
 }
 
@@ -35,11 +42,40 @@
 .canvas-body {
 
   .canvas-text {
-    margin-top: 10px;
     font-family: 'Raleway', 'sans-serif';
     font-weight: 500;
     padding-top: 20px;
-    padding-left: 60px;
+    padding-left: 35px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    border-bottom: 1px rgb(200, 234, 245) solid;
+
+    i {
+      opacity: 80%;
+      margin-right: 20px;
+      margin-left: 20px;
+      padding: 10px;
+      border: black solid 1px;
+      border-radius: 100%;
+    }
+  }
+
+  .canvas-text-last {
+    font-family: 'Raleway', 'sans-serif';
+    font-weight: 500;
+    padding-top: 20px;
+    padding-left: 35px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+
+    i {
+      opacity: 80%;
+      margin-right: 20px;
+      margin-left: 20px;
+      padding: 10px;
+      border: black solid 1px;
+      border-radius: 100%;
+    }
   }
 
 }
