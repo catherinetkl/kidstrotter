@@ -129,3 +129,21 @@
 .footer .fa-heart {
   color: #D23333;
 }
+
+ul {
+  list-style-type: none;
+  display: inline;
+  text-align: left;
+  img {
+    width: 100px;
+    height: 100%;
+  }
+
+  li {
+    padding: 5px;
+  }
+
+  .text-header {
+    font-size: 20px;
+  }
+}
