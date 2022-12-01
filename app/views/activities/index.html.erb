@@ -1,19 +1,13 @@
 <div class="container mt-4">
-
   <h1>All Activities</h1>
   <%# form %>
   <div class="form">
-    <div class="filters">
-      <div class="filter-container">
-        <%= form_with url: activities_path, method: :get, class: "search-activity-container" do %>
+    <%= form_with url: activities_path, method: :get, class: "search-activity-container" do %>
       <div class="searchbar">
-        <%= text_field_tag :query, params[:query], class: "form-control search-activity", placeholder: "Search for activities"%>
-        <i class="fa-solid fa-magnifying-glass"></i>
+        <%= text_field_tag :query, params[:query], class: "form-control search-activity", placeholder: "Search..."%>
         <%= submit_tag "Search", class: "btn search-activity-btn" %>
       </div>
-
       <div class="filters">
-        <div class="filter-container">
         <label for="Require Payment" class="taglabel">Require Payment:</label>
         <span class="selecttag">
         <%= select_tag :require_payment, options_for_select([
@@ -23,30 +17,22 @@
           ], selected: params[:require_payment]
           )%>
         </span>
-      </div>
-
-      <div class="filter-container">
         <label for="Price" class="taglabel">Price:</label>
         <span class="selecttag">
-        <%= select_tag :adult_price, options_for_select([
-          ["Price (Lowest first)", "lowest"],
-          ["Price (Highest first)","highest"],
-          ], selected: params[:adult_price],
-        )%>
+          <%= select_tag :adult_price, options_for_select([
+            ["Price (Lowest first)", "lowest"],
+            ["Price (Highest first)","highest"],
+            ], selected: params[:adult_price],
+            )%>
         </span>
-      </div>
-      <div class="filter-container">
         <label for="Categories" class="taglabel">Categories:</label>
         <span class="selecttag">
         <%= select_tag :category, options_for_select([
           ["All", nil]].concat(@categories.map { |category| [category.name, category.id] }), selected: params[:category],
           )%>
         </span>
-      <% end %>
-      </div>
-
-
-
+    <% end %>
+  </div>
   <div data-controller="map" data-map-markers-value="<%= @markers.to_json %>" data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"class="container d-flex mb-2">
   <div>
     <div data-map-target="activities" class="card mb-3 h-card" style="max-width: 700px;">
@@ -63,12 +49,10 @@
           <div class="col-md-8">
             <div class="card-body">
               <p class="card-title" style="font-family: Nunito ; font-size: 1.25 rem ; font-weight: bolder; border: none; font-weight: bolder;"><%= activity.name %></p>
-
               <div class="bookmark-container" data-controller="bookmark">
                 <%= render 'bookmark', activity: activity %>
               </div>
-
-              <p class="card-text card-add">📍<%= link_to activity.address, '#' %></p>
+              <p class="card-text card-add">:round_pushpin:<%= link_to activity.address, '#' %></p>
               <p class="card-text card-age">Suitable For Ages: <%= activity.age_group %></p>
               <p class="card-text card-add">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</p>
               <p class="card-trip-pricing card-price">
@@ -79,12 +63,10 @@
                 <% end %>
               </p>
               <%= link_to('More details', activity_path(activity), class: "btn purple-btn-solid btn-detail mt-2 fs-6", type: "button", style: "border-radius: 5px; padding: 1px 10px 1px 10px") %>
-              <p class="card-text card-rating">⭐</i>4.9 reviews (2153)</p>
-
+              <p class="card-text card-rating">:star:</i>4.9 reviews (2153)</p>
             </div>
           </div>
         </div>
-
       <% end %>
     </div>
   </div>
