@@ -1,8 +1,8 @@
 <div class="container-fluid row mt-4 m-0 p-0">
 
-  <div class="m-0 p-0 col-xxl-4">
+  <div class="m-0 p-0 col-xl-4">
     <div class="container-fluid">
-      <div class="fixation-large m-0 p-0 col-xxl-4 pe-xxl-2">
+      <div class="fixation-large m-0 p-0 col-xl-4 pe-xl-2">
         <h1 class="fw-bold">Your Bookings</h1>
         <%= month_calendar(events: @bookings) do |date, bookings| %>
           <h6><%= date.day %></h6>
@@ -21,7 +21,7 @@
     </div>
   </div>
 
-  <div class="m-0 p-0 col-xxl-8">
+  <div class="m-0 p-0 col-xl-8">
     <% @bookings.each do |booking| %>
       <% act = sprintf("%02d", "#{booking.activity.id}") %>
       <div class="container-fluid mb-3">
@@ -49,10 +49,10 @@
                   <h1 class="fw-bold">
                     <%= number_to_currency((booking.adult_qty * booking.activity.adult_price) + (booking.child_qty * booking.activity.child_price)) %>
                   </h1>
-                  <div class="d-flex d-inline flex-wrap gap-2">
-                    <%= link_to "Activity details", booking_path(booking), class: %(btn purple-btn-solid d-grid fs-6) %>
-                    <%= link_to "Leave a review", new_booking_review_path(booking), class: %(btn purple-btn-outline d-grid fs-6) %>
-                    <%= link_to "Cancel booking", booking_path(booking), class: %(btn red-btn-solid d-grid fs-6), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+                  <div class="d-flex d-inline flex-wrap gap-1">
+                    <%= link_to "Activity details", booking_path(booking), class: %(btn purple-btn-solid d-grid flex-fill fs-6) %>
+                    <%= link_to "Leave a review", new_booking_review_path(booking), class: %(btn purple-btn-outline d-grid flex-fill fs-6) %>
+                    <%= link_to "Cancel booking", booking_path(booking), class: %(btn red-btn-solid d-grid flex-fill fs-6), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
                   </div>
                 </div>
               </div>
