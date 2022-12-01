@@ -97,46 +97,6 @@
   </div>
 </div>
 
-
-<div class="container">
-  <%= link_to "All", activities_path, style: "float: right; margin-top: 1rem;" %>
-
-  <h1 class="my-3">Trending Activities</h1>
-</div>
-  <div class="row row-cols-3">
-    <% @activities.first(3).each do |activity| %>
-      <div class="col">
-        <%= link_to activity_path(activity) do %>
-          <div class="card-trip icon-container">
-          <% if activity.photo.key.nil? %>
-          <%= image_tag(activity.card_image) %>
-          <% else %>
-          <%= cl_image_tag activity.photo.key %>
-          <% end %>
-
-            <div class="card-trip-infos">
-                <div>
-                  <h2><%= activity.name %></h2>
-                  <p class="mb-1">📍<%= activity.address %></p>
-                  <p><%= activity.description %></p>
-                  <p>Suitable For Ages: <%= activity.age_group %></p>
-                </div>
-                <h2 class="card-trip-pricing">
-                  <% if activity.adult_price == 0%>
-                    Free
-                  <% else %>
-                    $<%= sprintf('%.2f', activity.adult_price) %>
-                  <% end %>
-                </h2>
-            </div>
-          </div>
-        <% end %>
-      </div>
-    <% end %>
-  </div>
-  <br>
-</div>
-
 <%# show random 6 cards %>
 <div class="container">
   <div>
@@ -148,13 +108,13 @@
     <% @activities.sample(6).each do |activity| %>
       <div class="col">
         <%= link_to activity_path(activity) do %>
-          <div class="card-trip icon-container">
+          <div class="card-trip icon-container mt-4">
           <%= image_tag(activity.card_image) %>
 
             <div class="card-trip-infos">
                 <div>
                   <h2><%= activity.name %></h2>
-                  <p class="mb-1">📍<%= activity.address %></p>
+                  <p class="mb-1 activity-description">📍<%= activity.address %></p>
                   <p><%= activity.description %></p>
                   <p>Suitable For Ages: <%= activity.age_group %></p>
                 </div>
@@ -172,6 +132,10 @@
     <% end %>
   </div>
   <br>
+</div>
+
+<div class="container d-flex justify-content-center">
+  <%= link_to "See More", activities_path, class: "purple-btn-solid" , style: "color: white; border-radius: 5px; padding: 10px 20px" %>
 </div>
 
 
