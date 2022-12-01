@@ -63,18 +63,14 @@
 
           <li class="nav-item dropdown">
             <% if current_user.avatar.attached?%>
-              <%= image_tag(current_user.avatar, alt: "avatar", class: "avatar", style: "margin-left: 20px; margin-bottom:5px; height: 40px; width: 40px;", id: "avatar", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false) %>
+              <%= image_tag(current_user.avatar, type: "button", alt: "avatar", class: "avatar", style: "margin-left: 20px; margin-bottom:5px; height: 40px; width: 40px;", id: "avatar", data: { aria_controls: "kidstrotteroffcanvas", bs_target: "#kidstrotteroffcanvas", bs_toggle: "offcanvas" }, 'aria-haspopup': true, 'aria-expanded': false) %>
             <% else %>
-              <%= image_tag("avatar.png", alt: "avatar", class: "avatar", style: "margin-left: 20px; margin-bottom:5px; height: 40px; width: 40px;", id: "avatar", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false) %>
+              <%= image_tag("avatar.png", type: "button", alt: "avatar", class: "avatar", style: "margin-left: 20px; margin-bottom:5px; height: 40px; width: 40px;", id: "avatar", data: { aria_controls: "kidstrotteroffcanvas", bs_target: "#kidstrotteroffcanvas", bs_toggle: "offcanvas" }, 'aria-haspopup': true, 'aria-expanded': false) %>
             <% end %>
-              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                <div class="dropdown-item">Logged in as: <%= current_user.first_name.capitalize %></div>
-                <%= link_to "My Reviews", reviews_path, class: "dropdown-item" %>
-                <%= link_to "Edit Profile", edit_user_registration_path, class: "dropdown-item" %>
-                <%= link_to "About Us", "#", class: "dropdown-item" %>
-                <%= link_to "Logout", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
-              </ul>
           </li>
+
+
+
         <% end %>
 
       </ul>

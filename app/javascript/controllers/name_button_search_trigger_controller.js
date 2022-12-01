@@ -8,12 +8,18 @@ export default class extends Controller {
     console.log("Button loaded")
   }
 
+
+
   //  namebtn is the @activity.name of the card in activity#index
 
   // 1.) The action queryinput causes the data-target namebtn to do the autofill action (Listed below) when clicked:
 
-  queryinput() {
+  queryinput(event) {
     console.log("Clicked")
+    event.preventDefault()
+
+
+
 
   }
 

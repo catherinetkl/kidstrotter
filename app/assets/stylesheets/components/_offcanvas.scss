@@ -1,0 +1,38 @@
+
+.canvas-container {
+  width:100%;
+}
+
+
+.some-page-wrapper {
+  margin: 15px auto;
+  background-color: white;
+  width:85%;
+}
+
+.canvas-container {
+  width:100%;
+  border-bottom: 1px solid black;
+}
+
+.canvasrow {
+  display: grid;
+  grid-template-columns: 2fr 4fr;
+  width: 100%;
+  margin: 0 auto;
+  margin-bottom:5px;
+  margin-top: 15px;
+}
+
+.canvas-double-column {
+  padding: auto;
+}
+
+
+
+.accept-btn {
+  width:160px;
+  height:40px;
+  justify-content: space-between;
+  color: white;
+}

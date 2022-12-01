@@ -34,6 +34,8 @@ class ActivitiesController < ApplicationController
     @categories = Category.all
     @activities = Activity.all
 
+    @activities = Activity.near([params["lat"].to_f, params["lon"].to_f], 10) if params["lat"] && params["lon"]
+
     # check if user searched for anything
     @activities = @activities.search_by_activity_and_category(params[:query]) if params[:query].present?
     # check if user filtered by price
@@ -49,8 +51,13 @@ class ActivitiesController < ApplicationController
     @markers = @activities.geocoded.map do |activity|
       {
         lat: activity.latitude,
-        lng: activity.longitude,
+        lng: activity.longitude
       }
+    end
+
+    respond_to do |format|
+      format.html
+      format.json
     end
   end
 
