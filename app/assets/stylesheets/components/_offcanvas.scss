@@ -1,38 +1,45 @@
-
 .canvas-container {
-  width:100%;
+  box-shadow: 5px 10px #888888;
+  background-color: whitesmoke;
+  background-image: linear-gradient(rgba(255, 249, 249, 0.589),rgba(0,0,0,0.1)), url(beach.jpg);
+  opacity: 90%;
 }
 
+.canvas-wrap {
+  background-color: rgba(235, 235, 235, 0.945);
 
-.some-page-wrapper {
-  margin: 15px auto;
-  background-color: white;
-  width:85%;
 }
 
-.canvas-container {
-  width:100%;
-  border-bottom: 1px solid black;
+.canvas-avatar {
+
+  img {
+    width: 60px;
+    height: 60px;
+    margin-left: 30px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: white solid 1px;
+  }
 }
 
-.canvasrow {
-  display: grid;
-  grid-template-columns: 2fr 4fr;
-  width: 100%;
-  margin: 0 auto;
-  margin-bottom:5px;
-  margin-top: 15px;
+.canvas-header {
+  padding-top: 18px;
+
+  .canvas-text {
+    margin-top: 10px;
+    font-family: 'Raleway', 'sans-serif';
+    font-weight: 600;
+  }
 }
 
-.canvas-double-column {
-  padding: auto;
-}
+.canvas-body {
 
+  .canvas-text {
+    margin-top: 10px;
+    font-family: 'Raleway', 'sans-serif';
+    font-weight: 500;
+    padding-top: 20px;
+    padding-left: 60px;
+  }
 
-
-.accept-btn {
-  width:160px;
-  height:40px;
-  justify-content: space-between;
-  color: white;
 }
