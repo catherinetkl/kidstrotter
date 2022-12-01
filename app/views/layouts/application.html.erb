@@ -27,7 +27,7 @@
   <body>
     <%= render "shared/navbar" %>
     <%= render "shared/flashes" %>
-    <%= render partial: 'shared/offcanvas'%>
+    <%= render partial: 'shared/offcanvas' if current_user %>
     <%= yield %>
 
   </body>
