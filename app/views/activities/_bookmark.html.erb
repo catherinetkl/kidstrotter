@@ -1,4 +1,4 @@
-<% if current_user.favorited?(activity) %>
+<% if user_signed_in? && current_user.favorited?(activity) %>
 
   <% if params[:ret] == 'button' %>
 
@@ -41,8 +41,18 @@
         and is on the activity index page
         so we return the bookmark icon
     ------------------------------------- %>
-    <%= link_to favorite_activity_path(activity), data: { action: "click->bookmark#toggleFavorite" } do %>
-      <i class="bi bi-bookmark fa-2x"></i>
+    <% if user_signed_in? %>
+
+      <%= link_to favorite_activity_path(activity), data: { action: "click->bookmark#toggleFavorite" } do %>
+        <i class="bi bi-bookmark fa-2x"></i>
+      <% end %>
+
+    <% else %>
+
+      <%= link_to new_user_session_path do %>
+        <i class="bi bi-bookmark fa-2x"></i>
+      <% end %>
+
     <% end %>
 
   <% end %>

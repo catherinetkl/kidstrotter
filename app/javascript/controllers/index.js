@@ -22,6 +22,9 @@ application.register("landing-animation", LandingAnimationController)
 import MapController from "./map_controller"
 application.register("map", MapController)
 
+import MiniMapController from "./mini_map_controller"
+application.register("mini-map", MiniMapController)
+
 import NameButtonSearchTriggerController from "./name_button_search_trigger_controller"
 application.register("name-button-search-trigger", NameButtonSearchTriggerController)
 

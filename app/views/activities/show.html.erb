@@ -69,7 +69,10 @@
         </form>
 
         <form class="form-purple p-3 m-4">
-          <div style="height: 400px;" data-controller="map" data-map-markers-value="<%= @markers.to_json %>" data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
+          <div style="height: 400px;"
+          data-controller="mini-map"
+          data-mini-map-markers-value="<%= @markers.to_json %>"
+          data-mini-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
         </form>
       </div>
       <div class="col-md-9 d-flex align-items-between flex-column">
