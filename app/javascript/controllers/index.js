@@ -10,8 +10,14 @@ application.register("address-autocomplete", AddressAutocompleteController)
 import BookmarkController from "./bookmark_controller"
 application.register("bookmark", BookmarkController)
 
+import DropdownController from "./dropdown_controller"
+application.register("dropdown", DropdownController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
+
+import HomepageanimationController from "./homepageanimation_controller"
+application.register("homepageanimation", HomepageanimationController)
 
 import MapController from "./map_controller"
 application.register("map", MapController)

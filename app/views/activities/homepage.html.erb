@@ -1,216 +1,230 @@
 <%# Banner %>
+<div>
+  <div class="banner">
 
-<div class="banner">
+  <div class="container">
+    <h1 class="title"><strong>KidsTrotter</strong></h1>
+    <h2 class="mb-3 subtitle">Your handy dandy kids activities guide</strong>!</h2>
 
-<div class="container">
-  <h1 class="title"><strong>KidsTrotter</strong></h1>
-  <h2 class="mb-3 subtitle">Your handy dandy kids activities guide</strong>!</h2>
+      <div class="row justify-content-left">
+        <div class="col-4">
 
-    <div class="row justify-content-left">
-      <div class="col-4">
-
-        <div class="form">
-            <%= form_with url: activities_path, method: :get, class: "d-flex search-container" do %>
-            <%= text_field_tag :query,params[:query],class: "form-control search-bar", placeholder: "Search..."%>
-            <%= submit_tag "Search", class: "btn search-btn" %>
-            <% end %>
-        </div>
-
-      </div>
-    </div>
-  </div>
-</div>
-
-<%# Categories Icons %>
-<%# Nature, Wildlife, Indoor Playground, Museuems and Exhibitions, Outdoor Attractions %>
-
-<section class="container mt-4">
-  <div class="d-flex flex-row">
-  <% @categories.each do |category| %>
-    <%= link_to(category) do %>
-    <div class="d-flex justify-content-between w-100">
-      <div class="box border border-1 d-flex flex-column justify-content-center align-items-center icon-container" style="width: 180px;">
-        <%= image_tag(category.icon_image || 'logo.png', style: "width: 50px; height: 50px;") %>
-        <span class="text-center text-dark"><%= category.name %></span>
-      </div>
-    <% end %>
-    </div>
-  <% end %>
-  </div>
-</section>
-
-<div class="container">
-  <div>
-  <%= link_to "All", activities_path, style: "float: right; margin-top: 1rem;" %>
-
-  <h1 class="my-3">Trending Activities</h1>
-  </div>
-  <div class="row row-cols-3">
-    <% @activities.first(3).each do |activity| %>
-      <div class="col">
-        <%= link_to activity_path(activity) do %>
-          <div class="card-trip icon-container">
-          <% if activity.photo.key.nil? %>
-           <%= image_tag(activity.card_image) %>
-          <% else %>
-           <%= cl_image_tag activity.photo.key %>
-          <% end %>
-
-            <div class="card-trip-infos">
-                <div>
-                  <h2><%= activity.name %></h2>
-                  <p class="mb-1">📍<%= activity.address %></p>
-                  <p><%= activity.description %></p>
-                  <p>Suitable For Ages: <%= activity.age_group %></p>
-                </div>
-                <h2 class="card-trip-pricing">
-                  <% if activity.adult_price == 0%>
-                    Free
-                  <% else %>
-                    $<%= sprintf('%.2f', activity.adult_price) %>
-                  <% end %>
-                </h2>
-            </div>
-          </div>
-        <% end %>
-      </div>
-    <% end %>
-  </div>
-  <br>
-</div>
-
-<%# show random 6 cards %>
-<div class="container">
-  <div>
-  <%= link_to "All", activities_path, style: "float: right; margin-top: 1rem;" %>
-
-  <h1 class="my-3">Explore unique activities</h1>
-  </div>
-  <div class="row row-cols-3">
-    <% @activities.sample(6).each do |activity| %>
-      <div class="col">
-        <%= link_to activity_path(activity) do %>
-          <div class="card-trip icon-container">
-          <%= image_tag(activity.card_image) %>
-
-            <div class="card-trip-infos">
-                <div>
-                  <h2><%= activity.name %></h2>
-                  <p class="mb-1">📍<%= activity.address %></p>
-                  <p><%= activity.description %></p>
-                  <p>Suitable For Ages: <%= activity.age_group %></p>
-                </div>
-                <h2 class="card-trip-pricing">
-                  <% if activity.adult_price == 0 %>
-                    Free
-                  <% else %>
-                    $<%= sprintf('%.2f', activity.adult_price) %>
-                  <% end %>
-                </h2>
-            </div>
-          </div>
-        <% end %>
-      </div>
-    <% end %>
-  </div>
-  <br>
-</div>
-
-
-
-
-<%# Carousel Cards %>
-<div id="carouselExampleControls" class="container carousel slide" data-bs-ride="carousel">
-    <div class="carousel-inner">
-      <% @activities.each_slice(3).with_index do |activities, index| %>
-        <div class="carousel-item <%= 'active' if index.zero? %>">
-          <div class="row row-cols-3">
-
-            <% activities.each do |activity| %>
-              <%= link_to(activity) do %>
-                <div class="card-background">
-
-                  <div class="card-trip icon-container col">
-                  <%= image_tag(activity.card_image) %>
-
-                    <div class="card-trip-infos">
-                        <div>
-                          <h2><%= activity.name %></h2>
-                          <p class="activity-description">📍<%= activity.address %></p>
-                          <p class=""><%= activity.description %></p>
-                          <p>Suitable For Ages: <%= activity.age_group %></p>
-                        </div>
-                        <h2 class="card-trip-pricing">
-                          <% if activity.adult_price == 0 %>
-                            Free
-                          <% else %>
-                            $<%= sprintf('%.2f', activity.adult_price) %>
-                          <% end %>
-                        </h2>
-                    </div>
-                  </div>
-
-                </div>
+          <div class="form">
+              <%= form_with url: activities_path, method: :get, class: "d-flex search-container" do %>
+              <%= text_field_tag :query,params[:query],class: "form-control search-bar", placeholder: "Search..."%>
+              <%= submit_tag "Search", class: "btn search-btn" %>
               <% end %>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <%# Categories Icons %>
+  <%# Nature, Wildlife, Indoor Playground, Museuems and Exhibitions, Outdoor Attractions %>
+
+  <section class="container mt-4">
+    <div class="d-flex flex-row">
+    <% @categories.each do |category| %>
+      <%= link_to(category) do %>
+      <div class="d-flex justify-content-between w-100">
+        <div class="box border border-1 d-flex flex-column justify-content-center align-items-center icon-container" style="width: 180px;">
+          <%= image_tag(category.icon_image || 'logo.png', style: "width: 50px; height: 50px;") %>
+          <span class="text-center text-dark"><%= category.name %></span>
+        </div>
+      <% end %>
+      </div>
+    <% end %>
+    </div>
+  </section>
+
+  <div class="container">
+    <div>
+    <%= link_to "All", activities_path, style: "float: right; margin-top: 1rem;" %>
+
+    <h1 class="my-3">Trending Activities</h1>
+    </div>
+    <div class="row row-cols-3">
+      <% @activities.first(3).each do |activity| %>
+        <div class="col">
+          <%= link_to activity_path(activity) do %>
+            <div class="card-trip icon-container">
+            <% if activity.photo.key.nil? %>
+            <%= image_tag(activity.card_image) %>
+            <% else %>
+            <%= cl_image_tag activity.photo.key %>
             <% end %>
 
-          </div>
+              <div class="card-trip-infos">
+                  <div>
+                    <h2><%= activity.name %></h2>
+                    <p class="mb-1">📍<%= activity.address %></p>
+                    <p><%= activity.description %></p>
+                    <p>Suitable For Ages: <%= activity.age_group %></p>
+                  </div>
+                  <h2 class="card-trip-pricing">
+                    <% if activity.adult_price == 0%>
+                      Free
+                    <% else %>
+                      $<%= sprintf('%.2f', activity.adult_price) %>
+                    <% end %>
+                  </h2>
+              </div>
+            </div>
+          <% end %>
         </div>
       <% end %>
     </div>
-  <div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
+    <br>
   </div>
-</div>
 
-<%# reviews %>
-<div class="container text-center mt-3">
-  <div class="row">
-    <div class="col-sm-4">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Review 1</h5>
-          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        </div>
-      </div>
+  <%# show random 6 cards %>
+  <div class="container">
+    <div>
+    <%= link_to "All", activities_path, style: "float: right; margin-top: 1rem;" %>
+
+    <h1 class="my-3">Explore unique activities</h1>
     </div>
-    <div class="col-sm-4">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Review 2</h5>
-          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+    <div class="row row-cols-3">
+      <% @activities.sample(6).each do |activity| %>
+        <div class="col">
+          <%= link_to activity_path(activity) do %>
+            <div class="card-trip icon-container">
+            <%= image_tag(activity.card_image) %>
+
+              <div class="card-trip-infos">
+                  <div>
+                    <h2><%= activity.name %></h2>
+                    <p class="mb-1">📍<%= activity.address %></p>
+                    <p><%= activity.description %></p>
+                    <p>Suitable For Ages: <%= activity.age_group %></p>
+                  </div>
+                  <h2 class="card-trip-pricing">
+                    <% if activity.adult_price == 0 %>
+                      Free
+                    <% else %>
+                      $<%= sprintf('%.2f', activity.adult_price) %>
+                    <% end %>
+                  </h2>
+              </div>
+            </div>
+          <% end %>
         </div>
-      </div>
+      <% end %>
     </div>
+    <br>
+  </div>
+
+  <%# Carousel Cards %>
+  <div id="carouselExampleControls" class="container carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <% @activities.each_slice(3).with_index do |activities, index| %>
+          <div class="carousel-item <%= 'active' if index.zero? %>">
+            <div class="row row-cols-3">
+
+              <% activities.each do |activity| %>
+                <%= link_to(activity) do %>
+                  <div class="card-background">
+
+                    <div class="card-trip icon-container col">
+                    <%= image_tag(activity.card_image) %>
+
+                      <div class="card-trip-infos">
+                          <div>
+                            <h2><%= activity.name %></h2>
+                            <p class="activity-description">📍<%= activity.address %></p>
+                            <p class=""><%= activity.description %></p>
+                            <p>Suitable For Ages: <%= activity.age_group %></p>
+                          </div>
+                          <h2 class="card-trip-pricing">
+                            <% if activity.adult_price == 0 %>
+                              Free
+                            <% else %>
+                              $<%= sprintf('%.2f', activity.adult_price) %>
+                            <% end %>
+                          </h2>
+                      </div>
+                    </div>
+
+                  </div>
+                <% end %>
+              <% end %>
+
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </div>
+
+  <%# reviews %>
+  <div class="container text-center mt-3">
+    <div class="row">
       <div class="col-sm-4">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Review 3</h5>
-          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Review 1</h5>
+            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Review 2</h5>
+            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+          </div>
+        </div>
+      </div>
+        <div class="col-sm-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Review 3</h5>
+            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
+  <%# footer %>
+  <div class="footer container">
+    <div class="footer-links">
+      <a href="#"><i class="fab fa-github"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-facebook"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+      <a href="#"><i class="fab fa-linkedin"></i></a>
+    </div>
+    <div class="footer-copyright">
+      This footer is made with <i class="fas fa-heart"></i> at PryM
+    </div>
+  </div>
 
-<%# footer %>
-<div class="footer container">
-  <div class="footer-links">
-    <a href="#"><i class="fab fa-github"></i></a>
-    <a href="#"><i class="fab fa-instagram"></i></a>
-    <a href="#"><i class="fab fa-facebook"></i></a>
-    <a href="#"><i class="fab fa-twitter"></i></a>
-    <a href="#"><i class="fab fa-linkedin"></i></a>
-  </div>
-  <div class="footer-copyright">
-    This footer is made with <i class="fas fa-heart"></i> at PryM
-  </div>
+  <%# <div class="intro">
+    <div class="intro-text">
+      <h1 class="hide">
+        <span class="text">Creating inovation</span>
+      </h1>
+      <h1 class="hide">
+        <span class="text">For Everyday</span>
+      </h1>
+      <h1 class="hide">
+        <span class="text">people.</span>
+      </h1>
+    </div>
+  </div> %>
+
+  <div class="slider"></div>
+
 </div>
