@@ -2,13 +2,14 @@
 @import "activityindex";
 @import "homepage";
 @import "reviewnew";
+@import "categoriesshow";
 
 
 .filters {
   display: flex;
-height:40px;
-align-items: center;
-margin-top: 20px;
+  height: 40px;
+  align-items: center;
+  margin-top: 20px;
 }
 
 .selecttag {
