@@ -2,32 +2,32 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="address-autocomplete"
 export default class extends Controller {
-  connect() {
-    console.log("Autocomplete Loaded")
-  }
+//   connect() {
+//     console.log("Autocomplete Loaded")
+//   }
 
-  static targets = ["location"]
+//   static targets = ["location"]
 
-  connect() {
-    this.geocoder = new MapboxGeocoder({
-      accessToken: this.apiKeyValue,
-      types: "country,region,place,postcode,locality,neighborhood,address"
-    })
-    this.geocoder.addTo(this.element)
+//   connect() {
+//     this.geocoder = new MapboxGeocoder({
+//       accessToken: this.apiKeyValue,
+//       types: "country,region,place,postcode,locality,neighborhood,address"
+//     })
+//     this.geocoder.addTo(this.element)
 
-    this.geocoder.on("result", event => this.#setInputValue(event))
-    this.geocoder.on("clear", () => this.#clearInputValue())
-  }
+//     this.geocoder.on("result", event => this.#setInputValue(event))
+//     this.geocoder.on("clear", () => this.#clearInputValue())
+//   }
 
-  disconnect() {
-    this.geocoder.onRemove()
-  }
+//   disconnect() {
+//     this.geocoder.onRemove()
+//   }
 
-  #setInputValue(event) {
-    this.addressTarget.value = event.result["place_name"]
-  }
+//   #setInputValue(event) {
+//     this.addressTarget.value = event.result["place_name"]
+//   }
 
-  #clearInputValue() {
-    this.addressTarget.value = ""
-}
+//   #clearInputValue() {
+//     this.addressTarget.value = ""
+// }
 }
