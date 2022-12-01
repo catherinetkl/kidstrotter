@@ -27,7 +27,11 @@
   <body>
     <%= render "shared/navbar" %>
     <%= render "shared/flashes" %>
-    <%= render partial: 'shared/offcanvas' if current_user %>
+    <% if current_user.try(:organizer) %>
+      <%= render partial: 'shared/offcanvasadmin'%>
+    <% else  %>
+      <%= render partial: 'shared/offcanvas' %>
+    <% end %>
     <%= yield %>
 
   </body>

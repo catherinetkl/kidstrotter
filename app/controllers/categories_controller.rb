@@ -7,8 +7,12 @@ class CategoriesController < ApplicationController
   end
 
   def show
-    @categories = Category.all
-    @activities = Activity.all
+
+    @category = Category.find(params[:id])
+    @activities = @category.activities
+
+    # @categories = Category.all
+    # @activities = Activity.all
 
     # check if user searched for anything
     @activities = @activities.search_by_activity_and_category(params[:query]) if params[:query].present?
