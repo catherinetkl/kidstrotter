@@ -1,13 +1,50 @@
 <% if current_user.favorited?(activity) %>
 
-  <%= link_to unfavorite_activity_path(activity), data: { action: "click->bookmark#toggleFavorite" } do %>
-    <i class="bi bi-bookmark-fill fa-2x"></i>
+  <% if params[:ret] == 'button' %>
+
+    <%#-------------------------------------
+        current user favorited activity
+        and is on the activity show page
+        so we return a button
+    ------------------------------------- %>
+      <%= link_to "Bookmarked!", unfavorite_activity_path(@activity, ret: 'button'),
+                                 data: { action: "click->bookmark#toggleFavorite" },
+                                 class: %(btn purple-btn-solid d-grid fs-6 py-2) if !is_organizer? %>
+  <% else %>
+    <%#-------------------------------------
+        current user favorited activity
+        and is on the activity index page
+        so we return the bookmark icon
+    ------------------------------------- %>
+    <%= link_to unfavorite_activity_path(activity), data: { action: "click->bookmark#toggleFavorite" } do %>
+      <i class="bi bi-bookmark-fill fa-2x"></i>
+    <% end %>
+
   <% end %>
+
 
 <% else %>
 
-  <%= link_to favorite_activity_path(activity), data: { action: "click->bookmark#toggleFavorite" } do %>
-    <i class="bi bi-bookmark fa-2x"></i>
+  <% if params[:ret] == 'button' %>
+
+    <%#-------------------------------------
+        current user unfavorited activity
+        and is on the activity show page
+        so we return a button
+    ------------------------------------- %>
+      <%= link_to "Bookmark", favorite_activity_path(@activity, ret: 'button'),
+                                 data: { action: "click->bookmark#toggleFavorite" },
+                                 class: %(btn purple-btn-solid d-grid fs-6 py-2) if !is_organizer? %>
+  <% else %>
+    <%#-------------------------------------
+        current user unfavorited activity
+        and is on the activity index page
+        so we return the bookmark icon
+    ------------------------------------- %>
+    <%= link_to favorite_activity_path(activity), data: { action: "click->bookmark#toggleFavorite" } do %>
+      <i class="bi bi-bookmark fa-2x"></i>
+    <% end %>
+
   <% end %>
 
 <% end %>
