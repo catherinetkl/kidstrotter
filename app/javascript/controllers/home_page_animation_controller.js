@@ -1,6 +1,6 @@
 import { Controller } from "@hotwired/stimulus"
 
-// Connects to data-controller="homepageanimation"
+// Connects to data-controller="home_page_animation"
 export default class extends Controller {
   connect() {
     console.log("Homepage loaded")
