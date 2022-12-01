@@ -4,35 +4,42 @@
   <div class="form">
     <div class="searchbar">
     <%= form_with url: activities_path, method: :get, class: "d-flex search-activity-container" do %>
-      <%= text_field_tag :query, params[:query], class: "form-control search-activity", placeholder: "Search..."%>
+      <%= text_field_tag :query, params[:query], class: "form-control search-activity", placeholder: "Search for activities"%>
+      <i class="fa-solid fa-magnifying-glass"></i>
       <%= submit_tag "Search", class: "btn search-activity-btn" %>
     </div>
     <div class="filters">
-    <label for="Require Payment" class="taglabel">Require Payment:</label>
-    <span class="selecttag">
-      <%= select_tag :require_payment, options_for_select([
-        ["All", "Payment Status"],
-        ["Free", false],
-        ["Paid", true]
-        ], selected: params[:require_payment]
+      <div class="filter-container">
+        <label for="Require Payment" class="taglabel">Require Payment:</label>
+        <span class="selecttag">
+        <%= select_tag :require_payment, options_for_select([
+          ["All", "Payment Status"],
+          ["Free", false],
+          ["Paid", true]
+          ], selected: params[:require_payment]
+          )%>
+        </span>
+      </div>
+      <div class="filter-container">
+        <label for="Price" class="taglabel">Price:</label>
+        <span class="selecttag">
+        <%= select_tag :adult_price, options_for_select([
+          ["Price (Lowest first)", "lowest"],
+          ["Price (Highest first)","highest"],
+          ], selected: params[:adult_price],
         )%>
         </span>
-    <label for="Price" class="taglabel">Price:</label>
-    <span class="selecttag">
-      <%= select_tag :adult_price, options_for_select([
-        ["Price (Lowest first)", "lowest"],
-        ["Price (Highest first)","highest"],
-        ], selected: params[:adult_price],
+      </div>
+      <div class="filter-container">
+        <label for="Categories" class="taglabel">Categories:</label>
+        <span class="selecttag">
+        <%= select_tag :category, options_for_select([
+          ["All", nil]].concat(@categories.map { |category| [category.name, category.id] }), selected: params[:category],
         )%>
         </span>
-    <label for="Categories" class="taglabel">Categories:</label>
-     <span class="selecttag">
-      <%= select_tag :category, options_for_select([
-        ["All", nil]].concat(@categories.map { |category| [category.name, category.id] }), selected: params[:category],
-        )%>
-        </span>
-  <% end %>
-  </div>
+      <% end %>
+      </div>
+    </div>
   </div>
 </div>
 
