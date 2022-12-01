@@ -43,7 +43,7 @@
 <div data-controller="map"
   data-map-markers-value="<%= @markers.to_json %>"
   data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
-  class="container d-flex mb-2" data-controller="name-button-search-trigger">
+  class="container d-flex mb-2">
   <div>
     <div data-map-target="activities" class="card mb-3 h-card" style="max-width: 700px;">
       <% @activities.each do |activity| %>

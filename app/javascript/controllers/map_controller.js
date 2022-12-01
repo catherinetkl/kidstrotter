@@ -27,17 +27,17 @@ export default class extends Controller {
       mapboxgl: mapboxgl });
     this.map.addControl(geocoder)
 
-    geocoder.on('result', e => {
-      console.log(e.result.center);
-      const queryString = window.location.search;
-      console.log(queryString);
-      const url = `${queryString ? (queryString + "&") : "?"}lat=${e.result.center[1]}&lon=${e.result.center[0]}`
-      fetch(url, {headers: {"Accept": "application/json"}})
-        .then(response => response.json())
-        .then((data) => {
-          this.activitiesTarget.innerHTML = data.activities_partial
-        })
-  });
+  //   geocoder.on('result', e => {
+  //     console.log(e.result.center);
+  //     const queryString = window.location.search;
+  //     console.log(queryString);
+  //     const url = `${queryString ? (queryString + "&") : "?"}lat=${e.result.center[1]}&lon=${e.result.center[0]}`
+  //     fetch(url, {headers: {"Accept": "application/json"}})
+  //       .then(response => response.json())
+  //       .then((data) => {
+  //         this.activitiesTarget.innerHTML = data.activities_partial
+  //       })
+  // });
   }
 
     #addMarkersToMap() {
@@ -45,18 +45,6 @@ export default class extends Controller {
         new mapboxgl.Marker()
           .setLngLat([ marker.lng, marker.lat ])
           .addTo(this.map);
-
-        // const customMarker = document.createElement("div")
-        // customMarker.className = "marker"
-        // customMarker.style.backgroundImage = `url('${marker.image_url}')`
-        // customMarker.style.backgroundSize = "contain"
-        // customMarker.style.width = "25px"
-        // customMarker.style.height = "25px"
-
-        // new mapboxgl.Marker(customMarker)
-        // .setLngLat([marker.lng, marker.lat])
-        // .setPopup(popup)
-        // .addTo(this.map)
       })
     }
 
