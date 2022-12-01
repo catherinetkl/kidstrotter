@@ -158,10 +158,11 @@ all_activities.each do |activity|
   3.times do
     attending_user = User.where.not(id: attending_users).sample
 
-    booking = Booking.create(
+    booking = Booking.create!(
       user_id: attending_user.id,
       activity: activity,
-      status: "pending"
+      status: "pending",
+      start_time: Faker::Date.between(from: 2.days.from_now, to: 1.year.from_now).in_time_zone('Singapore')
     )
     puts "Booking with id: #{booking.id} has been created"
 
