@@ -10,7 +10,7 @@
       <div class="col-4">
 
         <div class="form">
-            <%= form_with url: activities_path, method: :get, class: "d-flex" do %>
+            <%= form_with url: activities_path, method: :get, class: "d-flex search-container" do %>
             <%= text_field_tag :query,params[:query],class: "form-control search-bar", placeholder: "Search..."%>
             <%= submit_tag "Search", class: "btn search-btn" %>
             <% end %>
@@ -125,18 +125,19 @@
       <% @activities.each_slice(3).with_index do |activities, index| %>
         <div class="carousel-item <%= 'active' if index.zero? %>">
           <div class="row row-cols-3">
+
             <% activities.each do |activity| %>
               <%= link_to(activity) do %>
                 <div class="card-background">
-                  <%= link_to activity_path(activity) do %>
+
                   <div class="card-trip icon-container col">
                   <%= image_tag(activity.card_image) %>
 
                     <div class="card-trip-infos">
                         <div>
                           <h2><%= activity.name %></h2>
-                          <p class="mb-1">📍<%= activity.address %></p>
-                          <p><%= activity.description %></p>
+                          <p class="activity-description">📍<%= activity.address %></p>
+                          <p class=""><%= activity.description %></p>
                           <p>Suitable For Ages: <%= activity.age_group %></p>
                         </div>
                         <h2 class="card-trip-pricing">
@@ -148,10 +149,11 @@
                         </h2>
                     </div>
                   </div>
-                <% end %>
+
                 </div>
               <% end %>
             <% end %>
+
           </div>
         </div>
       <% end %>
