@@ -27,7 +27,11 @@
           </li class="nav-item">
 
           <li class="nav-item">
-            <%= link_to "Patron List", organizer_bookings_path, class: "nav-link" %>
+            <% if current_user %>
+              <i class="fa-solid fa-bell fa-lg ps-3 pe-2" style="margin-top: 19px;"><%= link_to "", organizer_bookings_path, class: "nav-link" %></i>
+            <% else %>
+              <i class="fa-solid fa-bell fa-lg ps-3 pe-2" style="margin-top: 19px;"><%= link_to "present", organizer_bookings_path, class: "nav-link" %></i>
+            <% end %>
           </li>
 
           <li class="nav-item dropdown">
