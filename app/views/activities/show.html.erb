@@ -159,6 +159,7 @@
             <% id = review.id %>
             <% fn = review.booking.user.first_name %>
             <% ln = review.booking.user.last_name %>
+            <% pic = review.booking.user.avatar %>
             <% booktime = review.booking.start_time.strftime('%A, %d %b %Y') %>
             <% stars = review.rating %>
             <% comment = review.comment %>
@@ -168,7 +169,7 @@
                 <div class="d-flex justify-content-between flex-wrap">
                   <div class="d-inline h5 fw-bold">
                     <span>
-                      <img src="https://picsum.photos/80?random=0" class="avatar m-2">
+                      <%= image_tag(pic, class: %(avatar m-2)) %>
                     </span>
                     <span><%= username %></span>
                     <p class="py-2">
