@@ -111,8 +111,12 @@
 
                 <div class="d-flex flex-column" style="height: 100%;">
                   <div class="p-2 h5 m-0 fw-bold">Pricing</div>
-                  <div class="p-2 h6 m-0">Adult: <span class="fw-bold"><%= number_to_currency(@activity.adult_price) %></span></div>
-                  <div class="p-2 h6 m-0">Child: <span class="fw-bold"><%= number_to_currency(@activity.child_price) %></span></div>
+                  <% price_adult = %(Adult: #{number_to_currency(@activity.adult_price)}) unless @activity.adult_price.zero? %>
+                  <% price_child = %(Child: #{number_to_currency(@activity.child_price)}) unless @activity.child_price.zero? %>
+                  <% no_charging = %(Free of charge - Booking not required) if @activity.adult_price.zero? && @activity.child_price.zero? %>
+                  <div class="p-2 h6 m-0"><span class="fw-bold"><%= price_adult %></span></div>
+                  <div class="p-2 h6 m-0"><span class="fw-bold"><%= price_child %></span></div>
+                  <div class="p-2 h6 m-0"><span class="fw-bold"><%= no_charging %></span></div>
                   <div class="mt-auto">
 
                     <div class="row">
@@ -123,7 +127,9 @@
                       </div>
 
                       <div class="col-lg-6 mb-lg-0 mb-3">
-                        <%= link_to "Book Now", new_activity_booking_path(@activity), class: %(btn purple-btn-outline d-grid fs-6 py-2) if !is_organizer? %>
+                        <% free = link_to "No booking", new_activity_booking_path(@activity), class: %(btn purple-btn-outline d-grid fs-6 py-2 disabled) %>
+                        <% paid = link_to "Book Now", new_activity_booking_path(@activity), class: %(btn purple-btn-outline d-grid fs-6 py-2) if !is_organizer? %>
+                        <%= @activity.adult_price.zero?  && @activity.child_price.zero? ?  free : paid %>
                       </div>
                     </div>
 

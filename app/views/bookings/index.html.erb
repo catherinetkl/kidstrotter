@@ -11,7 +11,7 @@
             <% act = sprintf("%02d", "#{booking.activity.id}") %>
             <%=
               link_to %(<i class="fa-solid fa-location-pin"></i> #{act}).html_safe, booking_path(booking),
-              class: %(badge badge-orange text-wrap mb-2),
+              class: %(badge badge-orange text-wrap mb-1),
               title: %(#{booking.activity.name})
             %>
           <% end %>
