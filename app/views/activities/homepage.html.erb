@@ -108,13 +108,13 @@
     <% @activities.sample(6).each do |activity| %>
       <div class="col">
         <%= link_to activity_path(activity) do %>
-          <div class="card-trip icon-container">
+          <div class="card-trip icon-container mt-4">
           <%= image_tag(activity.card_image) %>
 
             <div class="card-trip-infos">
                 <div>
                   <h2><%= activity.name %></h2>
-                  <p class="mb-1">📍<%= activity.address %></p>
+                  <p class="mb-1 activity-description">📍<%= activity.address %></p>
                   <p><%= activity.description %></p>
                   <p>Suitable For Ages: <%= activity.age_group %></p>
                 </div>
@@ -132,6 +132,10 @@
     <% end %>
   </div>
   <br>
+</div>
+
+<div class="container d-flex justify-content-center">
+  <%= link_to "See More", activities_path, class: "purple-btn-solid" , style: "color: white; border-radius: 5px; padding: 10px 20px" %>
 </div>
 
 
