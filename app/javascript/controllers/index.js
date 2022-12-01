@@ -30,6 +30,3 @@ application.register("star-rating", StarRatingController)
 
 import TestController from "./test_controller"
 application.register("test", TestController)
-
-import DropdownController from "./dropdown_controller"
-application.register("dropdown", DropdownController)
