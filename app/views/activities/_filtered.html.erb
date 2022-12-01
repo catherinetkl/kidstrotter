@@ -1,0 +1,36 @@
+ <% activities.each do |activity| %>
+
+        <div class="row g-0 s-card">
+          <div class="col-md-4">
+            <% if activity.photo.key.nil? %>
+              <%= image_tag(activity.card_image, class: "img-fluid rounded-start image-tag") %>
+            <% else %>
+              <%= cl_image_tag activity.photo.key, class: "img-fluid rounded-start image-tag" %>
+            <% end %>
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <button class="card-title" data-action="click->name-button-search-trigger#queryinput" name-button-search-trigger-target="namebtn" style="font-family: Nunito ; font-size: 1.25 rem ; font-weight: bolder; border: none; font-weight: bolder;"><%= activity.name %></button>
+
+              <div class="bookmark-container" data-controller="bookmark">
+                <%= render 'bookmark', activity: activity %>
+              </div>
+
+              <p class="card-text card-add">📍<%= link_to activity.address, '#' %></p>
+              <p class="card-text card-age">Suitable For Ages: <%= activity.age_group %></p>
+              <p class="card-text card-add">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</p>
+              <p class="card-trip-pricing card-price">
+                <% if activity.require_booking == false %>
+                  Free
+                <% else %>
+                  From S$<%= sprintf('%.2f', activity.adult_price) %>
+                <% end %>
+              </p>
+              <%= link_to('More details', activity_path(activity), class: "btn purple-btn-solid btn-detail mt-2 fs-6", type: "button", style: "border-radius: 5px; padding: 1px 10px 1px 10px") %>
+              <p class="card-text card-rating">⭐</i>4.9 reviews (2153)</p>
+
+            </div>
+          </div>
+        </div>
+
+      <% end %>
