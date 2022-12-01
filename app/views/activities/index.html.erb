@@ -1,38 +1,41 @@
 <div class="container mt-4">
 
   <h1>All Activities</h1>
+
   <div class="form">
-    <%= form_with url: activities_path, method: :get, class: "d-flex search-activity-container" do %>
-     <div class="searchbar">
+
+  <%= form_with url: activities_path, method: :get, class: "search-activity-container" do %>
+    <div class="searchbar">
       <%= text_field_tag :query, params[:query], class: "form-control search-activity", placeholder: "Search..."%>
       <%= submit_tag "Search", class: "btn search-activity-btn" %>
     </div>
-    <br><br><br><br><br><br><br><br>
+
     <div class="filters">
-    <label for="Require Payment" class="taglabel">Require Payment:</label>
-    <span class="selecttag">
+      <label for="Require Payment" class="taglabel">Require Payment:</label>
+      <span class="selecttag">
       <%= select_tag :require_payment, options_for_select([
         ["All", "Payment Status"],
         ["Free", false],
         ["Paid", true]
         ], selected: params[:require_payment]
         )%>
-        </span>
-    <label for="Price" class="taglabel">Price:</label>
-    <span class="selecttag">
-      <%= select_tag :adult_price, options_for_select([
-        ["Price (Lowest first)", "lowest"],
-        ["Price (Highest first)","highest"],
-        ], selected: params[:adult_price],
-        )%>
-        </span>
-    <label for="Categories" class="taglabel">Categories:</label>
-     <span class="selecttag">
+      </span>
+      <label for="Price" class="taglabel">Price:</label>
+      <span class="selecttag">
+        <%= select_tag :adult_price, options_for_select([
+          ["Price (Lowest first)", "lowest"],
+          ["Price (Highest first)","highest"],
+          ], selected: params[:adult_price],
+          )%>
+      </span>
+      <label for="Categories" class="taglabel">Categories:</label>
+      <span class="selecttag">
       <%= select_tag :category, options_for_select([
         ["All", nil]].concat(@categories.map { |category| [category.name, category.id] }), selected: params[:category],
         )%>
-        </span>
+      </span>
   <% end %>
+
   </div>
   </div>
 </div>
