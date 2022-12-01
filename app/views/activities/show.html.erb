@@ -69,7 +69,10 @@
         </form>
 
         <form class="form-purple p-3 m-4">
-          <div style="height: 400px;" data-controller="map" data-map-markers-value="<%= @markers.to_json %>" data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
+          <div style="height: 400px;"
+          data-controller="mini-map"
+          data-mini-map-markers-value="<%= @markers.to_json %>"
+          data-mini-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
         </form>
       </div>
       <div class="col-md-9 d-flex align-items-between flex-column">
@@ -150,6 +153,40 @@
         <div class="card-body">
           <h2 class="m-0 fw-bold">Most recent reviews</h2>
         </div>
+
+        <% @reviews.each do |review| %>
+          <% if review.booking.activity_id.eql?(@activity.id) %>
+            <% id = review.id %>
+            <% fn = review.booking.user.first_name %>
+            <% ln = review.booking.user.last_name %>
+            <% booktime = review.booking.start_time.strftime('%A, %d %b %Y') %>
+            <% stars = review.rating %>
+            <% comment = review.comment %>
+            <% username = %(#{fn} #{ln}) %>
+            <div class="card-body">
+              <div class="card-review">
+                <div class="d-flex justify-content-between flex-wrap">
+                  <div class="d-inline h5 fw-bold">
+                    <span>
+                      <img src="https://picsum.photos/80?random=0" class="avatar m-2">
+                    </span>
+                    <span><%= username %></span>
+                    <p class="py-2">
+                      <% stars.times do %>
+                        <i class="fa-solid fa-star"></i>
+                      <% end %>
+                      <% (5 - stars).times do %>
+                        <i class="fa-regular fa-star"></i>
+                      <% end %>
+                    </p>
+                  </div>
+                  <div class="d-inline my-2"><%= booktime %></div>
+                </div>
+                <p class="m-0"><%= comment %></p>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
 
         <div class="card-body">
           <div class="card-review">

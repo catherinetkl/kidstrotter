@@ -1,3 +1,4 @@
+
 <%# Banner %>
 
 <div class="banner">
@@ -21,6 +22,7 @@
   </div>
 </div>
 
+
 <%# Categories Icons %>
 <%# Nature, Wildlife, Indoor Playground, Museuems and Exhibitions, Outdoor Attractions %>
 
@@ -39,12 +41,68 @@
   </div>
 </section>
 
+<%# Carousel Cards %>
 <div class="container">
-  <div>
   <%= link_to "All", activities_path, style: "float: right; margin-top: 1rem;" %>
 
   <h1 class="my-3">Trending Activities</h1>
+</div>
+<div id="carouselExampleControls" class="container carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <% @activities.each_slice(3).with_index do |activities, index| %>
+        <div class="carousel-item <%= 'active' if index.zero? %>">
+          <div class="row row-cols-3">
+
+            <% activities.each do |activity| %>
+              <%= link_to(activity) do %>
+                <div class="card-background">
+
+                  <div class="card-trip icon-container col">
+                  <%= image_tag(activity.card_image) %>
+
+                    <div class="card-trip-infos">
+                        <div>
+                          <h2><%= activity.name %></h2>
+                          <p class="activity-description">📍<%= activity.address %></p>
+                          <p class=""><%= activity.description %></p>
+                          <p>Suitable For Ages: <%= activity.age_group %></p>
+                        </div>
+                        <h2 class="card-trip-pricing">
+                          <% if activity.adult_price == 0 %>
+                            Free
+                          <% else %>
+                            $<%= sprintf('%.2f', activity.adult_price) %>
+                          <% end %>
+                        </h2>
+                    </div>
+                  </div>
+
+                </div>
+              <% end %>
+            <% end %>
+
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
   </div>
+</div>
+
+
+<div class="container">
+  <%= link_to "All", activities_path, style: "float: right; margin-top: 1rem;" %>
+
+  <h1 class="my-3">Trending Activities</h1>
+</div>
   <div class="row row-cols-3">
     <% @activities.first(3).each do |activity| %>
       <div class="col">
@@ -116,56 +174,7 @@
   <br>
 </div>
 
-<%# Carousel Cards %>
-<div id="carouselExampleControls" class="container carousel slide" data-bs-ride="carousel">
-    <div class="carousel-inner">
-      <% @activities.each_slice(3).with_index do |activities, index| %>
-        <div class="carousel-item <%= 'active' if index.zero? %>">
-          <div class="row row-cols-3">
 
-            <% activities.each do |activity| %>
-              <%= link_to(activity) do %>
-                <div class="card-background">
-
-                  <div class="card-trip icon-container col">
-                  <%= image_tag(activity.card_image) %>
-
-                    <div class="card-trip-infos">
-                        <div>
-                          <h2><%= activity.name %></h2>
-                          <p class="activity-description">📍<%= activity.address %></p>
-                          <p class=""><%= activity.description %></p>
-                          <p>Suitable For Ages: <%= activity.age_group %></p>
-                        </div>
-                        <h2 class="card-trip-pricing">
-                          <% if activity.adult_price == 0 %>
-                            Free
-                          <% else %>
-                            $<%= sprintf('%.2f', activity.adult_price) %>
-                          <% end %>
-                        </h2>
-                    </div>
-                  </div>
-
-                </div>
-              <% end %>
-            <% end %>
-
-          </div>
-        </div>
-      <% end %>
-    </div>
-  <div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
-  </div>
-</div>
 
 <%# reviews %>
 <div class="container text-center mt-3">

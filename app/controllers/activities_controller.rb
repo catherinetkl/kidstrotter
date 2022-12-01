@@ -66,6 +66,7 @@ class ActivitiesController < ApplicationController
   end
 
   def show
+    @reviews = Review.all
     @bookmark = Bookmark.new
 
     @markers = [{
