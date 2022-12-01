@@ -13,8 +13,8 @@ application.register("bookmark", BookmarkController)
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
-import HomePageAnimationController from "./home_page_animation_controller"
-application.register("home-page-animation", HomePageAnimationController)
+// import HomePageAnimationController from "./home_page_animation_controller"
+// application.register("home-page-animation", HomePageAnimationController)
 
 import LandingAnimationController from "./landing_animation_controller"
 application.register("landing-animation", LandingAnimationController)

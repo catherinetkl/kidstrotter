@@ -13,7 +13,6 @@ export default class extends Controller {
   connect() {
     console.log("Map succesfully loaded")
 
-
     mapboxgl.accessToken = this.apiKeyValue
 
     this.map = new mapboxgl.Map({

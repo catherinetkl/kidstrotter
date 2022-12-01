@@ -1,53 +1,48 @@
 <div class="container mt-4">
 
   <h1>All Activities</h1>
-
+  <%# form %>
   <div class="form">
+    <%= form_with url: activities_path, method: :get, class: "search-activity-container" do %>
+      <div class="searchbar">
+        <%= text_field_tag :query, params[:query], class: "form-control search-activity", placeholder: "Search..."%>
+        <%= submit_tag "Search", class: "btn search-activity-btn" %>
+      </div>
 
-  <%= form_with url: activities_path, method: :get, class: "search-activity-container" do %>
-    <div class="searchbar">
-      <%= text_field_tag :query, params[:query], class: "form-control search-activity", placeholder: "Search..."%>
-      <%= submit_tag "Search", class: "btn search-activity-btn" %>
-    </div>
-
-    <div class="filters">
-      <label for="Require Payment" class="taglabel">Require Payment:</label>
-      <span class="selecttag">
-      <%= select_tag :require_payment, options_for_select([
-        ["All", "Payment Status"],
-        ["Free", false],
-        ["Paid", true]
-        ], selected: params[:require_payment]
-        )%>
-      </span>
-      <label for="Price" class="taglabel">Price:</label>
-      <span class="selecttag">
-        <%= select_tag :adult_price, options_for_select([
-          ["Price (Lowest first)", "lowest"],
-          ["Price (Highest first)","highest"],
-          ], selected: params[:adult_price],
+      <div class="filters">
+        <label for="Require Payment" class="taglabel">Require Payment:</label>
+        <span class="selecttag">
+        <%= select_tag :require_payment, options_for_select([
+          ["All", "Payment Status"],
+          ["Free", false],
+          ["Paid", true]
+          ], selected: params[:require_payment]
           )%>
-      </span>
-      <label for="Categories" class="taglabel">Categories:</label>
-      <span class="selecttag">
-      <%= select_tag :category, options_for_select([
-        ["All", nil]].concat(@categories.map { |category| [category.name, category.id] }), selected: params[:category],
-        )%>
-      </span>
-  <% end %>
-
+        </span>
+        <label for="Price" class="taglabel">Price:</label>
+        <span class="selecttag">
+          <%= select_tag :adult_price, options_for_select([
+            ["Price (Lowest first)", "lowest"],
+            ["Price (Highest first)","highest"],
+            ], selected: params[:adult_price],
+            )%>
+        </span>
+        <label for="Categories" class="taglabel">Categories:</label>
+        <span class="selecttag">
+        <%= select_tag :category, options_for_select([
+          ["All", nil]].concat(@categories.map { |category| [category.name, category.id] }), selected: params[:category],
+          )%>
+        </span>
+    <% end %>
   </div>
-  </div>
-</div>
 
-<div data-controller="map"
-  data-map-markers-value="<%= @markers.to_json %>"
-  data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
-  class="container d-flex mb-2" data-controller="name-button-search-trigger">
+
+  <div data-controller="map" data-map-markers-value="<%= @markers.to_json %>" data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"class="container d-flex mb-2" data-controller="name-button-search-trigger">
+
   <div>
     <div data-map-target="activities" class="card mb-3 h-card" style="max-width: 700px;">
       <% @activities.each do |activity| %>
-
+        <%# h-cards %>
         <div class="row g-0 s-card">
           <div class="col-md-4">
             <% if activity.photo.key.nil? %>
@@ -84,9 +79,7 @@
       <% end %>
     </div>
   </div>
-  <div
-  style="width: 700px; height: 100%; min-height: 90vh; float: right; position: sticky; bottom: 1rem; align-self: flex-end; margin-top: 15px;"
-  data-map-target="map"
-  >
+  <%# map canvas %>
+  <div style="width: 700px; height: 100%; min-height: 90vh; float: right;" data-map-target="map">
   </div>
 </div>
