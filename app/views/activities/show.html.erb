@@ -157,13 +157,13 @@
         <% @reviews.each do |review| %>
           <% if review.booking.activity_id.eql?(@activity.id) %>
             <% id = review.id %>
-            <% name_first = review.booking.user.first_name %>
-            <% name_last = review.booking.user.last_name %>
+            <% firstName = review.booking.user.first_name %>
+            <% lastName = review.booking.user.last_name %>
             <% pic = review.booking.user.avatar.attached? ? review.booking.user.avatar : %(avatar.png) %>
             <% booktime = review.booking.start_time.strftime('%A, %d %b %Y') %>
             <% stars = review.rating %>
             <% comment = review.comment %>
-            <% username = %(#{name_first} #{name_last}) %>
+            <% username = %(#{firstName} #{lastName}) %>
             <div class="card-body">
               <div class="card-review">
                 <div class="d-flex justify-content-between flex-wrap">
