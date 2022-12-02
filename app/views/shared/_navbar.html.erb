@@ -22,9 +22,21 @@
           <li class="nav-item">
             <%= link_to "Create an Activity", new_activity_path, class: "nav-link" %>
           </li>
+          
+           <li class="nav-item">
+            <%= link_to "Activities", activities_path, class: "nav-link" %>
+          </li>
 
           <li class="nav-item">
             <%= link_to "Patron List  ", organizer_bookings_path, class: "nav-link" %>
+           </li>
+   
+          <li class="nav-item">
+            <% if current_user %>
+              <%= link_to "", organizer_bookings_path, class: "fa-solid fa-bell fa-xl ps-3 pe-1", style: "margin-top: 20px;" %>
+            <% else %>
+              <%= link_to "", organizer_bookings_path, class: "fa-solid fa-bell fa-xl ps-3 pe-1", style: "margin-top: 20px;" %>
+            <% end %>
           </li>
 
           <li class="nav-item dropdown">
@@ -36,7 +48,9 @@
           </li>
 
         <% else %>
-
+          <li class="nav-item">
+            <%= link_to "Activities", activities_path, class: "nav-link" %>
+          </li class="nav-item">
           <li class="nav-item">
             <%= link_to "Bookings", bookings_path, class: "nav-link" %>
           </li>
