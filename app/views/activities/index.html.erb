@@ -59,7 +59,7 @@
               <div class="bookmark-container" data-controller="bookmark">
                 <%= render 'bookmark', activity: activity %>
               </div>
-              <p class="card-text card-add">:round_pushpin:<%= link_to activity.address, '#' %></p>
+              <p class="card-text card-add">📍<%= link_to activity.address, '#', class: "h-card-address" %></p>
               <p class="card-text card-age">Suitable For Ages: <%= activity.age_group %></p>
               <p class="card-text card-add">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</p>
               <p class="card-trip-pricing card-price">
@@ -70,7 +70,7 @@
                 <% end %>
               </p>
               <%= link_to('More details', activity_path(activity), class: "btn purple-btn-solid btn-detail mt-2 fs-6", type: "button", style: "border-radius: 5px; padding: 1px 10px 1px 10px") %>
-              <p class="card-text card-rating">:star:</i>4.9 reviews (2153)</p>
+              <p class="card-text card-rating">⭐</i>4.9 reviews (2153)</p>
             </div>
           </div>
         </div>
