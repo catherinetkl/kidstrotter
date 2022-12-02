@@ -9,29 +9,35 @@
         <%= submit_tag "Search", class: "btn search-activity-btn" %>
       </div>
       <div class="filters">
-        <label for="Require Payment" class="taglabel">Require Payment:</label>
-        <span class="selecttag">
-        <%= select_tag :require_payment, options_for_select([
-          ["All", "Payment Status"],
-          ["Free", false],
-          ["Paid", true]
-          ], selected: params[:require_payment]
-          )%>
-        </span>
-        <label for="Price" class="taglabel">Price:</label>
-        <span class="selecttag">
-          <%= select_tag :adult_price, options_for_select([
-            ["Price (Lowest first)", "lowest"],
-            ["Price (Highest first)","highest"],
-            ], selected: params[:adult_price],
+        <div class="filter-container">
+          <label for="Require Payment" class="taglabel">Require Payment:</label>
+          <span class="selecttag">
+          <%= select_tag :require_payment, options_for_select([
+            ["All", "Payment Status"],
+            ["Free", false],
+            ["Paid", true]
+            ], selected: params[:require_payment]
             )%>
-        </span>
-        <label for="Categories" class="taglabel">Categories:</label>
-        <span class="selecttag">
-        <%= select_tag :category, options_for_select([
-          ["All", nil]].concat(@categories.map { |category| [category.name, category.id] }), selected: params[:category],
-          )%>
-        </span>
+          </span>
+        </div>
+        <div class="filter-container">
+          <label for="Price" class="taglabel">Price:</label>
+          <span class="selecttag">
+            <%= select_tag :adult_price, options_for_select([
+              ["Price (Lowest first)", "lowest"],
+              ["Price (Highest first)","highest"],
+              ], selected: params[:adult_price],
+              )%>
+          </span>
+        </div>
+        <div class="filter-container">
+          <label for="Categories" class="taglabel">Categories:</label>
+          <span class="selecttag">
+          <%= select_tag :category, options_for_select([
+            ["All", nil]].concat(@categories.map { |category| [category.name, category.id] }), selected: params[:category],
+            )%>
+          </span>
+        </div>
     <% end %>
   </div>
   <div data-controller="map" data-map-markers-value="<%= @markers.to_json %>" data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"class="container d-flex mb-2">
@@ -49,7 +55,7 @@
           </div>
           <div class="col-md-8">
             <div class="card-body">
-              <p class="card-title" style="font-family: Nunito ; font-size: 1.25 rem ; font-weight: bolder; border: none; font-weight: bolder;"><%= activity.name %></p>
+              <p class="card-title" style="font-family: Raleway ; font-size: 1.25 rem ; font-weight: bolder; border: none; font-weight: bolder;"><%= activity.name %></p>
               <div class="bookmark-container" data-controller="bookmark">
                 <%= render 'bookmark', activity: activity %>
               </div>
