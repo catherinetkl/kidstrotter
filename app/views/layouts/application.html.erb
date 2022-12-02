@@ -29,7 +29,7 @@
     <%= render "shared/flashes" %>
     <% if current_user.try(:organizer) %>
       <%= render partial: 'shared/offcanvasadmin'%>
-    <% else  %>
+    <% elsif current_user %>
       <%= render partial: 'shared/offcanvas' %>
     <% end %>
     <%= yield %>
