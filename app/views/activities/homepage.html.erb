@@ -28,7 +28,7 @@
 <section class="container mt-4">
   <div class="d-flex flex-row">
   <% @categories.each do |category| %>
-    <%= link_to(category) do %>
+    <%= link_to activities_path(params[query:category]) do %>
     <div class="d-flex justify-content-between w-100">
       <div class="box border border-1 d-flex flex-column justify-content-center align-items-center icon-container" style="width: 180px;">
         <%= image_tag(category.icon_image || 'logo.png', style: "width: 50px; height: 50px;") %>
@@ -101,46 +101,104 @@
 </div>
 
 <%# reviews %>
-<div class="container text-center mt-3">
+<div class="container text-center" style="margin-top: 150px;">
+<h2>What <span style="color: blue;">KidsTrotter</span> users are saying</h2>
+<br>
   <div class="row">
     <div class="col-sm-4">
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title">Review 1</h5>
-          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+          <%= image_tag('female avatar 1.png', class: "avatar-img") %>
+          <p class="card-text t-card">Yifei Chen</p>
+          <p class="card-text t-card">Pasir Ris, Singapore | March 2022</p>
+          <p class="card-text t-card">★★★★★</p>
+          <p class="card-text t-card">What a great experience using KidsTrotter! I booked all of my family passes for attractions through KidsTrotter and never had any issues. When I had to cancel a booking because of an emergency, KidsTrotter support helped me.</p>
         </div>
       </div>
     </div>
     <div class="col-sm-4">
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title">Review 2</h5>
-          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+          <%= image_tag('female avatar 2.png', class: "avatar-img") %>
+          <p class="card-text t-card">Kaori Yamaguchi</p>
+          <p class="card-text t-card">Punggol, Singapore | May 2022</p>
+          <p class="card-text t-card">★★★★☆</p>
+          <p class="card-text t-card">My family and I visit Gardens by the Bay during Christmas every year, and we usually book our tickets using other tour agencies. KidsTrotter was recommended to us by a long time friend, Fairee, and I’m so glad we tried it out! The booking process was easy.</p>
         </div>
       </div>
     </div>
       <div class="col-sm-4">
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title">Review 3</h5>
-          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+          <%= image_tag('male avatar.png', class: "avatar-img") %>
+          <div>
+            <p class="card-text t-card">Anthony Lewis</p>
+            <p class="card-text t-card">Tanjong Pagar, Singapore | July 2022</p>
+          </div>
+          <p class="card-text t-card">★★★★★</p>
+          <p class="card-text t-card">When I was looking to book Singapore flyer tickets for my family, KidsTrotter had the best browsing experience, so I figured I’d give it a try. It was my first time using KidsTrotter, but I’d definitely recommend it to a friend and use it.</p>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<%# footer %>
-<div class="footer container">
-  <div class="footer-links">
-    <a href="#"><i class="fab fa-github"></i></a>
-    <a href="#"><i class="fab fa-instagram"></i></a>
-    <a href="#"><i class="fab fa-facebook"></i></a>
-    <a href="#"><i class="fab fa-twitter"></i></a>
-    <a href="#"><i class="fab fa-linkedin"></i></a>
+
+<div class="container text-center" style="margin-top: 150px;">
+  <div class="row">
+    <div class="col" style="font-size: 30px; color: blue;"><h2>KidsTrotter</h2></div>
+    <div class="col">
+      <ul>
+        <li class="text-header"><strong>About</strong></li>
+        <li>About KidsTrotter</li>
+        <li>Careers</li>
+        <li>Forum</li>
+      </ul>
+    </div>
+    <div class="col">
+      <ul class="">
+        <li class="text-header"><strong>Partner with us</strong></li>
+        <li>Partnership programs</li>
+        <li>Affiliate program</li>
+        <li>Community</li>
+        <li>Loyality program</li>
+      </ul>
+    </div>
+    <div class="col">
+      <ul>
+        <li class="text-header"><strong>Support</strong></li>
+        <li>Help Center</li>
+        <li>Contact us</li>
+        <li>Terms of service</li>
+        <li>Accessibility</li>
+      </ul>
+    </div>
+    <div class="col">
+      <ul>
+        <li class="text-header"><strong>Get the app</strong></li>
+        <li>Mobile site</li>
+        <li>KidsTrotter for Android</li>
+        <li>KidsTrotter for iOS</li>
+        <li><%= image_tag('playstore.png', class: "store-icons") %></li>
+        <li><%= image_tag('appstore.png', class: "store-icons") %></li>
+      </ul>
+    </div>
   </div>
-  <div class="footer-copyright">
-    This footer is made with <i class="fas fa-heart"></i> at PryM
+</div>
+
+<%# footer %>
+<div style="border-top: 1px solid lightgray">
+  <div class="footer container">
+    <div class="footer-links">
+      <a href="#"><i class="fab fa-github"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-facebook"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+      <a href="#"><i class="fab fa-linkedin"></i></a>
+    </div>
+    <div class="footer-copyright">
+      © 2022 KidsTrotter Studios
+    </div>
   </div>
 </div>
 
