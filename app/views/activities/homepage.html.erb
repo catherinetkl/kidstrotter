@@ -30,7 +30,7 @@
   <% @categories.each do |category| %>
     <%= link_to activities_path(category: category.id) do %>
     <div class="d-flex justify-content-between w-100">
-      <div class="box border border-1 d-flex flex-column justify-content-center align-items-center icon-container" style="width: 180px;">
+      <div class="box border border-1 d-flex flex-column justify-content-center align-items-center cat-container" style="width: 180px;">
         <%= image_tag(category.icon_image || 'logo.png', style: "width: 50px; height: 50px;") %>
         <span class="text-center text-dark"><%= category.name %></span>
       </div>
@@ -57,7 +57,9 @@
                 <div class="card-background">
 
                   <div class="card-trip icon-container col">
-                  <%= image_tag(activity.card_image) %>
+                  <div class="img-wrapper">
+                    <%= image_tag(activity.card_image) %>
+                  </div>
 
                     <div class="card-trip-infos">
                         <div>
@@ -109,7 +111,9 @@
       <div class="col">
         <%= link_to activity_path(activity) do %>
           <div class="card-trip icon-container mt-4">
-          <%= image_tag(activity.card_image) %>
+          <div class="img-wrapper">
+            <%= image_tag(activity.card_image) %>
+          </div>
 
             <div class="card-trip-infos">
                 <div>
