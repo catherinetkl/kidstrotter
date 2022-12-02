@@ -13,19 +13,20 @@
 
           <div class="card-body ps-4 pt-4 pb-4">
             <h2 class="card-text" style="color:black"><strong><%= booking.activity.name %></strong></h2>
-            <p class="card-text card-add">Booking from: <%= booking.user.first_name %></p>
+            <p class="card-text card-add">Booking From: <%= booking.user.first_name %></p>
+            <p class="card-text card-add">Suitable For Ages: <%= booking.activity.age_group %></p>
             <br>
             <br>
             <p class="card-text card-add"><%= link_to booking.activity.address, '#' %></p>
-            <p class="card-text card-add">Suitable For Ages: <%= booking.activity.age_group %></p>
+            <p class="card-text card-add">Booking Created: <%= booking.start_time%></p>
 
             <br>
 
             <%= simple_form_for(booking) do |f| %>
-              <div class="card-text" style="color:black">
-                <%= f.input :status, collection: Booking::STATUSES, label: false%>
+              <div class="d-flex align-items-center" style="color:black">
+                <%= f.input :status, collection: Booking::STATUSES, label: false, wrapper_html: { style: 'margin-bottom: 0 !important' } %>
+                <%= f.submit 'Update', class: 'btn btn-primary' %>
               </div>
-              <%= f.submit %>
             <% end %>
             </div>
 

@@ -93,6 +93,11 @@ select {
   border: none;
   border-radius: 50px;
   width: fit-content;
+
+  &:focus-visible {
+    border: none;
+    outline: none;
+  }
 }
 
 .taglabel {
