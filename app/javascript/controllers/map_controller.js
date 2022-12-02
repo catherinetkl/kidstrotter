@@ -37,6 +37,7 @@ export default class extends Controller {
           this.activitiesTarget.innerHTML = data.activities_partial
         })
   });
+
   }
 
     #addMarkersToMap() {
@@ -62,7 +63,7 @@ export default class extends Controller {
     #fitMapToMarkers() {
       const bounds = new mapboxgl.LngLatBounds()
       this.markersValue.forEach(marker => bounds.extend([ marker.lng, marker.lat ]))
-      this.map.fitBounds(bounds, { padding: 70, maxZoom: 16, duration: 0 });
+      this.map.fitBounds(bounds, { padding: 70, maxZoom: 10, minZoom:10,  duration: 0 });
     }
 
 
