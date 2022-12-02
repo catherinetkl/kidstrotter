@@ -1,0 +1,37 @@
+<% act = sprintf("%02d", "#{booking.activity.id}") %>
+<div class="container-fluid mb-3">
+  <div class="card-body">
+    <div class="card-review">
+      <div class="row m-0">
+        <div class="col-lg-4 col-md-6 mb-lg-0 mb-3 p-0 d-flex">
+          <%= image_tag(booking.activity.card_image, class: %(img-preview bg-image flex-fill align-self-center), style: %(max-height: 250px;)) %>
+        </div>
+        <div class="col-lg-8 col-md-6 vstack">
+          <span class="h2 fw-bold"><%= booking.activity.name %></span>
+          <h6><i class="fa-solid fa-location-dot"></i> <%= booking.activity.address %></h6>
+          <h4 class="purple-text fw-bold"><%= booking.start_time.strftime('%A, %d %b %Y') %></h4>
+          <h6><i class="fa-solid fa-user-tie"></i></i> Organizer: <%= booking.activity.organizer.user.first_name %> <%= booking.activity.organizer.user.last_name %></h6>
+          <h5>
+            <span class="badge badge-yellow text-wrap mb-lg-0 my-1"><%= booking.activity.category.name %></span>
+            <span class="badge badge-green text-wrap mb-lg-0 my-1">Booking Status: <%= booking.status %></span>
+            <span class="badge badge-orange-plain text-wrap mb-lg-0 my-1">Booking ID: <i class="fa-solid fa-location-pin"></i> <%= act %></span>
+          </h5>
+          <h6>
+            <span>Booked for: <%= booking.adult_qty %> adults,</span>
+            <span><%= booking.child_qty %> children</span>
+          </h6>
+          <div class="d-flex flex-wrap justify-content-between">
+            <h1 class="fw-bold">
+              <%= number_to_currency((booking.adult_qty * booking.activity.adult_price) + (booking.child_qty * booking.activity.child_price)) %>
+            </h1>
+            <div class="d-flex d-inline flex-wrap gap-1">
+              <%= link_to "Activity details", activity_path(booking.activity), class: %(btn purple-btn-solid d-grid flex-fill fs-6) %>
+              <%= link_to "Leave a review", new_booking_review_path(booking), class: %(btn purple-btn-outline d-grid flex-fill fs-6) %>
+              <%= link_to "Cancel booking", booking_path(booking), class: %(btn red-btn-solid d-grid flex-fill fs-6), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

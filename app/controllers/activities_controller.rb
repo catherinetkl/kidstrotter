@@ -51,8 +51,7 @@ class ActivitiesController < ApplicationController
     @markers = @activities.geocoded.map do |activity|
       {
         lat: activity.latitude,
-        lng: activity.longitude,
-        info_window: render_to_string(partial: "info_window", locals: {activity: activity})
+        lng: activity.longitude
       }
     end
 
@@ -61,6 +60,8 @@ class ActivitiesController < ApplicationController
       format.json
     end
   end
+
+
 
   def organizer_index
     @activities = Activity.where(organizer: current_user.organizer)
