@@ -68,6 +68,7 @@ class ActivitiesController < ApplicationController
 
   def show
     @reviews = Review.all
+    @bookings = Booking.all
     @bookmark = Bookmark.new
 
     @markers = [{

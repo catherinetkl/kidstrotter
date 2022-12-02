@@ -72,22 +72,26 @@
       <div class="col-md-9 d-flex align-items-between flex-column">
 
         <div class="card-body">
+
+          <% booksum = 0 %>
+
+          <% @bookings.each do |booking| %>
+            <% if booking.activity_id.eql?(@activity.id) %>
+              <% booksum += 1 %>
+            <% end %>
+          <% end %>
+
           <h1 class="card-title fw-bold"><%= @activity.name %></h1>
-          <p class="mb-2"><i class="fa-solid fa-star"></i> Reviews qty | <i class="fa fa-book"></i> Bookings qty | <i class="fa-solid fa-location-dot"></i> <%= @activity.address %></p>
+          <p class="mb-2"><i class="fa-solid fa-star"></i> Reviews: <%= @reviews.count + 3 %> | <i class="fa fa-book"></i> Bookings: <%= booksum %> | <i class="fa-solid fa-location-dot"></i> <%= @activity.address %></p>
 
           <div class="row">
 
             <div class="col-lg-8 col-md-12 mb-lg-0 mb-3 d-flex align-items-center">
-              <!--
               <% if @activity.photo.key.nil? %>
                 <%= image_tag(@activity.card_image, class: "img-fluid img-preview image-tag flex-fill", style: "height: 600px;") %>
               <% else %>
                 <%= cl_image_tag @activity.photo.key, class: "img-fluid img-preview image-tag flex-fill", style: "height: 600px;" %>
               <% end %>
-              -->
-              <% default = image_tag(@activity.card_image, class: "img-fluid img-preview image-tag flex-fill", style: "height: 600px;") %>
-              <% cld_img = cl_image_tag @activity.photo.key, class: "img-fluid img-preview image-tag flex-fill", style: "height: 600px;" %>
-              <%= @activity.photo.key.nil? ? default : cld_img %>
             </div>
 
 
@@ -141,7 +145,7 @@
                       <div class="col-lg-6 mb-lg-0 mb-3">
                         <% free = link_to "No booking", new_activity_booking_path(@activity), class: %(btn purple-btn-outline d-grid fs-6 py-2 disabled) %>
                         <% paid = link_to "Book Now", new_activity_booking_path(@activity), class: %(btn purple-btn-outline d-grid fs-6 py-2) if !is_organizer? %>
-                        <%= @activity.adult_price.zero?  && @activity.child_price.zero? ?  free : paid %>
+                        <%= @activity.adult_price.zero? && @activity.child_price.zero? ?  free : paid %>
                       </div>
                     </div>
 
