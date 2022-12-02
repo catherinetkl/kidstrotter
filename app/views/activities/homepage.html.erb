@@ -56,7 +56,11 @@
 
                   <div class="card-trip icon-container col">
                   <div class="img-wrapper">
-                    <%= image_tag(activity.card_image) %>
+                    <% if activity.photo.key.nil? %>
+                      <%= image_tag(activity.card_image, class: "img-fluid img-preview image-tag flex-fill", style: "height: 600px;") %>
+                    <% else %>
+                      <%= cl_image_tag activity.photo.key, class: "img-fluid img-preview image-tag flex-fill", style: "height: 600px;" %>
+                    <% end %>
                   </div>
 
                     <div class="card-trip-infos">
