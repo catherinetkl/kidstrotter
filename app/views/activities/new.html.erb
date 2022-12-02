@@ -1,58 +1,68 @@
-<div class="devise-container" style="margin-bottom: 50px;">
-  <div class="container">
-    <div class="grid">
+<div class="card">
+  <div class="row g-0" id="background-img">
+    <div class="mx-auto col-md-12">
+      <div class="card-body">
 
-      <div class="col-6 mx-auto">
-        <div class="form">
-          <%= simple_form_for (@activity) do |f| %>
+        <div class="devise-container" style="margin-bottom: 50px;">
+          <div class="container">
+            <div class="grid">
 
-          <div class="bg-white text-weight-medium mt-4 p-3" style="border-radius: 15px; border: solid 1px F5F5D; box-shadow: 0 3px 10px rgb(0 0 0 / 0.3);">
+              <div class="col-6 offset-6">
+                <div class="form">
+                  <%= simple_form_for (@activity) do |f| %>
 
-            <div class="form-inputs" style= "height: 800px;">
+                  <div class="bg-white text-weight-medium mt-4 p-3" style="border-radius: 15px; border: solid 1px F5F5D; box-shadow: 0 3px 10px rgb(0 0 0 / 0.3);">
 
-              <div class="text-center">
-                <br>
-                <h3>Create a new activity</h3>
-                <br>
+                    <div class="form-inputs" style= "height: 800px;">
+
+                      <div class="text-center">
+                        <br>
+                        <h3>Create a new activity</h3>
+                        <br>
+                      </div>
+                      <div class="mb-3" style="margin: 0 2rem">
+                        <%= f.input :name %>
+                      </div>
+
+                      <div class="mb-4" style="margin: 0 2rem">
+                        <%= f.association :category %>
+                      </div>
+
+                      <div class="mb-3" style="margin: 0 2rem">
+                        <%= f.input :address %>
+                      </div>
+
+                      <div class="mb-3" style="margin: 0 2rem">
+                        <%= f.input :adult_price %>
+                      </div>
+
+                      <div class="mb-3" style="margin: 0 2rem">
+                        <%= f.input :child_price %>
+                      </div>
+
+                      <div class="mb-3" style="margin: 0 2rem">
+                        <%= f.input :age_group %>
+                      </div>
+
+                      <div class="mb-3" style="margin: 0 2rem">
+                        <%= f.input :photo, as: :file %>
+                      </div>
+
+                      <br>
+                      <div class="form-actions" style= "margin: 0 2rem;">
+                        <%= link_to "Return", activities_path, class: "btn activity-return-btn", style: "margin-left: 65px; margin-right: 45px; width: 185px; height: 40px;" %>
+                        <%= f.button :submit, "Submit", class: 'btn activity-submit-btn', style: "width: 185px; height: 40px;" %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div class="mb-3" style="margin: 0 2rem">
-                <%= f.input :name %>
-              </div>
-
-              <div class="mb-4" style="margin: 0 2rem">
-                <%= f.association :category %>
-              </div>
-
-              <div class="mb-3" style="margin: 0 2rem">
-                <%= f.input :address %>
-              </div>
-
-              <div class="mb-3" style="margin: 0 2rem">
-                <%= f.input :adult_price %>
-              </div>
-
-              <div class="mb-3" style="margin: 0 2rem">
-                <%= f.input :child_price %>
-              </div>
-
-              <div class="mb-3" style="margin: 0 2rem">
-                <%= f.input :age_group %>
-              </div>
-
-              <div class="mb-3" style="margin: 0 2rem">
-                <%= f.input :photo, as: :file %>
-              </div>
-
-              <br>
-              <div class="form-actions" style= "margin: 0 2rem;">
-                <%= link_to "Return", activities_path, class: "btn btn-outline-secondary", style: "margin-left: 65px; margin-right: 45px; width: 185px; height: 40px; border-radius: 5px;" %>
-                <%= f.button :submit, "Submit", class: 'btn text-white', style: "width: 185px; height: 40px; border-radius: 5px; background-color: #f03827;" %>
-              </div>
+              <% end %>
             </div>
           </div>
         </div>
+
       </div>
-      <% end %>
     </div>
   </div>
 </div>
