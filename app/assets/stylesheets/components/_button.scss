@@ -51,3 +51,34 @@
   background: rgb(100, 50, 50);
   border-radius: 4px;
 }
+
+.activity-submit-btn {
+  color: white;
+  background: #605DEC;
+  text-decoration: none;
+  border-radius: 50px;
+  height: 30px;
+  border-radius: 50px;
+  font-size: 16px;
+  line-height: 22px;
+  padding: 0px 20px;
+  border: 1px solid #885df1;
+  transition: background 200ms ease, border-color 200ms ease;
+}
+
+.activity-submit-btn:hover {
+  color:#000;
+  background: #B6B2F3;
+}
+
+.activity-return-btn {
+  align-items: center;
+  border: 1px solid #605DEC;
+  border-radius: 50px;
+}
+
+.activity-return-btn:hover {
+  border: 1px solid #B6B2F3;
+  border-radius: 50px;
+  background: #B6B2F3;
+}
