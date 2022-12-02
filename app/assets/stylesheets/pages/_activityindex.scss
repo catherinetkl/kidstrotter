@@ -1,5 +1,6 @@
 .search-activity-container {
-
+  position: relative;
+  margin: 3rem 0;
   margin-top: 1rem;
 
   .searchbar {
@@ -77,6 +78,7 @@
   display: flex;
   height: 40px;
   align-items: center;
+  margin-top: 20px;
 
   .filter-container {
     border: 1px solid lightgray;
@@ -93,13 +95,13 @@ select {
   width: fit-content;
 }
 
-.selecttag {
-  margin-right: 20px !important;
-}
-
 .taglabel {
   font-weight: bold;
   margin-right: 8px;
   padding: 8px 1rem;
   background-color: var(--bs-border-color-translucent);
+}
+
+.selecttag {
+  margin-right: 20px !important;
 }
