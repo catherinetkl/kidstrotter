@@ -1,33 +1,39 @@
-  <div class="container">
-    <div class="row">
-      <div class="col-6 mx-auto mb-5 mt-3">
+<div class="bg-container">
 
-        <div>Activity Name: <%= @activity.name %></div>
+  <div class="card-trip pb-5">
+    <%= image_tag(@activity.card_image, style: "height:400px;width:100%;object-fit:cover; padding-bottom: 20px;") %>
+    <div class="card-trip-infos">
 
-        <div>Category: <%= @activity.category.name %></div>
+      <div class="container">
 
-        <div>Adult Price: <%= @activity.adult_price %></div>
-
-        <div>Child Price: <%= @activity.child_price %></div>
-
-      </div>
-
-
-    <div class="row">
-      <div class="col-6 mx-auto">
-        <%= simple_form_for [@activity, @booking] do |f| %>
-                  <%= f.input :adult_qty %>
-                  <%= f.input :child_qty %>
-                  <%= f.input :start_time, label: "Booking Date" %>
-                  <div>
-                    <%= link_to "Return", activities_path, class: "btn btn-outline-secondary" %>
-                    <%= f.button :submit, "Submit", class: 'btn text-white', style: "width: 175px; height: 40px; border-radius: 5px; background-color: #f03827;" %>
-                  </div>
-
-                <% end %>
+        <div class="row">
+          <div class="col-5">
+            <h1><%=@activity.name %></h1>
+            <h6>Category: <%=@activity.category.name %></h6 >
+            <br>
+            <br>
+            <h6><%=@activity.address %></h6>
+            <p>
+Fun filled activities for everyone! Bring your kids and and families to embark at our most popular venue yet. Come here for the the most enriching experience, and leave lasting fulfilled and wanting more!</p>
+          </div>
+          <div class="col-7">
+              <%= simple_form_for [@activity, @booking,] do |f| %>
+                <%= f.input :adult_qty %>
+                <br>
+                <%= f.input :child_qty %>
+                <br>
+                <%= f.input :start_time, label: "Booking Date" %>
+                <br>
+                <div class="">
+                  <br>
+                  <%= link_to "Return", bookings_path, class: "btn btn-outline-secondary fs-6 py-2 w-25" %>
+                  <%= f.button :submit, "Submit", class: 'btn btn-outline-primary fs-6 py-2 ms-3 w-25' %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        </div>
       </div>
     </div>
 
-      </div>
-    </div>
-  </div>
+</div>
