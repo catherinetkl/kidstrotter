@@ -39,7 +39,9 @@ class ActivitiesController < ApplicationController
     # check if user searched for anything
     @activities = @activities.search_by_activity_and_category(params[:query]) if params[:query].present?
     # check if user filtered by price
-    @activities = @activities.where(require_payment: params[:require_payment]) if params[:require_payment].present? && params[:require_payment] != 'all'
+    if params[:require_payment].present? && params[:require_payment] != 'All'
+      @activities = @activities.where(require_payment: params[:require_payment])
+    end
     # check if user filtered by categories
     @activities = @activities.where(category_id: params[:category].to_i) if params[:category].present?
     # check if user filtered by adult price
