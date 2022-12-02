@@ -42,8 +42,6 @@
 
 <%# Carousel Cards %>
 <div class="container">
-  <%= link_to "All", activities_path, style: "float: right; margin-top: 1rem;" %>
-
   <h1 class="my-3">Trending Activities</h1>
 </div>
 <div id="carouselExampleControls" class="container carousel slide" data-bs-ride="carousel">
@@ -98,12 +96,14 @@
   </div>
 </div>
 
+<div class="container d-flex justify-content-center mt-5">
+  <%= link_to "See All", activities_path, class: "purple-btn-solid" , style: "color: white; border-radius: 5px; padding: 5px 100px" %>
+</div>
+
 
 <%# show random 6 cards %>
 <div class="container mt-4">
   <div>
-  <%= link_to "All", activities_path, style: "float: right; margin-top: 1rem;" %>
-
   <h1 class="my-3">Explore unique activities</h1>
   </div>
   <div class="row row-cols-3">
@@ -138,8 +138,8 @@
   <br>
 </div>
 
-<div class="container d-flex justify-content-center">
-  <%= link_to "See More", activities_path, class: "purple-btn-solid" , style: "color: white; border-radius: 5px; padding: 10px 20px" %>
+<div class="container d-flex justify-content-center mt-5">
+  <%= link_to "See More", activities_path, class: "purple-btn-solid" , style: "color: white; border-radius: 5px; padding: 5px 100px" %>
 </div>
 
 <%# reviews %>
