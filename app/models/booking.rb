@@ -10,7 +10,4 @@ class Booking < ApplicationRecord
 
   STATUSES = %w[ Pending Booked Completed ]
 
-  def completed?
-    true
-  end
 end

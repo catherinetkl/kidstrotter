@@ -21,12 +21,14 @@
             <span><%= booking.child_qty %> children</span>
           </h6>
           <div class="d-flex flex-wrap justify-content-between">
-            <h1 class="fw-bold">
-              <%= number_to_currency((booking.adult_qty * booking.activity.adult_price) + (booking.child_qty * booking.activity.child_price)) %>
+            <h4 class="fw ms-1">
+              Total Price:  <%= number_to_currency((booking.adult_qty * booking.activity.adult_price) + (booking.child_qty * booking.activity.child_price)) %>
             </h1>
             <div class="d-flex d-inline flex-wrap gap-1">
               <%= link_to "Activity details", activity_path(booking.activity), class: %(btn purple-btn-solid d-grid flex-fill fs-6) %>
-              <%= link_to "Leave a review", new_booking_review_path(booking), class: %(btn purple-btn-outline d-grid flex-fill fs-6) %>
+              <% if booking.status == "Completed" %>
+                <%= link_to "Leave a review", new_booking_review_path(booking), class: %(btn purple-btn-outline d-grid flex-fill fs-6) %>
+              <% end %>
               <%= link_to "Cancel booking", booking_path(booking), class: %(btn red-btn-solid d-grid flex-fill fs-6), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
             </div>
           </div>
