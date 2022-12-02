@@ -43,19 +43,16 @@
                       <div class="mb-3" style="margin: 0 2rem">
                         <%= f.input :age_group %>
                       </div>
-
+                      
                       <div class="mb-3" style="margin: 0 2rem">
                         <%= f.input :photo, as: :file %>
                       </div>
+              <br>
+              
+              <div class="form-actions" style= "margin 0 2rem;">
+                <%= link_to "Return", activities_path, class: "btn btn-outline-secondary fs-6 py-2 w-25", style: "margin-left: 140px" %>
+                <%= f.button :submit, "Submit", class: 'btn purple-btn-solid fs-6 py-2 w-25', style: "margin-left: 10px" %>
 
-                      <br>
-                      <div class="form-actions" style= "margin: 0 2rem;">
-                        <%= link_to "Return", activities_path, class: "btn activity-return-btn", style: "margin-left: 65px; margin-right: 45px; width: 185px; height: 40px;" %>
-                        <%= f.button :submit, "Submit", class: 'btn activity-submit-btn', style: "width: 185px; height: 40px;" %>
-                      </div>
-                    </div>
-                  </div>
-                </div>
               </div>
               <% end %>
             </div>

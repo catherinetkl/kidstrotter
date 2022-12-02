@@ -144,7 +144,7 @@
             </div>
             <div class = "text-end">
               <%= link_to "Details", booking_path(booking), class: %(btn btn-sm), style: "margin-right: 10px; background-color: #00888E; color: white; border-radius: 10px" %>
-              <%= link_to "Leave a Review", new_booking_review_path(booking), class: %(btn btn-sm), style: "margin-right: 10px; background-color: #605DEC; color: white; border-radius: 10px" if booking.completed? %>
+              <%= link_to "Leave a Review", new_booking_review_path(booking), class: %(btn btn-sm), style: "margin-right: 10px; background-color: #605DEC; color: white; border-radius: 10px" %>
               <%= link_to "Cancel Booking", booking_path(booking), class: "btn btn-sm", style: "margin-right: 10px; background-color: #FF4747; color: white; border-radius: 10px", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%>
             </div>
       <%# <div>

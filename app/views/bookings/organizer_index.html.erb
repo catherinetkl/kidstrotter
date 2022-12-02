@@ -1,32 +1,30 @@
-
-
 <div>
-  <% @bookings.each do |booking| %>
+  <% @bookings.last(6).each do |booking| %>
     <div class="container">
-      <div class="row shadow-lg mx-auto mt-4 mb-4 border border-secondary">
+      <div class="row shadow mx-auto mt-3 border" style="border-radius: 20px;">
         <div class="col-4 p-0 m-0">
           <% if booking.activity.photo.key.nil? %>
-            <%= image_tag(booking.activity.card_image, class: "img-fluid rounded-start image-tag") %>
+            <%= image_tag(booking.activity.card_image, class: "img-fluid image-tag", style: "border-top-left-radius: 15px 15px; border-bottom-left-radius: 15px 15px;") %>
           <% else %>
-            <%= cl_image_tag booking.activitiy.photo.key, class: "img-fluid rounded-start image-tag" %>
+            <%= cl_image_tag booking.activitiy.photo.key, class: "img-fluid rounded-start image-tag", style: "border-top-left-radius: 15px 15px; border-bottom-left-radius: 15px 15px" %>
           <% end %>
         </div>
         <div class="col-8">
 
-          <div class="card-body ps-4">
-            <h5 class="card-title"><strong><%= booking.activity.name %></strong></h5>
+          <div class="card-body ps-4 pt-4 pb-4">
+            <h2 class="card-text" style="color:black"><strong><%= booking.activity.name %></strong></h2>
+            <p class="card-text card-add">Booking from: <%= booking.user.first_name %></p>
+            <br>
+            <br>
             <p class="card-text card-add"><%= link_to booking.activity.address, '#' %></p>
-            <p class="card-text card-age">Suitable For Ages: <%= booking.activity.age_group %></p>
-            <p class="card-text card-add">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</p>
+            <p class="card-text card-add">Suitable For Ages: <%= booking.activity.age_group %></p>
 
             <br>
-            <br>
-            <br>
-
-            <p class="card-text card-add pb-2"><%= booking.status %>:</p>
 
             <%= simple_form_for(booking) do |f| %>
-              <%= f.input :status, collection: Booking::STATUSES, label: false%>
+              <div class="card-text" style="color:black">
+                <%= f.input :status, collection: Booking::STATUSES, label: false%>
+              </div>
               <%= f.submit %>
             <% end %>
             </div>
