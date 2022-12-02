@@ -28,7 +28,7 @@
 <section class="container mt-4">
   <div class="d-flex flex-row">
   <% @categories.each do |category| %>
-    <%= link_to activities_path(params[query:category]) do %>
+    <%= link_to activities_path(category: category.id) do %>
     <div class="d-flex justify-content-between w-100">
       <div class="box border border-1 d-flex flex-column justify-content-center align-items-center icon-container" style="width: 180px;">
         <%= image_tag(category.icon_image || 'logo.png', style: "width: 50px; height: 50px;") %>
@@ -98,7 +98,7 @@
 
 
 <%# show random 6 cards %>
-<div class="container">
+<div class="container mt-4">
   <div>
   <%= link_to "All", activities_path, style: "float: right; margin-top: 1rem;" %>
 
