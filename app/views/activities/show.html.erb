@@ -132,14 +132,16 @@
 
                     <div class="row">
                       <div class="col-lg-6 mb-lg-0 mb-3" data-controller="bookmark">
-                        <%=
-                          case current_user.favorited?(@activity)
-                          when false
-                            link_to "Bookmark", favorite_activity_path(@activity, ret: 'button'), data: { action: "click->bookmark#toggleFavorite" }, class: %(btn purple-btn-solid d-grid fs-6 py-2) if !is_organizer?
-                          when true
-                            link_to "Bookmarked!", unfavorite_activity_path(@activity, ret: 'button'), data: { action: "click->bookmark#toggleFavorite" }, class: %(btn purple-btn-solid d-grid fs-6 py-2) if !is_organizer?
-                          end
-                        %>
+                        <% unless current_user.nil? %>
+                          <%=
+                            case current_user.favorited?(@activity)
+                            when false
+                              link_to "Bookmark", favorite_activity_path(@activity, ret: 'button'), data: { action: "click->bookmark#toggleFavorite" }, class: %(btn purple-btn-solid d-grid fs-6 py-2) if !is_organizer?
+                            when true
+                              link_to "Bookmarked!", unfavorite_activity_path(@activity, ret: 'button'), data: { action: "click->bookmark#toggleFavorite" }, class: %(btn purple-btn-solid d-grid fs-6 py-2) if !is_organizer?
+                            end
+                          %>
+                        <% end %>
                       </div>
 
                       <div class="col-lg-6 mb-lg-0 mb-3">
