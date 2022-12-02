@@ -13,7 +13,7 @@
           <label for="Require Payment" class="taglabel">Require Payment:</label>
           <span class="selecttag">
           <%= select_tag :require_payment, options_for_select([
-            ["All", "Payment Status"],
+            ["All", "All"],
             ["Free", false],
             ["Paid", true]
             ], selected: params[:require_payment]
