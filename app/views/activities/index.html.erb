@@ -4,7 +4,8 @@
   <div class="form">
     <%= form_with url: activities_path, method: :get, class: "search-activity-container" do %>
       <div class="searchbar">
-        <%= text_field_tag :query, params[:query], class: "form-control search-activity", placeholder: "Search..."%>
+        <%= text_field_tag :query, params[:query], class: "form-control search-activity", placeholder: "Search for activities"%>
+        <i class="fa-solid fa-magnifying-glass"></i>
         <%= submit_tag "Search", class: "btn search-activity-btn" %>
       </div>
       <div class="filters">
