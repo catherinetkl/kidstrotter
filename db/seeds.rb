@@ -74,8 +74,8 @@ pp "==================="
 end
 
 organizing_user = User.create!(
-  first_name: Faker::Name.name,
-  last_name: Faker::Name.name,
+  first_name: "Quinn",
+  last_name: "Harley",
   email: 'admin@admin.com',
   password: 123_456
 )

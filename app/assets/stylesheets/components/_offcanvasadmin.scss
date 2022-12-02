@@ -1,0 +1,81 @@
+.canvas-container {
+  box-shadow: 5px 10px #888888;
+  background-color: whitesmoke;
+  background-image: linear-gradient(rgba(255, 249, 249, 0.589),rgba(0,0,0,0.1)), url(beach.jpg);
+  opacity: 90%;
+}
+
+.canvas-wrap1 {
+  background-color: rgba(235, 235, 235, 0.945);
+
+}
+
+.canvas-wrap2 {
+  background-color: rgba(235, 235, 235, 0.945);
+  height: 500px;
+  padding-top: 15px;
+
+}
+
+.canvas-avatar {
+
+  img {
+    width: 60px;
+    height: 60px;
+    margin-left: 30px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: white solid 1px;
+  }
+}
+
+.canvas-header {
+  padding-top: 18px;
+
+  .canvas-text {
+    margin-top: 10px;
+    font-family: 'Raleway', 'sans-serif';
+    font-weight: 600;
+  }
+}
+
+.canvas-body {
+
+  .canvas-text {
+    font-family: 'Raleway', 'sans-serif';
+    font-weight: 500;
+    padding-top: 20px;
+    padding-left: 35px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    border-bottom: 1px rgb(200, 234, 245) solid;
+
+    i {
+      opacity: 80%;
+      margin-right: 20px;
+      margin-left: 20px;
+      padding: 10px;
+      border: black solid 1px;
+      border-radius: 100%;
+    }
+  }
+
+  .canvas-text-last {
+    font-family: 'Raleway', 'sans-serif';
+    font-weight: 500;
+    padding-top: 20px;
+    padding-left: 35px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+
+    i {
+      opacity: 80%;
+      margin-right: 20px;
+      margin-left: 20px;
+      padding: 10px;
+      border: black solid 1px;
+      border-radius: 100%;
+    }
+  }
+
+}
