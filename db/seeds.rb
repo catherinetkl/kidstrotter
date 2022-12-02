@@ -115,7 +115,7 @@ event_names.keys.each do |category_name|
     activity =
         Activity.create!(
           name: activity_name,
-          description: ['Lorem Ipsum'].sample,
+          description: ['Fun filled activities for everyone! Bring your kids and and families to embark at our most popular venue yet. Come here for the the most enriching experience, and leave lasting fulfilled and wanting more!'].sample,
           address: test_hash[activity_name][0],
           require_booking: need_pay_or_not == 'paid',
           require_payment: need_pay_or_not == 'paid',
