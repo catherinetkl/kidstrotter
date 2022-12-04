@@ -25,12 +25,14 @@
 <%# Categories Icons %>
 <%# Nature, Wildlife, Indoor Playground, Museuems and Exhibitions, Outdoor Attractions %>
 
+<br>
+
 <section class="container mt-4">
   <div class="d-flex flex-row">
   <% @categories.each do |category| %>
     <%= link_to activities_path(category: category.id) do %>
     <div class="d-flex justify-content-between w-100">
-      <div class="box border border-1 d-flex flex-column justify-content-center align-items-center cat-container" style="width: 180px;">
+      <div class="box border border-1 d-flex flex-column justify-content-center align-items-center cat-container shadow-sm" style="width: 180px;">
         <%= image_tag(category.icon_image || 'logo.png', style: "width: 50px; height: 50px;") %>
         <span class="text-center text-dark"><%= category.name %></span>
       </div>
@@ -40,12 +42,14 @@
   </div>
 </section>
 
+<br>
+
 <%# Carousel Cards %>
 <div class="container">
   <h1 class="my-3">Trending Activities</h1>
 </div>
 <div id="carouselExampleControls" class="container carousel slide" data-bs-ride="carousel">
-    <div class="carousel-inner">
+    <div class="carousel-inner pb-2 pt-2">
       <% @activities.each_slice(3).with_index do |activities, index| %>
         <div class="carousel-item <%= 'active' if index.zero? %>">
           <div class="row row-cols-3">
@@ -67,7 +71,7 @@
                         <div>
                           <h2><%= activity.name %></h2>
                           <p class="activity-description">📍<%= activity.address %></p>
-                          <p class=""><%= activity.description %></p>
+                          <p class="pb-3"><%= activity.description %></p>
                           <p>Suitable For Ages: <%= activity.age_group %></p>
                         </div>
                         <h2 class="card-trip-pricing">
@@ -104,6 +108,7 @@
   <%= link_to "See All", activities_path, class: "purple-btn-solid" , style: "color: white; border-radius: 5px; padding: 5px 100px" %>
 </div>
 
+<br>
 
 <%# show random 6 cards %>
 <div class="container mt-4">
@@ -123,7 +128,7 @@
                 <div>
                   <h2><%= activity.name %></h2>
                   <p class="mb-1 activity-description">📍<%= activity.address %></p>
-                  <p><%= activity.description %></p>
+                  <p class="pb-4"><%= activity.description %></p>
                   <p>Suitable For Ages: <%= activity.age_group %></p>
                 </div>
                 <h2 class="card-trip-pricing">
@@ -159,7 +164,8 @@
           <p class="card-text t-card">Yifei Chen</p>
           <p class="card-text t-card">Pasir Ris, Singapore | March 2022</p>
           <p class="card-text t-card">★★★★★</p>
-          <p class="card-text t-card">What a great experience using KidsTrotter! I booked all of my family passes for attractions through KidsTrotter and never had any issues. When I had to cancel a booking because of an emergency, KidsTrotter support helped me.</p>
+          <br>
+          <p class="card-text t-card" style="font-size: 14px;">What a great experience using KidsTrotter! I booked all of my family passes for attractions through KidsTrotter and never had any issues. When I had to cancel a booking because of an emergency, KidsTrotter support helped me.</p>
         </div>
       </div>
     </div>
@@ -171,7 +177,8 @@
           <p class="card-text t-card">Kaori Yamaguchi</p>
           <p class="card-text t-card">Punggol, Singapore | May 2022</p>
           <p class="card-text t-card">★★★★☆</p>
-          <p class="card-text t-card">My family and I visit Gardens by the Bay during Christmas every year, and we usually book our tickets using other tour agencies. KidsTrotter was recommended to us by a friend, and I’m so glad we tried it out! The booking process was soo easy.</p>
+          <br>
+          <p class="card-text t-card" style="font-size: 14px;">My family and I visit Gardens by the Bay during Christmas every year, and we usually book our tickets using other tour agencies. KidsTrotter was recommended to us by a friend, and I’m so glad we tried it out! The booking process was soo easy.</p>
         </div>
       </div>
     </div>
@@ -185,7 +192,8 @@
             <p class="card-text t-card">Tanjong Pagar, Singapore | July 2022</p>
           </div>
           <p class="card-text t-card">★★★★★</p>
-          <p class="card-text t-card">When I was looking to book Singapore flyer tickets for my family, KidsTrotter had the best browsing experience, so I figured I’d give it a try. It was my first time using KidsTrotter, but I’d definitely recommend it to a friend and use it.</p>
+          <br>
+          <p class="card-text t-card" style="font-size: 14px;">When I was looking to book Singapore flyer tickets for my family, KidsTrotter had the best browsing experience, so I figured I’d give it a try. It was my first time using KidsTrotter, but I’d definitely recommend it to a friend and use it.</p>
         </div>
       </div>
     </div>
