@@ -62,7 +62,7 @@
               </div>
               <p class="card-text card-add">📍<%= link_to activity.address, '#', class: "h-card-address" %></p>
               <p class="card-text card-age">Suitable For Ages: <%= activity.age_group %></p>
-              <p class="card-text card-add">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</p>
+              <p class="card-text card-add" style="font-size: 13px"><%= activity.description %></p>
               <p class="card-trip-pricing card-price">
                 <% if activity.require_booking == false %>
                   Free
