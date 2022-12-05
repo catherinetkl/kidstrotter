@@ -19,7 +19,7 @@ class ReviewsController < ApplicationController
     @review.booking = @booking
 
     if @review.save
-      redirect_to reviews_path
+      redirect_to root_path
       flash[:alert] = 'Review made successfully!'
     else
       flash[:alert] = 'Review failed ..'
