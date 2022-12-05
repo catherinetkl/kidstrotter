@@ -55,7 +55,8 @@
           </div>
           <div class="col-md-8">
             <div class="card-body">
-              <p class="card-title" style="font-family: Raleway ; font-size: 1.25 rem ; font-weight: bolder; border: none; font-weight: bolder;"><%= activity.name %></p>
+              <p class="card-text card-rating">⭐</i>4.9 (2153 reviews)</p>
+              <h5 class="card-title"><%= activity.name %></h5>
               <div class="bookmark-container" data-controller="bookmark">
                 <%= render 'bookmark', activity: activity %>
               </div>
@@ -66,11 +67,10 @@
                 <% if activity.require_booking == false %>
                   Free
                 <% else %>
-                  From S$<%= sprintf('%.2f', activity.adult_price) %>
+                  From <strong>S$<%= sprintf('%.2f', activity.adult_price) %></strong>
                 <% end %>
               </p>
               <%= link_to('More details', activity_path(activity), class: "btn purple-btn-solid btn-detail mt-2 fs-6", type: "button", style: "border-radius: 5px; padding: 1px 10px 1px 10px") %>
-              <p class="card-text card-rating">⭐</i>4.9 reviews (2153)</p>
             </div>
           </div>
         </div>

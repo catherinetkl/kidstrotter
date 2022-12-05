@@ -1,11 +1,16 @@
 .navbar-lewagon {
   justify-content: space-between;
-  background: linear-gradient(180deg, #e484ff 0%, #a498ee 100%);
+  background: #FFF;
+  box-shadow: 1px 1px 1px lightgray;
 }
 
 .nav-link {
-  color: #fff;
+  color: #000;
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+  font-size: 16px;
 }
+
 .navbar-brand {
   background-color: transparent
 }
@@ -17,4 +22,20 @@
 .navbar-lewagon .navbar-brand img {
   width: 40px;
   background-color: transparent;
+}
+
+.nav-button {
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+  border-radius: 50px;
+  color: #fff;
+  background: #ff9d00;
+  font-size: 16px;
+  padding-top:10px;
+  padding-bottom:10px;
+}
+
+.nav-button:hover {
+  background: #ff9d00;
+  color: #000;
 }

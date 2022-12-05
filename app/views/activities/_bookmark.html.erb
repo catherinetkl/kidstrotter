@@ -17,7 +17,7 @@
         so we return the bookmark icon
     ------------------------------------- %>
     <%= link_to unfavorite_activity_path(activity), data: { action: "click->bookmark#toggleFavorite" } do %>
-      <i class="bi bi-bookmark-fill fa-2x"></i>
+      <i class="bi bi-bookmark-fill"></i>
     <% end %>
 
   <% end %>
@@ -44,13 +44,13 @@
     <% if user_signed_in? %>
 
       <%= link_to favorite_activity_path(activity), data: { action: "click->bookmark#toggleFavorite" } do %>
-        <i class="bi bi-bookmark fa-2x"></i>
+        <i class="bi bi-bookmark"></i>
       <% end %>
 
     <% else %>
 
       <%= link_to new_user_session_path do %>
-        <i class="bi bi-bookmark fa-2x"></i>
+        <i class="bi bi-bookmark"></i>
       <% end %>
 
     <% end %>

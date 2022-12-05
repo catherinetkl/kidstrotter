@@ -81,7 +81,9 @@
             <% end %>
           <% end %>
 
-          <h1 class="card-title fw-bold"><%= @activity.name %></h1>
+          <div class="card-title fw-bold d-flex align-items-center"><h3><%= @activity.name %></h3>
+            <p class="card-text card-age" style="width:150px;padding-top:5px;padding-bottom:5px;margin-left:10px;">Suitable For Ages: <%= @activity.age_group %></p>
+            </div>
           <p class="mb-2"><i class="fa-solid fa-star"></i> Reviews: <%= @reviews.count + 3 %> | <i class="fa fa-book"></i> Bookings: <%= booksum %> | <i class="fa-solid fa-location-dot"></i> <%= @activity.address %></p>
 
           <div class="row">
@@ -111,9 +113,10 @@
         <div class="card-body">
           <div class="row">
             <div class="col-lg-8 col-md-12 mb-lg-0 mb-3">
-              <div class="card-activity">
-                <span class="h5 lh-sm fw-bold"><p>Description: <%= @activity.description %></p></span>
-                <span class="h5 lh-sm fw-bold"><p>Suitable For Ages: <%= @activity.age_group %></p></span>
+              <div>
+                <span class="lh-sm"><p>Southeast Asia's first and only Universal Studios theme park, featuring thrilling rides, shows, and attractions based on popular films and TV shows
+                <%= @activity.description %></p></span>
+                <%# <span class="h5 lh-sm fw-bold"><p>Suitable For Ages: <%= @activity.age_group %></p></span>
               </div>
             </div>
 
