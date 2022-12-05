@@ -1,22 +1,23 @@
 .form-purple-btn {
-  background: #605DEC;
+  background: $kidsblue;
   border-radius: 4px;
-  border: 1px solid #B6B2F3;
+  border: 0px solid #B6B2F3 !important;
 }
 
 .form-purple-btn:hover {
   color: black;
-  background: #5f5decb4;
+  background: $kidsblue;
   border-radius: 4px;
-  border: 1px solid black;
+  // border: 1px solid black;
 }
 
 .purple-btn-solid {
   align-items: center;
   font-size: larger;
   color: white;
-  background: #605DEC;
+  background: $kidsblue;
   border-radius: 4px;
+  padding: 10px 45px;
 }
 
 .purple-btn-solid:hover {
@@ -26,7 +27,7 @@
 .purple-btn-outline {
   align-items: center;
   font-size: larger;
-  border: 1px solid #605DEC;
+  border: 1px solid $kidsblue;
   border-radius: 4px;
 }
 

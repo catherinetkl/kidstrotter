@@ -1,4 +1,4 @@
-<nav class="sticky-top w-100 navcon navbar navbar-expand-sm navbar-light navbar-lewagon shadow bg-white">
+<nav class="sticky-top w-100 navcon navbar navbar-expand-sm navbar-light navbar-lewagon bg-white">
   <div class="container">
     <%= link_to root_path, class: "navbar-brand" do %>
       <%= image_tag("logo.png", style: "height: 50px; width: 50px;") %>
@@ -14,7 +14,7 @@
 
         <% if !user_signed_in? %>
           <li class="nav-item">
-            <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+            <%= link_to "Login", new_user_session_path, class: "nav-button" %>
           </li>
 
         <% elsif current_user.try(:organizer) %>
@@ -28,7 +28,7 @@
           </li>
 
           <li class="nav-item">
-            <%= link_to "Patron List  ", organizer_bookings_path, class: "nav-link" %>
+            <%= link_to "Patron List", organizer_bookings_path, class: "nav-link" %>
           </li>
 
           <li class="nav-item dropdown">
@@ -49,9 +49,6 @@
           <li class="nav-item">
             <%= link_to "Bookmarks", bookmarks_path, class: "nav-link" %>
           </li>
-          <li class="nav-item">
-            <%= link_to "Chat Support", "#", class: "nav-link" %>
-          </li class="nav-item">
 
           <li class="nav-item dropdown">
             <% if current_user.avatar.attached?%>

@@ -3,6 +3,15 @@
 //   padding: 0;
 //   box-sizing: border-box;
 // }
+.container {
+  max-width:1200px;
+}
+.flex-row {
+  margin-top: 3rem !important;
+}
+.card {
+  border-radius: 10px;
+}
 
 .intro {
   // background: black;
@@ -61,7 +70,7 @@
 }
 
 .img-wrapper{
-  height:300px;
+  height: 260px;
   overflow: hidden;
 }
 
@@ -109,7 +118,7 @@
 
 .search-btn {
   color: white;
-  background: #605DEC;
+  background: #97a1ff;
   text-decoration: none;
   position: absolute;
   border-radius: 50px;
@@ -121,13 +130,13 @@
   font-size: 16px;
   line-height: 22px;
   padding: 0px 20px;
-  border: 1px solid #885df1;
+  border: 1px solid #97a1ff;
   transition: background 200ms ease, border-color 200ms ease;
 }
 
 .search-btn:hover {
   color:#000;
-  background: #B6B2F3;
+  background: #97a1ff;
 }
 
 .footer {
@@ -175,6 +184,37 @@ ul {
   }
 }
 
+
+//carousel
+
+.carousel-control-prev, .carousel-control-next {
+  position: relative !important;
+  color:black !important;
+}
+
+.arrow {
+  font-size: 22px;
+}
+
+
+// test
+.carousel-activities {
+  display: flex;
+
+  & > a {
+    margin: 0 .5rem;
+    display: inline-block;
+    width: 100%;
+  }
+
+  &:first-child {
+    margin-left: 0;
+  }
+
+  &:last-child {
+    margin-right: 0;
+
+
 body {
   background-color: white;
 }
@@ -182,5 +222,6 @@ body {
 .activity-description {
   p {
     padding-top: -10px;
+    
   }
 }

@@ -1,0 +1,32 @@
+
+  <%= link_to(activity) do %>
+    <%# <div class="card-background"> %>
+
+      <div class="card-trip icon-container col">
+      <div class="img-wrapper">
+        <% if activity.photo.key.nil? %>
+          <%= image_tag(activity.card_image, class: "img-fluid img-preview image-tag flex-fill", style: "object-fit:cover;") %>
+        <% else %>
+          <%= cl_image_tag activity.photo.key, class: "img-fluid img-preview image-tag flex-fill", style: "object-fit:cover;" %>
+        <% end %>
+      </div>
+
+        <div class="card-trip-infos">
+            <div>
+              <h2><%= activity.name %></h2>
+              <p class="activity-description">📍<%= activity.address %></p>
+              <p class=""><%= activity.description %></p>
+              <p>Suitable For Ages: <%= activity.age_group %></p>
+            </div>
+            <h2 class="card-trip-pricing">
+              <% if activity.adult_price == 0 %>
+                Free
+              <% else %>
+                $<%= sprintf('%.2f', activity.adult_price) %>
+              <% end %>
+            </h2>
+        </div>
+      </div>
+
+    <%# </div> %>
+  <% end %>
