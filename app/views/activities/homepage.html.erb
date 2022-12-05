@@ -68,8 +68,8 @@
           <div class="row row-cols-3">
 
             <% activities.each do |activity| %>
-              <%= link_to(activity) do %>
-         
+
+
 
                   <div class="card-trip icon-container col">
                   <div class="img-wrapper">
@@ -96,7 +96,7 @@
                         </h2>
                     </div>
                   </div>
-
+            <% end %>
             <%= render activities %>
 
           </div>
@@ -202,20 +202,3 @@
     </div>
   </div>
 </div>
-
-
-<%# <div class="intro">
-  <div class="intro-text">
-    <h1 class="hide">
-      <span class="text">Creating inovation</span>
-    </h1>
-    <h1 class="hide">
-      <span class="text">For Everyday</span>
-    </h1>
-    <h1 class="hide">
-      <span class="text">people.</span>
-    </h1>
-  </div>
-</div>
-
-<div class="slider" data-controller="test">Hey</div> %>
