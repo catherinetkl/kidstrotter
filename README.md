@@ -38,7 +38,11 @@ Visit [KidsTrotter](https://www.kidstrotter.fun) to start exploring family-frien
   - **Heroku**: The application is deployed and hosted on Heroku, a cloud platform that provides a scalable and reliable environment for running web applications. Heroku simplifies the deployment process and offers easy integration with various services.
 
 ## Preview
-<video src='https://github.com/catherinetkl/kidstrotter/assets/70590533/0211d02e-99ba-43d1-8e0a-215e5d001b8a' width=180></video>
+<video src='https://github.com/catherinetkl/kidstrotter/assets/70590533/b4a619d6-e1d1-412f-8daf-913501233e06' width=180></video>
+
+
+
+
 
 
 ## Contact
